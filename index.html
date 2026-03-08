@@ -1,0 +1,2669 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- If you're reading this, you're exactly who this guide is for -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      The Antigravity Guide — Master AI-Powered Development Without Fighting
+      Gravity
+    </title>
+    <meta
+      name="description"
+      content="A field guide for senior developers: Learn how to make AI assistants actually understand your codebase, rules, and patterns."
+    />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="The Antigravity Guide — Stop Fighting Gravity"
+    />
+    <meta
+      property="og:description"
+      content="A field guide for senior developers: Master AI assistants that actually understand your codebase, rules, and patterns."
+    />
+    <meta property="og:url" content="https://antigravity.dev/guide" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="The Antigravity Guide — Stop Fighting Gravity"
+    />
+    <meta
+      name="twitter:description"
+      content="Skills. Agents. Workflows. MCP. Rules. The five components that make AI dev tools actually useful."
+    />
+
+    <!-- Content Security Policy -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Literata:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ══════════════════════════════════════════════════════════════
+   ANTIGRAVITY GUIDE — DESIGN SYSTEM
+   ══════════════════════════════════════════════════════════════ */
+
+      :root {
+        /* Color System — Dark Void Theme */
+        --void: #04060a;
+        --deep: #080c12;
+        --surface: #0d1420;
+        --surface2: #111b2a;
+        --surface3: #151f2e;
+        --border: #1a2d42;
+        --border2: #243a52;
+
+        /* Text Colors */
+        --ice: #e8f0fa;
+        --ice-dim: #7a9ab8;
+        --ice-dimmer: #4a5d78;
+
+        /* Accent Colors */
+        --amber: #ff6b00;
+        --amber2: #ff8c00;
+        --amber-dim: rgba(255, 107, 0, 0.12);
+        --amber-glow: rgba(255, 107, 0, 0.3);
+
+        --cyan: #00d4ff;
+        --cyan-dim: rgba(0, 212, 255, 0.1);
+
+        --green: #00e676;
+        --green-dim: rgba(0, 230, 118, 0.1);
+
+        --red: #ff3d57;
+        --yellow: #ffd600;
+        --purple: #b39ddb;
+
+        /* Typography */
+        --mono: "JetBrains Mono", monospace;
+        --display: "Bebas Neue", sans-serif;
+        --body: "Literata", serif;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════════════════════════ */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        background: var(--void);
+        color: var(--ice);
+        font-family: var(--body);
+        font-size: 17px;
+        line-height: 1.7;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* SVG Noise Overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.5;
+      }
+
+      /* Hidden Easter Egg */
+      .easter-egg {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   NAVIGATION
+   ══════════════════════════════════════════════════════════════ */
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1.25rem 3rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        border-bottom: 1px solid rgba(26, 45, 66, 0.5);
+        background: rgba(4, 6, 10, 0.85);
+        backdrop-filter: blur(20px);
+        transition: background 0.3s ease;
+      }
+
+      nav.scrolled {
+        background: rgba(4, 6, 10, 0.95);
+      }
+
+      .nav-logo {
+        font-family: var(--display);
+        font-size: 1.5rem;
+        color: var(--amber);
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .nav-logo:hover {
+        color: var(--amber2);
+      }
+
+      .nav-tagline {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--ice-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        border-left: 1px solid var(--border);
+        padding-left: 1.5rem;
+      }
+
+      .nav-links {
+        margin-left: auto;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--ice-dim);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--amber);
+      }
+
+      .nav-cta {
+        background: var(--amber);
+        color: #000 !important;
+        padding: 0.5rem 1.2rem;
+        border-radius: 2px;
+        font-weight: 700 !important;
+        transition:
+          background 0.2s,
+          transform 0.15s !important;
+      }
+
+      .nav-cta:hover {
+        background: var(--amber2) !important;
+        color: #000 !important;
+        transform: translateY(-1px);
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   HERO SECTION — LAUNCHPAD
+   ══════════════════════════════════════════════════════════════ */
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        padding-top: 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Grid Lines Background */
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 107, 0, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 107, 0, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Radial Glow */
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: -200px;
+        left: -200px;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 107, 0, 0.06) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .hero-left {
+        padding: 8rem 3rem 6rem 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-eyebrow {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--amber);
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .eyebrow-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--amber);
+        border-radius: 50%;
+        animation: blink 1.2s step-end infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .hero-h1 {
+        font-family: var(--display);
+        font-size: clamp(4rem, 7vw, 6.5rem);
+        line-height: 0.95;
+        letter-spacing: 0.02em;
+        color: var(--ice);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-h1 .line {
+        display: block;
+      }
+      .hero-h1 .line-accent {
+        color: var(--amber);
+      }
+
+      .hero-sub {
+        font-size: 1.15rem;
+        color: var(--ice-dim);
+        max-width: 480px;
+        margin-bottom: 2.5rem;
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: var(--amber);
+        color: #000;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.9rem 1.8rem;
+        border-radius: 2px;
+        text-decoration: none;
+        border: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background: var(--amber2);
+        transform: translateY(-1px);
+      }
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: none;
+        color: var(--ice-dim);
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.9rem 1.5rem;
+        border: 1px solid var(--border2);
+        border-radius: 2px;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--amber);
+        color: var(--amber);
+      }
+
+      .hero-stat-row {
+        margin-top: 3rem;
+        display: flex;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .hero-stat .num {
+        font-family: var(--display);
+        font-size: 2.5rem;
+        color: var(--amber);
+        line-height: 1;
+        display: block;
+      }
+
+      .hero-stat .lbl {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--ice-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 0.3rem;
+      }
+
+      /* Terminal Panel */
+      .hero-right {
+        background: var(--deep);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .terminal-header {
+        background: var(--surface2);
+        padding: 0.75rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .t-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+
+      .t-dot.r {
+        background: #ff5f57;
+      }
+      .t-dot.y {
+        background: #febc2e;
+      }
+      .t-dot.g {
+        background: #28c840;
+      }
+
+      .t-title {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--ice-dim);
+        margin-left: 0.5rem;
+      }
+
+      .t-badge {
+        margin-left: auto;
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--green);
+        background: var(--green-dim);
+        padding: 2px 8px;
+        border-radius: 2px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .terminal-body {
+        flex: 1;
+        padding: 1.5rem;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        line-height: 1.8;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .terminal-body::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(to bottom, transparent, var(--deep));
+        pointer-events: none;
+      }
+
+      .t-line {
+        display: flex;
+        gap: 0.75rem;
+        opacity: 0;
+      }
+
+      .t-line.show {
+        animation: fadeLine 0.3s ease forwards;
+      }
+
+      @keyframes fadeLine {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .t-prompt {
+        color: var(--amber);
+        flex-shrink: 0;
+      }
+
+      .t-cmd {
+        color: var(--ice);
+      }
+
+      .t-out {
+        color: var(--ice-dim);
+        padding-left: 1.25rem;
+      }
+
+      .t-blank {
+        padding-left: 1.25rem;
+      }
+
+      .t-ok {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .t-warn {
+        color: var(--yellow);
+        font-weight: 700;
+      }
+
+      .t-cyan {
+        color: var(--cyan);
+      }
+
+      .t-amber {
+        color: var(--amber);
+      }
+
+      .t-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 14px;
+        background: var(--amber);
+        animation: blink 0.9s step-end infinite;
+        vertical-align: middle;
+        margin-left: 2px;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   SECTIONS — SHARED STYLES
+   ══════════════════════════════════════════════════════════════ */
+
+      section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 7rem 3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-label {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--amber);
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .section-label::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 1px;
+        background: var(--amber);
+      }
+
+      h2 {
+        font-family: var(--display);
+        font-size: clamp(2.8rem, 5vw, 4.5rem);
+        letter-spacing: 0.02em;
+        line-height: 1;
+        color: var(--ice);
+        margin-bottom: 1.5rem;
+      }
+
+      h2 em {
+        color: var(--amber);
+        font-style: normal;
+      }
+
+      .section-body {
+        font-size: 1.05rem;
+        color: var(--ice-dim);
+        max-width: 640px;
+        font-weight: 300;
+        line-height: 1.75;
+        margin-bottom: 3rem;
+      }
+
+      .section-body strong {
+        color: var(--ice);
+        font-weight: 500;
+      }
+
+      /* Fade-in animation for scroll reveal */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   BURN SCARS — HOOK SECTION
+   ══════════════════════════════════════════════════════════════ */
+
+      .burn-scars {
+        background: var(--deep);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .zero-g-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 3rem;
+      }
+
+      .grid-cell {
+        background: var(--surface);
+        padding: 2.5rem;
+        transition: background 0.3s ease;
+      }
+
+      .grid-cell:hover {
+        background: var(--surface2);
+      }
+
+      .cell-label {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--ice-dim);
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+
+      .cell-label.pain {
+        color: var(--red);
+      }
+
+      .cell-label.solution {
+        color: var(--green);
+      }
+
+      .grid-cell h3 {
+        font-family: var(--body);
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--ice);
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+
+      .grid-cell p {
+        font-size: 0.95rem;
+        color: var(--ice-dim);
+        line-height: 1.65;
+        font-weight: 300;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   SKILLS SECTION — PAYLOAD
+   ══════════════════════════════════════════════════════════════ */
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .skill-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2rem;
+        transition:
+          border-color 0.3s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .skill-card:hover {
+        border-color: var(--amber);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(255, 107, 0, 0.15);
+      }
+
+      .skill-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--amber-dim);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .skill-name {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        color: var(--ice);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .skill-desc {
+        font-size: 0.9rem;
+        color: var(--ice-dim);
+        line-height: 1.6;
+        font-weight: 300;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   CODE BLOCKS & TERMINAL WINDOWS
+   ══════════════════════════════════════════════════════════════ */
+
+      .code-block {
+        background: var(--deep);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 2rem;
+      }
+
+      .code-header {
+        background: var(--surface2);
+        padding: 0.75rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-dots {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .code-title {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--ice-dim);
+      }
+
+      .copy-btn {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--ice-dim);
+        background: none;
+        border: 1px solid var(--border);
+        padding: 0.25rem 0.75rem;
+        border-radius: 2px;
+        cursor: pointer;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+
+      .copy-btn:hover {
+        color: var(--amber);
+        border-color: var(--amber);
+      }
+
+      .copy-btn.copied {
+        color: var(--green);
+        border-color: var(--green);
+      }
+
+      .code-body {
+        padding: 1.5rem;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        color: var(--ice);
+        overflow-x: auto;
+      }
+
+      .code-body pre {
+        margin: 0;
+        white-space: pre;
+      }
+
+      .code-comment {
+        color: var(--ice-dimmer);
+      }
+
+      .code-keyword {
+        color: var(--purple);
+      }
+
+      .code-string {
+        color: var(--green);
+      }
+
+      .code-function {
+        color: var(--cyan);
+      }
+
+      .code-variable {
+        color: var(--amber);
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   AGENTS SECTION — MISSION CONTROL
+   ══════════════════════════════════════════════════════════════ */
+
+      .agent-ecosystem {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1px;
+        background: var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+
+      .agent-tile {
+        background: var(--surface);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition:
+          background 0.3s ease,
+          transform 0.2s ease;
+        position: relative;
+      }
+
+      .agent-tile:hover {
+        background: var(--surface2);
+        transform: scale(1.02);
+      }
+
+      .agent-tile.orchestrator {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        text-align: left;
+        gap: 1.5rem;
+      }
+
+      .agent-icon {
+        width: 56px;
+        height: 56px;
+        background: var(--amber-dim);
+        border: 2px solid var(--amber);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+      }
+
+      .agent-tile.orchestrator .agent-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 0;
+      }
+
+      .agent-name {
+        font-family: var(--mono);
+        font-size: 0.9rem;
+        color: var(--ice);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .agent-role {
+        font-size: 0.85rem;
+        color: var(--ice-dim);
+        line-height: 1.5;
+        font-weight: 300;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   WORKFLOWS SECTION — FLIGHT PLAN
+   ══════════════════════════════════════════════════════════════ */
+
+      .orbital-mechanics {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 3rem 0;
+        overflow-x: auto;
+        padding: 2rem 0;
+      }
+
+      .flow-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .flow-pill {
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        border-radius: 20px;
+        padding: 0.75rem 1.5rem;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        color: var(--ice);
+        white-space: nowrap;
+        transition:
+          border-color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .flow-pill:hover {
+        border-color: var(--amber);
+        transform: translateY(-2px);
+      }
+
+      .flow-pill.start {
+        background: var(--amber-dim);
+        border-color: var(--amber);
+        color: var(--amber);
+        font-weight: 600;
+      }
+
+      .flow-pill.end {
+        background: var(--green-dim);
+        border-color: var(--green);
+        color: var(--green);
+        font-weight: 600;
+      }
+
+      .flow-arrow {
+        font-size: 1.5rem;
+        color: var(--ice-dimmer);
+      }
+
+      .flow-label {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--ice-dimmer);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   MCP SECTION — DOCKING
+   ══════════════════════════════════════════════════════════════ */
+
+      .mcp-architecture {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin: 3rem 0;
+        padding: 3rem 2rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+      }
+
+      .mcp-node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: center;
+      }
+
+      .mcp-box {
+        background: var(--deep);
+        border: 2px solid var(--border2);
+        border-radius: 4px;
+        padding: 1.5rem 2rem;
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        color: var(--ice);
+        font-weight: 600;
+        min-width: 140px;
+        transition: border-color 0.3s ease;
+      }
+
+      .mcp-box:hover {
+        border-color: var(--cyan);
+      }
+
+      .mcp-arrow {
+        font-size: 2rem;
+        color: var(--cyan);
+      }
+
+      .mcp-node-label {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--ice-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .integration-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+
+      .integration-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition:
+          border-color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .integration-card:hover {
+        border-color: var(--cyan);
+        transform: translateY(-4px);
+      }
+
+      .integration-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--cyan-dim);
+        border: 1px solid var(--cyan);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .integration-name {
+        font-family: var(--mono);
+        font-size: 0.9rem;
+        color: var(--ice);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .integration-desc {
+        font-size: 0.85rem;
+        color: var(--ice-dim);
+        line-height: 1.6;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   RULES SECTION — TRAJECTORY
+   ══════════════════════════════════════════════════════════════ */
+
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 3rem;
+      }
+
+      .comparison-side {
+        background: var(--surface);
+        padding: 2rem;
+      }
+
+      .comparison-label {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .comparison-label.before {
+        color: var(--red);
+      }
+
+      .comparison-label.before::before {
+        content: "✗";
+        font-size: 1rem;
+      }
+
+      .comparison-label.after {
+        color: var(--green);
+      }
+
+      .comparison-label.after::before {
+        content: "✓";
+        font-size: 1rem;
+      }
+
+      .comparison-content {
+        background: var(--deep);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.5rem;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        line-height: 1.8;
+        color: var(--ice-dim);
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   CTA SECTION — GROUND CONTROL
+   ══════════════════════════════════════════════════════════════ */
+
+      .escape-velocity {
+        background: var(--deep);
+        border-top: 1px solid var(--border);
+        text-align: center;
+        padding: 8rem 3rem !important;
+      }
+
+      .cta-headline {
+        font-family: var(--display);
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        letter-spacing: 0.02em;
+        line-height: 1.1;
+        color: var(--ice);
+        margin-bottom: 1.5rem;
+      }
+
+      .cta-headline em {
+        color: var(--amber);
+        font-style: normal;
+      }
+
+      .cta-sub {
+        font-size: 1.15rem;
+        color: var(--ice-dim);
+        max-width: 600px;
+        margin: 0 auto 3rem;
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .cta-actions {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 4rem;
+      }
+
+      .cta-footer {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--ice-dimmer);
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════════════ */
+
+      footer {
+        background: var(--void);
+        border-top: 1px solid var(--border);
+        padding: 3rem;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .footer-logo {
+        font-family: var(--display);
+        font-size: 2rem;
+        color: var(--amber);
+        letter-spacing: 0.08em;
+      }
+
+      .footer-tagline {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--ice-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        list-style: none;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--ice-dim);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--amber);
+      }
+
+      .footer-copy {
+        font-size: 0.8rem;
+        color: var(--ice-dimmer);
+        margin-top: 2rem;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════ */
+
+      @media (max-width: 1024px) {
+        nav {
+          padding: 1rem 2rem;
+          flex-wrap: wrap;
+        }
+
+        .nav-tagline {
+          display: none;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .hero-left {
+          padding: 6rem 2rem 4rem;
+        }
+
+        .hero-right {
+          border-left: none;
+          border-top: 1px solid var(--border);
+          min-height: 500px;
+        }
+
+        section {
+          padding: 5rem 2rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+
+        .zero-g-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .comparison-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .orbital-mechanics {
+          flex-direction: column;
+        }
+
+        .flow-arrow {
+          transform: rotate(90deg);
+        }
+
+        .mcp-architecture {
+          flex-direction: column;
+        }
+
+        .mcp-arrow {
+          transform: rotate(90deg);
+        }
+      }
+
+      @media (max-width: 640px) {
+        nav {
+          padding: 1rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero-h1 {
+          font-size: 3rem;
+        }
+
+        .hero-left {
+          padding: 5rem 1.5rem 3rem;
+        }
+
+        section {
+          padding: 4rem 1.5rem;
+        }
+
+        h2 {
+          font-size: 2.5rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .agent-ecosystem {
+          grid-template-columns: 1fr;
+        }
+
+        .integration-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-stat-row {
+          gap: 1.5rem;
+        }
+
+        .btn-primary,
+        .btn-ghost {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   ══════════════════════════════════════════════════════════════ */
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--border2),
+          transparent
+        );
+        margin: 4rem 0;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .mb-2 {
+        margin-bottom: 2rem;
+      }
+      .mb-3 {
+        margin-bottom: 3rem;
+      }
+      .mt-2 {
+        margin-top: 2rem;
+      }
+      .mt-3 {
+        margin-top: 3rem;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION — ACCESSIBILITY
+   ══════════════════════════════════════════════════════════════ */
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+        .fade-in {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .t-line {
+          opacity: 1 !important;
+        }
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   PRINT STYLES
+   ══════════════════════════════════════════════════════════════ */
+
+      /* ══════════════════════════════════════════════════════════════
+   LANGUAGE TOGGLE BUTTON
+   ══════════════════════════════════════════════════════════════ */
+
+      .lang-toggle {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--ice-dim);
+        background: transparent;
+        border: 1px solid var(--border);
+        padding: 0.35rem 0.8rem;
+        border-radius: 2px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+
+      .lang-toggle:hover {
+        color: var(--amber);
+        border-color: var(--amber);
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+   RTL SUPPORT — EGYPTIAN ARABIC
+   ══════════════════════════════════════════════════════════════ */
+
+      [dir="rtl"] { text-align: right; }
+      [dir="rtl"] .nav-tagline { border-left: none; border-right: 1px solid var(--border); padding-left: 0; padding-right: 1.5rem; }
+      [dir="rtl"] .nav-links { margin-left: 0; margin-right: auto; }
+      [dir="rtl"] .hero { direction: rtl; }
+      [dir="rtl"] .flow-arrow { transform: scaleX(-1); }
+      [dir="rtl"] .mcp-arrow { transform: scaleX(-1); }
+      [dir="rtl"] .code-block, [dir="rtl"] .code-body, [dir="rtl"] pre, [dir="rtl"] code { direction: ltr; text-align: left; }
+      [dir="rtl"] .comparison-content { direction: ltr; text-align: left; }
+      [dir="rtl"] .terminal-body { direction: ltr; text-align: left; }
+      [dir="rtl"] body { font-family: 'Noto Sans Arabic', var(--body); }
+      [dir="rtl"] .hero-h1, [dir="rtl"] h2, [dir="rtl"] .nav-logo, [dir="rtl"] .footer-logo { font-family: 'Noto Sans Arabic', var(--display); }
+
+      @media print {
+        body {
+          background: #fff;
+          color: #111;
+        }
+        body::before {
+          display: none;
+        }
+        nav,
+        .hero-right,
+        .btn-primary,
+        .btn-ghost,
+        .copy-btn,
+        footer {
+          display: none;
+        }
+        .hero {
+          min-height: auto;
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 2rem 1rem;
+        }
+        h2,
+        .hero-h1 {
+          color: #111;
+        }
+        h2 em,
+        .line-accent {
+          color: #c44000;
+        }
+        .section-label {
+          color: #c44000;
+        }
+        * {
+          border-color: #ccc !important;
+          background: #fff !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <span class="easter-egg" aria-hidden="true"
+      >you found the easter egg — welcome to the resistance</span
+    >
+
+    <!-- ══════════════════════════════════════════════════════════════
+     NAVIGATION
+     ══════════════════════════════════════════════════════════════ -->
+
+    <nav id="nav">
+      <a href="#launchpad" class="nav-logo" data-i18n="nav-logo">ANTIGRAVITY</a>
+      <span class="nav-tagline" data-i18n="nav-tagline">Field Guide for the Impatient Engineer</span>
+      <button class="lang-toggle" id="lang-toggle" onclick="toggleLanguage()">عربي</button>
+      <ul class="nav-links">
+        <li><a href="#payload" data-i18n="nav-skills">Skills</a></li>
+        <li><a href="#mission-control" data-i18n="nav-agents">Agents</a></li>
+        <li><a href="#flight-plan" data-i18n="nav-workflows">Workflows</a></li>
+        <li><a href="#docking" data-i18n="nav-mcp">MCP</a></li>
+        <li><a href="#trajectory" data-i18n="nav-rules">Rules</a></li>
+        <li><a href="#ground-control" class="nav-cta" data-i18n="nav-cta">Get Started</a></li>
+      </ul>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     HERO SECTION — LAUNCHPAD
+     ══════════════════════════════════════════════════════════════ -->
+
+    <section class="hero" id="launchpad">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span data-i18n="hero-eyebrow">FIELD GUIDE FOR THE IMPATIENT ENGINEER</span>
+        </div>
+
+        <h1 class="hero-h1">
+          <span class="line" data-i18n="hero-line1">STOP</span>
+          <span class="line" data-i18n="hero-line2">FIGHTING</span>
+          <span class="line line-accent" data-i18n="hero-line3">GRAVITY</span>
+        </h1>
+
+        <p class="hero-sub" data-i18n="hero-sub">
+          Your AI assistant doesn't understand your codebase. Your rules. Your
+          patterns. Let's fix that.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#payload" class="btn-primary">
+            <span data-i18n="hero-btn-primary">Explore the Guide</span>
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12l7-7M12 5v7H5" />
+            </svg>
+          </a>
+          <a
+            href="https://github.com/yourusername/antigravity-guide"
+            class="btn-ghost"
+            data-i18n="hero-btn-ghost"
+          >
+            View Source
+          </a>
+        </div>
+
+        <div class="hero-stat-row">
+          <div class="hero-stat">
+            <span class="num" data-target="6">0</span>
+            <span class="lbl" data-i18n="hero-stat-lbl1">Components</span>
+          </div>
+          <div class="hero-stat">
+            <span class="num">∞</span>
+            <span class="lbl" data-i18n="hero-stat-lbl2">Combinations</span>
+          </div>
+          <div class="hero-stat">
+            <span class="num" data-target="0">0</span>
+            <span class="lbl" data-i18n="hero-stat-lbl3">Hallucinations*</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="terminal-header">
+          <div class="t-dot r"></div>
+          <div class="t-dot y"></div>
+          <div class="t-dot g"></div>
+          <span class="t-title">antigravity-demo.sh</span>
+          <span class="t-badge">active</span>
+        </div>
+        <div class="terminal-body" id="terminal">
+          <!-- Terminal lines will be added by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     HOOK SECTION — BURN SCARS
+     ══════════════════════════════════════════════════════════════ -->
+
+    <section class="burn-scars fade-in" id="burn-scars">
+      <div class="section-label" data-i18n="burn-label">THE PROBLEM</div>
+      <h2 data-i18n="burn-h2">YOU'VE BEEN <em>BURNED</em> BEFORE</h2>
+      <p class="section-body" data-i18n="burn-body">
+        Every AI coding tool promises magic. Most deliver autocomplete with
+        anxiety. You've seen agents hallucinate dependencies that don't exist,
+        forget your architecture after three messages, and confidently suggest
+        patterns you deprecated two years ago.
+      </p>
+
+      <div class="zero-g-grid">
+        <div class="grid-cell">
+          <span class="cell-label pain" data-i18n="pain-label">PAIN POINT</span>
+          <h3 data-i18n="burn-h3-1">Context Amnesia</h3>
+          <p data-i18n="burn-p1">
+            Forgets your architecture after 3 messages. Every conversation
+            starts from zero.
+          </p>
+        </div>
+        <div class="grid-cell">
+          <span class="cell-label solution" data-i18n="solution-label">ANTIGRAVITY SOLUTION</span>
+          <h3 data-i18n="burn-h3-2">Persistent Rules</h3>
+          <p data-i18n="burn-p2">
+            Define once, enforced forever. Your constraints become the agent's
+            reflexes.
+          </p>
+        </div>
+        <div class="grid-cell">
+          <span class="cell-label pain" data-i18n="pain-label">PAIN POINT</span>
+          <h3 data-i18n="burn-h3-3">Generic Slop</h3>
+          <p data-i18n="burn-p3">
+            StackOverflow copypasta from 2019. Suggestions that don't match your
+            stack.
+          </p>
+        </div>
+        <div class="grid-cell">
+          <span class="cell-label solution" data-i18n="solution-label">ANTIGRAVITY SOLUTION</span>
+          <h3 data-i18n="burn-h3-4">Domain Skills</h3>
+          <p data-i18n="burn-p4">
+            Your stack, your patterns, your standards. Teach the assistant your
+            expertise.
+          </p>
+        </div>
+        <div class="grid-cell">
+          <span class="cell-label pain" data-i18n="pain-label">PAIN POINT</span>
+          <h3 data-i18n="burn-h3-5">Black Box Magic</h3>
+          <p data-i18n="burn-p5">
+            No idea why it suggested that. Debugging AI decisions is impossible.
+          </p>
+        </div>
+        <div class="grid-cell">
+          <span class="cell-label solution" data-i18n="solution-label">ANTIGRAVITY SOLUTION</span>
+          <h3 data-i18n="burn-h3-6">Transparent Workflows</h3>
+          <p data-i18n="burn-p6">
+            See every step, modify every decision. Full control, zero mystery.
+          </p>
+        </div>
+        <div class="grid-cell">
+          <span class="cell-label pain" data-i18n="pain-label">PAIN POINT</span>
+          <h3 data-i18n="burn-h3-7">One-Size-Fits-None</h3>
+          <p data-i18n="burn-p7">
+            Same assistant for everything. No specialization, no expertise
+            depth.
+          </p>
+        </div>
+        <div class="grid-cell">
+          <span class="cell-label solution" data-i18n="solution-label">ANTIGRAVITY SOLUTION</span>
+          <h3 data-i18n="burn-h3-8">Specialist Agents</h3>
+          <p data-i18n="burn-p8">
+            Different expert for each job. Code review ≠ feature implementation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     SKILLS SECTION — PAYLOAD
+     ══════════════════════════════════════════════════════════════ -->
+
+    <section class="fade-in" id="payload">
+      <div class="section-label" data-i18n="skills-label">COMPONENT 01</div>
+      <h2 data-i18n="skills-h2">TEACH YOUR ASSISTANT YOUR <em>STACK</em></h2>
+      <p class="section-body" data-i18n="skills-body">
+        <strong>Skills</strong> are knowledge modules that extend your agent's
+        expertise. Think of them as persistent context that teaches the AI your
+        framework conventions, design patterns, and best practices. Instead of
+        explaining Django DRF patterns in every conversation, load the
+        <code>django-expert</code>
+        skill once and it remembers.
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🐍</div>
+          <div class="skill-name">django-expert</div>
+          <p class="skill-desc" data-i18n="skill-desc-1">
+            Django best practices, DRF patterns, ORM optimization, security
+            defaults.
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">⚛️</div>
+          <div class="skill-name">react-best-practices</div>
+          <p class="skill-desc" data-i18n="skill-desc-2">
+            Modern React patterns, hooks, performance optimization,
+            accessibility.
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🔍</div>
+          <div class="skill-name">systematic-debugging</div>
+          <p class="skill-desc" data-i18n="skill-desc-3">
+            Structured debugging methodology: hypothesize, test, isolate, fix.
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🎮</div>
+          <div class="skill-name">godot-gdscript</div>
+          <p class="skill-desc" data-i18n="skill-desc-4">
+            Godot 4.x patterns, GDScript idioms, scene architecture, signal
+            usage.
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🎨</div>
+          <div class="skill-name">frontend-design</div>
+          <p class="skill-desc" data-i18n="skill-desc-5">
+            Design systems, component libraries, responsive patterns,
+            accessibility.
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🔒</div>
+          <div class="skill-name">security-audit</div>
+          <p class="skill-desc" data-i18n="skill-desc-6">
+            OWASP Top 10, auth patterns, input validation, secure defaults.
+          </p>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots">
+            <div class="t-dot r"></div>
+            <div class="t-dot y"></div>
+            <div class="t-dot g"></div>
+          </div>
+          <span class="code-title" data-i18n="skill-code-title">Skill Invocation Example</span>
+          <button class="copy-btn" data-copy="skill-invoke">Copy</button>
+        </div>
+        <div class="code-body" id="skill-invoke">
+          <pre><code><span class="code-comment"># Invoke an agent with specific skills loaded</span>
+$ antigravity invoke <span class="code-keyword">--agent</span> code-review \
+    <span class="code-keyword">--skill</span> rust-ownership \
+    <span class="code-keyword">--skill</span> security-audit
+
+<span class="code-comment"># The agent now has deep knowledge of Rust borrow checking</span>
+<span class="code-comment"># and security patterns. No need to explain in prompts.</span>
+
+[code-review] Analyzing src/auth.rs...
+<span class="code-variable">⚠️  Line 42:</span> Mutable borrow while shared ref exists
+<span class="code-variable">⚠️  Line 58:</span> Potential SQL injection via string concatenation
+<span class="code-function">✓  47 files reviewed. 2 issues found.</span>
+
+<span class="code-comment">// Skills persist across the session</span>
+<span class="code-keyword">const</span> gravitationalConstant = <span class="code-keyword">null</span>; <span class="code-comment">// not needed here</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     AGENTS SECTION — MISSION CONTROL
+     ══════════════════════════════════════════════════════════════ -->
+
+    <section class="fade-in" id="mission-control">
+      <div class="section-label" data-i18n="agents-label">COMPONENT 02</div>
+      <h2 data-i18n="agents-h2">SPECIALISTS, NOT <em>GENERALISTS</em></h2>
+      <p class="section-body" data-i18n="agents-body">
+        <strong>Custom Agents</strong> are specialist personas with specific
+        roles, tools, and expertise. Instead of one assistant trying to do
+        everything, you build a team: a code reviewer who's thorough and
+        critical, an implementer who follows specs exactly, a researcher who
+        explores thoroughly before deciding.
+      </p>
+
+      <div class="agent-ecosystem">
+        <div class="agent-tile">
+          <div class="agent-icon">👁️</div>
+          <div class="agent-name">code-review</div>
+          <p class="agent-role" data-i18n="agent-role-1">
+            Finds bugs, security issues, and logic errors. Never comments on
+            style.
+          </p>
+        </div>
+
+        <div class="agent-tile">
+          <div class="agent-icon">📋</div>
+          <div class="agent-name">spec-writer</div>
+          <p class="agent-role" data-i18n="agent-role-2">
+            Transforms ideas into detailed, unambiguous specifications.
+          </p>
+        </div>
+
+        <div class="agent-tile">
+          <div class="agent-icon">⚙️</div>
+          <div class="agent-name">implementer</div>
+          <p class="agent-role" data-i18n="agent-role-3">
+            Follows specs exactly. Tests every acceptance criterion.
+          </p>
+        </div>
+
+        <div class="agent-tile">
+          <div class="agent-icon">🎨</div>
+          <div class="agent-name">frontend-impl</div>
+          <p class="agent-role" data-i18n="agent-role-4">
+            Turns designs into pixel-perfect, accessible components.
+          </p>
+        </div>
+
+        <div class="agent-tile">
+          <div class="agent-icon">🔬</div>
+          <div class="agent-name">ux-research</div>
+          <p class="agent-role" data-i18n="agent-role-5">
+            Creates personas, journey maps, and competitive analysis.
+          </p>
+        </div>
+
+        <div class="agent-tile orchestrator">
+          <div class="agent-icon">🎯</div>
+          <div>
+            <div class="agent-name">ui-lifecycle-master</div>
+            <p class="agent-role" data-i18n="agent-role-6">
+              Orchestrates the complete UI/UX pipeline: research → IA →
+              wireframes → UX → UI → implementation → testing. Coordinates 7
+              specialized agents with automatic quality gates between phases.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots">
+            <div class="t-dot r"></div>
+            <div class="t-dot y"></div>
+            <div class="t-dot g"></div>
+          </div>
+          <span class="code-title" data-i18n="agent-code-title">agent-definition.yaml</span>
+          <button class="copy-btn" data-copy="agent-def">Copy</button>
+        </div>
+        <div class="code-body" id="agent-def">
+          <pre><code><span class="code-keyword">name:</span> code-review
+<span class="code-keyword">type:</span> specialist
+<span class="code-keyword">model:</span> claude-opus-4.6
+
+<span class="code-keyword">personality:</span>
+  <span class="code-string">tone:</span> direct, thorough, zero-tolerance for bugs
+  <span class="code-string">focus:</span> logic errors, security, potential crashes
+  <span class="code-string">ignore:</span> style, formatting, trivial matters
+
+<span class="code-keyword">tools:</span>
+  - grep <span class="code-comment"># search codebase</span>
+  - view <span class="code-comment"># read files</span>
+  - powershell <span class="code-comment"># run tests</span>
+
+<span class="code-keyword">skills:</span>
+  - security-audit
+  - systematic-debugging
+  - rust-ownership <span class="code-comment"># if reviewing Rust</span>
+
+<span class="code-keyword">rules:</span>
+  - <span class="code-string">"Never comment on code style or formatting"</span>
+  - <span class="code-string">"Only surface issues that genuinely matter"</span>
+  - <span class="code-string">"Include fix suggestions, not just complaints"</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     WORKFLOWS SECTION — FLIGHT PLAN
+     ══════════════════════════════════════════════════════════════ -->
+
+    <section class="fade-in" id="flight-plan">
+      <div class="section-label" data-i18n="workflow-label">COMPONENT 03</div>
+      <h2 data-i18n="workflow-h2">ORCHESTRATE YOUR <em>AGENT TEAM</em></h2>
+      <p class="section-body" data-i18n="workflow-body">
+        <strong>Workflows</strong> chain agents together into automated
+        pipelines. A user story becomes a spec (via <code>spec-writer</code>),
+        the spec becomes implementation (via <code>implementer</code>), and the
+        implementation gets reviewed (via <code>reviewer</code>). Each agent
+        hands off to the next, with quality gates to catch issues early.
+      </p>
+
+      <div class="orbital-mechanics">
+        <div class="flow-step">
+          <div class="flow-pill start" data-i18n="flow-pill-1">User Idea</div>
+          <div class="flow-label" data-i18n="flow-lbl-1">Input</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-pill">spec-writer</div>
+          <div class="flow-label" data-i18n="flow-lbl-2">Define</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-pill">implementer</div>
+          <div class="flow-label" data-i18n="flow-lbl-3">Build</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-pill">reviewer</div>
+          <div class="flow-label" data-i18n="flow-lbl-4">Validate</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-pill end" data-i18n="flow-pill-5">Compliance Report</div>
+          <div class="flow-label" data-i18n="flow-lbl-5">Output</div>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots">
+            <div class="t-dot r"></div>
+            <div class="t-dot y"></div>
+            <div class="t-dot g"></div>
+          </div>
+          <span class="code-title" data-i18n="workflow-code-title">workflow-sdd-pipeline.yaml</span>
+          <button class="copy-btn" data-copy="workflow-yaml">Copy</button>
+        </div>
+        <div class="code-body" id="workflow-yaml">
+          <pre><code><span class="code-keyword">name:</span> spec-driven-development
+<span class="code-keyword">description:</span> <span class="code-string">"Idea → Spec → Implementation → Review"</span>
+
+<span class="code-keyword">steps:</span>
+  - <span class="code-keyword">agent:</span> spec-writer
+    <span class="code-keyword">input:</span> <span class="code-variable">${user_idea}</span>
+    <span class="code-keyword">output:</span> spec.md
+    <span class="code-keyword">quality_gate:</span>
+      - check: <span class="code-string">"Contains user stories"</span>
+      - check: <span class="code-string">"Has acceptance criteria"</span>
+      - check: <span class="code-string">"Defines edge cases"</span>
+
+  - <span class="code-keyword">agent:</span> implementer
+    <span class="code-keyword">input:</span> spec.md
+    <span class="code-keyword">output:</span> implementation/
+    <span class="code-keyword">skills:</span>
+      - react-best-practices
+      - typescript-patterns
+    <span class="code-keyword">quality_gate:</span>
+      - check: <span class="code-string">"All tests pass"</span>
+      - check: <span class="code-string">"Code builds without errors"</span>
+
+  - <span class="code-keyword">agent:</span> reviewer
+    <span class="code-keyword">input:</span> [spec.md, implementation/]
+    <span class="code-keyword">output:</span> compliance-report.html
+    <span class="code-keyword">quality_gate:</span>
+      - check: <span class="code-string">"Compliance score &gt;= 90%"</span>
+
+<span class="code-keyword">on_failure:</span>
+  - notify: slack
+  - rollback: <span class="code-keyword">true</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     MCP SECTION — DOCKING
+     ══════════════════════════════════════════════════════════════ -->
+
+    <section class="fade-in" id="docking">
+      <div class="section-label" data-i18n="mcp-label">COMPONENT 04</div>
+      <h2 data-i18n="mcp-h2">CONNECT TO <em>ANYTHING</em></h2>
+      <p class="section-body" data-i18n="mcp-body">
+        <strong>MCP (Model Context Protocol) Servers</strong> extend your agents
+        beyond code editing. Connect to GitHub, query PostgreSQL, send Slack
+        notifications, update Linear tickets—all from within agent workflows.
+        Your assistant becomes a true automation platform.
+      </p>
+
+      <div class="mcp-architecture">
+        <div class="mcp-node">
+          <div class="mcp-box">Agent</div>
+          <div class="mcp-node-label" data-i18n="mcp-node-1">Your Code Review Agent</div>
+        </div>
+        <div class="mcp-arrow">⟷</div>
+        <div class="mcp-node">
+          <div class="mcp-box">MCP Server</div>
+          <div class="mcp-node-label" data-i18n="mcp-node-2">Protocol Bridge</div>
+        </div>
+        <div class="mcp-arrow">⟷</div>
+        <div class="mcp-node">
+          <div class="mcp-box">External API</div>
+          <div class="mcp-node-label" data-i18n="mcp-node-3">GitHub, Slack, DB...</div>
+        </div>
+      </div>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <div class="integration-icon">🐙</div>
+          <div class="integration-name">GitHub</div>
+          <p class="integration-desc" data-i18n="int-desc-1">
+            Create PRs, comment on issues, trigger workflows, query repo stats.
+          </p>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon">🐘</div>
+          <div class="integration-name">PostgreSQL</div>
+          <p class="integration-desc" data-i18n="int-desc-2">
+            Query schemas, analyze data, generate migrations, optimize queries.
+          </p>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon">💬</div>
+          <div class="integration-name">Slack</div>
+          <p class="integration-desc" data-i18n="int-desc-3">
+            Send alerts, post updates, read channels, manage workflows.
+          </p>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon">📊</div>
+          <div class="integration-name">Linear</div>
+          <p class="integration-desc" data-i18n="int-desc-4">
+            Create issues, update status, link to PRs, track velocity.
+          </p>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots">
+            <div class="t-dot r"></div>
+            <div class="t-dot y"></div>
+            <div class="t-dot g"></div>
+          </div>
+          <span class="code-title" data-i18n="mcp-code-title">MCP Server Setup</span>
+          <button class="copy-btn" data-copy="mcp-setup">Copy</button>
+        </div>
+        <div class="code-body" id="mcp-setup">
+          <pre><code><span class="code-comment"># Add GitHub MCP server</span>
+$ antigravity mcp add github \
+    <span class="code-keyword">--token</span> <span class="code-variable">$GITHUB_TOKEN</span> \
+    <span class="code-keyword">--repo</span> <span class="code-string">"yourorg/yourrepo"</span>
+
+<span class="code-function">✓ GitHub MCP server configured</span>
+
+<span class="code-comment"># Now agents can interact with GitHub</span>
+$ antigravity invoke <span class="code-keyword">--agent</span> code-review
+
+[code-review] Reviewing PR #127...
+[code-review] Found 2 issues in src/api/auth.ts
+[code-review] Posting review to GitHub...
+<span class="code-function">✓ Review posted: https://github.com/yourorg/yourrepo/pull/127</span>
+
+<span class="code-comment"># MCP servers are persistent — configure once, use forever</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     RULES SECTION — TRAJECTORY
+     ══════════════════════════════════════════════════════════════ -->
+
+    <section class="fade-in" id="trajectory">
+      <div class="section-label" data-i18n="rules-label">COMPONENT 05</div>
+      <h2 data-i18n="rules-h2">YOUR CODEBASE, <em>YOUR RULES</em></h2>
+      <p class="section-body" data-i18n="rules-body">
+        <strong>Rules</strong> are persistent constraints that shape agent
+        behavior. They're like .eslintrc for AI: enforce code style,
+        architectural patterns, security policies, and team conventions. Rules
+        persist across sessions—define once, enforced forever.
+      </p>
+
+      <div class="comparison-grid">
+        <div class="comparison-side">
+          <div class="comparison-label before" data-i18n="rules-before">WITHOUT RULES</div>
+          <div class="comparison-content">
+            <pre>
+// Agent suggests generic patterns
+function fetchUser(id) {
+  console.log('Fetching user:', id);
+  return fetch(`/api/users/${id}`)
+    .then(res => res.json());
+}
+
+// Uses whatever naming it feels like
+const userData = await fetchUser(123);
+
+// No consistency across suggestions</pre
+            >
+          </div>
+        </div>
+
+        <div class="comparison-side">
+          <div class="comparison-label after" data-i18n="rules-after">WITH RULES</div>
+          <div class="comparison-content">
+            <pre>
+// Follows your team's patterns exactly
+async function fetchUserById(userId: string): Promise&lt;User&gt; {
+  return apiClient.get(`/users/${userId}`);
+}
+
+// Matches your naming conventions
+const user = await fetchUserById('123');
+
+// Enforces: async/await, TypeScript, no console.log</pre
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block mt-3">
+        <div class="code-header">
+          <div class="code-dots">
+            <div class="t-dot r"></div>
+            <div class="t-dot y"></div>
+            <div class="t-dot g"></div>
+          </div>
+          <span class="code-title" data-i18n="rules-code-title">.antigravity/rules.md</span>
+          <button class="copy-btn" data-copy="rules-file">Copy</button>
+        </div>
+        <div class="code-body" id="rules-file">
+          <pre><code><span class="code-comment"># Project Rules — Enforced Across All Agents</span>
+
+<span class="code-keyword">## Code Style</span>
+- Use async/await, never .then() chains
+- TypeScript for all new code
+- No console.log in production code (use logger.info)
+- Destructure props in function signatures
+
+<span class="code-keyword">## Architecture</span>
+- API calls must go through apiClient wrapper
+- React components: presentational vs. container pattern
+- State management: Zustand only, no Redux
+- File naming: kebab-case for files, PascalCase for components
+
+<span class="code-keyword">## Security</span>
+- Never concatenate user input into SQL queries
+- All API endpoints require authentication by default
+- Sanitize user input before rendering (XSS prevention)
+- Use environment variables for secrets, never hardcode
+
+<span class="code-keyword">## Testing</span>
+- Every new feature requires tests
+- Test file naming: ComponentName.test.tsx
+- Mock external API calls in tests
+- Aim for 80% coverage on new code
+
+<span class="code-comment"># These rules persist across all agent sessions</span>
+<span class="code-comment"># Agents will follow them automatically</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     CTA SECTION — GROUND CONTROL
+     ══════════════════════════════════════════════════════════════ -->
+
+    <section class="escape-velocity fade-in" id="ground-control">
+      <h2 class="cta-headline" data-i18n="cta-h2">READY TO DEFY <em>GRAVITY?</em></h2>
+      <p class="cta-sub" data-i18n="cta-sub">
+        You've learned the five components: Skills teach your stack, Agents
+        specialize in roles, Workflows orchestrate automation, MCP connects to
+        anything, and Rules enforce your standards. Now it's time to build AI
+        assistants that actually understand your codebase.
+      </p>
+
+      <div class="cta-actions">
+        <a
+          href="https://github.com/yourusername/antigravity"
+          class="btn-primary"
+        >
+          <span data-i18n="cta-btn-primary">Get Antigravity</span>
+          <svg
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12l7-7M12 5v7H5" />
+          </svg>
+        </a>
+        <a href="https://docs.antigravity.dev" class="btn-ghost" data-i18n="cta-btn-ghost">
+          Read the Docs
+        </a>
+      </div>
+
+      <div class="cta-footer">
+        <code data-i18n="cta-footer">// you read the whole thing. respect.</code>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════════ -->
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo" data-i18n="footer-logo">ANTIGRAVITY</div>
+        <div class="footer-tagline" data-i18n="footer-tagline">
+          AI-Powered Development Without Fighting Gravity
+        </div>
+
+        <ul class="footer-links">
+          <li>
+            <a href="https://github.com/yourusername/antigravity">GitHub</a>
+          </li>
+          <li><a href="https://docs.antigravity.dev" data-i18n="footer-docs">Documentation</a></li>
+          <li><a href="https://discord.gg/antigravity" data-i18n="footer-community">Community</a></li>
+          <li><a href="https://twitter.com/antigravitydev">Twitter</a></li>
+          <li><a href="mailto:hello@antigravity.dev" data-i18n="footer-contact">Contact</a></li>
+        </ul>
+
+        <div class="footer-copy" data-i18n="footer-copy">
+          * Results may vary in low orbit. Hallucination-free experience not
+          guaranteed in zero-G environments.
+        </div>
+      </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     JAVASCRIPT — INTERACTIONS & ANIMATIONS
+     ══════════════════════════════════════════════════════════════ -->
+
+    <script>
+      console.log(
+        "👋 Hey, you opened DevTools. That's the spirit. Welcome to Antigravity.",
+      );
+
+      // ══════════════════════════════════════════════════════════════
+      // NAVIGATION SCROLL EFFECT
+      // ══════════════════════════════════════════════════════════════
+
+      const nav = document.getElementById("nav");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          nav.classList.add("scrolled");
+        } else {
+          nav.classList.remove("scrolled");
+        }
+      });
+
+      // ══════════════════════════════════════════════════════════════
+      // SMOOTH SCROLL FOR NAVIGATION LINKS
+      // ══════════════════════════════════════════════════════════════
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // ══════════════════════════════════════════════════════════════
+      // TERMINAL TYPING ANIMATION
+      // ══════════════════════════════════════════════════════════════
+
+      const terminalLines = [
+        { type: "cmd", prompt: "$", text: "antigravity --help" },
+        { type: "blank" },
+        { type: "out", text: "Usage: antigravity <command> [options]" },
+        { type: "blank" },
+        { type: "out", text: "Commands:" },
+        { type: "out", text: "  invoke    Run an agent with skills" },
+        { type: "out", text: "  workflow  Execute a multi-agent pipeline" },
+        { type: "out", text: "  mcp       Manage external integrations" },
+        { type: "out", text: "  rules     Configure behavior constraints" },
+        { type: "blank" },
+        {
+          type: "cmd",
+          prompt: "$",
+          text: "antigravity invoke --agent code-review \\",
+        },
+        { type: "out", text: "    --skill rust-ownership \\" },
+        { type: "out", text: "    --skill security-audit" },
+        { type: "blank" },
+        {
+          type: "out",
+          text: "[code-review] Analyzing src/auth.rs...",
+          class: "t-cyan",
+        },
+        {
+          type: "out",
+          text: "⚠️  Line 42: Mutable borrow while shared ref exists",
+          class: "t-warn",
+        },
+        {
+          type: "out",
+          text: "✓  47 files reviewed. 2 issues found.",
+          class: "t-ok",
+        },
+      ];
+
+      function animateTerminal() {
+        const terminal = document.getElementById("terminal");
+        let index = 0;
+
+        function showNextLine() {
+          if (index >= terminalLines.length) {
+            return;
+          }
+
+          const line = terminalLines[index];
+          const lineEl = document.createElement("div");
+          lineEl.className = "t-line";
+
+          if (line.type === "cmd") {
+            lineEl.innerHTML = `<span class="t-prompt">${line.prompt}</span><span class="t-cmd">${line.text}</span>`;
+          } else if (line.type === "out") {
+            lineEl.innerHTML = `<span class="${line.class || "t-out"}">${line.text}</span>`;
+          } else if (line.type === "blank") {
+            lineEl.innerHTML = '<span class="t-blank">&nbsp;</span>';
+          }
+
+          terminal.appendChild(lineEl);
+
+          // Trigger animation
+          setTimeout(() => {
+            lineEl.classList.add("show");
+          }, 10);
+
+          index++;
+
+          // Delay before next line
+          const delay =
+            line.type === "blank" ? 100 : line.type === "cmd" ? 400 : 200;
+          setTimeout(showNextLine, delay);
+        }
+
+        // Start animation after page load
+        setTimeout(showNextLine, 500);
+      }
+
+      // Start terminal animation
+      animateTerminal();
+
+      // ══════════════════════════════════════════════════════════════
+      // SCROLL-TRIGGERED FADE-IN ANIMATIONS
+      // ══════════════════════════════════════════════════════════════
+
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // ══════════════════════════════════════════════════════════════
+      // STAT COUNTER ANIMATION
+      // ══════════════════════════════════════════════════════════════
+
+      function animateCounter(element, target, duration = 1000) {
+        const start = 0;
+        const increment = target / (duration / 16); // 60fps
+        let current = start;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(current);
+          }
+        }, 16);
+      }
+
+      // Trigger stat counters when hero is visible
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              document
+                .querySelectorAll(".hero-stat .num[data-target]")
+                .forEach((stat) => {
+                  const target = parseInt(stat.getAttribute("data-target"));
+                  animateCounter(stat, target);
+                });
+              statsObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+
+      const heroStats = document.querySelector(".hero-stat-row");
+      if (heroStats) {
+        statsObserver.observe(heroStats);
+      }
+
+      // ══════════════════════════════════════════════════════════════
+      // COPY BUTTON FUNCTIONALITY
+      // ══════════════════════════════════════════════════════════════
+
+      document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.getAttribute("data-copy");
+          const codeBlock = document.getElementById(targetId);
+
+          if (codeBlock) {
+            const text = codeBlock.textContent;
+
+            navigator.clipboard
+              .writeText(text)
+              .then(() => {
+                btn.textContent = "Copied!";
+                btn.classList.add("copied");
+
+                setTimeout(() => {
+                  btn.textContent = "Copy";
+                  btn.classList.remove("copied");
+                }, 2000);
+              })
+              .catch((err) => {
+                console.error("Failed to copy:", err);
+                btn.textContent = "Failed";
+                setTimeout(() => {
+                  btn.textContent = "Copy";
+                }, 2000);
+              });
+          }
+        });
+      });
+
+      // ══════════════════════════════════════════════════════════════
+      // CARD HOVER EFFECTS (enhance accessibility)
+      // ══════════════════════════════════════════════════════════════
+
+      document
+        .querySelectorAll(".skill-card, .agent-tile, .integration-card")
+        .forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            card.style.transition = "all 0.3s ease";
+          });
+        });
+
+      // ══════════════════════════════════════════════════════════════
+      // KEYBOARD NAVIGATION ENHANCEMENTS
+      // ══════════════════════════════════════════════════════════════
+
+      document.addEventListener("keydown", (e) => {
+        // Press '?' to show keyboard shortcuts (could expand this)
+        if (e.key === "?" && !e.ctrlKey && !e.metaKey) {
+          console.log("Keyboard shortcuts:", {
+            "↑/↓": "Scroll",
+            Tab: "Navigate links",
+            Enter: "Activate link",
+            "?": "Show this help",
+          });
+        }
+      });
+
+      // ══════════════════════════════════════════════════════════════
+      // PERFORMANCE: Lazy load code blocks when visible
+      // ══════════════════════════════════════════════════════════════
+
+      const codeBlockObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              codeBlockObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll(".code-block").forEach((block) => {
+        block.style.opacity = "0";
+        block.style.transition = "opacity 0.4s ease";
+        codeBlockObserver.observe(block);
+      });
+
+      // ══════════════════════════════════════════════════════════════
+      // I18N — EGYPTIAN ARABIC TRANSLATION SYSTEM
+      // ══════════════════════════════════════════════════════════════
+
+      const translations = {
+        // Nav
+        'nav-logo': 'أنتي جرافيتي',
+        'nav-tagline': 'دليل المهندس اللي مش فاضي',
+        'nav-skills': 'المهارات',
+        'nav-agents': 'الوكلاء',
+        'nav-workflows': 'سير العمل',
+        'nav-mcp': 'MCP',
+        'nav-rules': 'القواعد',
+        'nav-cta': 'يلا نبدأ',
+        // Hero
+        'hero-eyebrow': 'دليل المهندس اللي مش فاضي',
+        'hero-line1': 'بطّل',
+        'hero-line2': 'تحارب',
+        'hero-line3': 'الجاذبية',
+        'hero-sub': 'مساعد الـ AI بتاعك مش فاهم الكودبيس بتاعتك. القواعد بتاعتك. الباترنز بتاعتك. يلا نصلح ده.',
+        'hero-btn-primary': 'استكشف الدليل',
+        'hero-btn-ghost': 'شوف السورس',
+        'hero-stat-lbl1': 'مكونات',
+        'hero-stat-lbl2': 'تركيبات',
+        'hero-stat-lbl3': 'هلوسات*',
+        // Burn section
+        'burn-label': 'المشكلة',
+        'burn-h2': 'اتحرقت <em>قبل كده</em>',
+        'burn-body': 'كل أداة AI كودنج بتوعدك بسحر. أغلبهم بيديك autocomplete مع قلق. شفت agents بتهلوس dependencies مش موجودة، بتنسى الـ architecture بتاعتك بعد تلات رسايل، وبتقترحلك patterns إنت عملتلها deprecate من سنتين.',
+        'pain-label': 'نقطة ألم',
+        'solution-label': 'حل أنتي جرافيتي',
+        'burn-h3-1': 'فقدان الذاكرة',
+        'burn-p1': 'بينسى الـ architecture بتاعتك بعد ٣ رسايل. كل محادثة بتبدأ من الصفر.',
+        'burn-h3-2': 'قواعد دائمة',
+        'burn-p2': 'عرّفها مرة، تتنفذ للأبد. القيود بتاعتك بتبقى ردود فعل تلقائية للـ agent.',
+        'burn-h3-3': 'كلام جنريك',
+        'burn-p3': 'كوبي باستا من StackOverflow من ٢٠١٩. اقتراحات مش متوافقة مع الستاك بتاعتك.',
+        'burn-h3-4': 'مهارات متخصصة',
+        'burn-p4': 'الستاك بتاعتك، الباترنز بتاعتك، المعايير بتاعتك. علّم المساعد خبرتك.',
+        'burn-h3-5': 'سحر الصندوق الأسود',
+        'burn-p5': 'مش عارف ليه اقترح كده. تصحيح قرارات الـ AI مستحيل.',
+        'burn-h3-6': 'سير عمل شفاف',
+        'burn-p6': 'شوف كل خطوة، عدّل كل قرار. تحكم كامل، صفر غموض.',
+        'burn-h3-7': 'مقاس واحد مش بيجي على حد',
+        'burn-p7': 'نفس المساعد لكل حاجة. مفيش تخصص، مفيش عمق خبرة.',
+        'burn-h3-8': 'وكلاء متخصصين',
+        'burn-p8': 'خبير مختلف لكل شغلانة. مراجعة الكود ≠ تنفيذ الفيتشرز.',
+        // Skills
+        'skills-label': 'المكون ٠١',
+        'skills-h2': 'علّم المساعد بتاعك <em>الستاك</em> بتاعتك',
+        'skills-body': '<strong>المهارات</strong> هي وحدات معرفة بتوسّع خبرة الـ agent بتاعك. فكّر فيها كـ context دائم بيعلّم الـ AI اتفاقيات الفريم ورك بتاعك، الديزاين باترنز، وأفضل الممارسات. بدل ما تشرح Django DRF patterns في كل محادثة، حمّل مهارة <code>django-expert</code> مرة واحدة وهو هيفتكر.',
+        'skill-desc-1': 'أفضل ممارسات Django، باترنز DRF، تحسين ORM، إعدادات الأمان.',
+        'skill-desc-2': 'باترنز React الحديثة، hooks، تحسين الأداء، إمكانية الوصول.',
+        'skill-desc-3': 'منهجية debugging منظمة: افترض، اختبر، اعزل، صلّح.',
+        'skill-desc-4': 'باترنز Godot 4.x، أساليب GDScript، هندسة المشاهد، استخدام الإشارات.',
+        'skill-desc-5': 'أنظمة التصميم، مكتبات المكونات، باترنز الاستجابة، إمكانية الوصول.',
+        'skill-desc-6': 'OWASP Top 10، باترنز المصادقة، التحقق من المدخلات، إعدادات أمان.',
+        'skill-code-title': 'مثال على استدعاء مهارة',
+        // Agents
+        'agents-label': 'المكون ٠٢',
+        'agents-h2': 'متخصصين، مش <em>عموميين</em>',
+        'agents-body': '<strong>الوكلاء المخصصين</strong> هم شخصيات متخصصة بأدوار وأدوات وخبرات محددة. بدل مساعد واحد بيحاول يعمل كل حاجة، إنت بتبني فريق: مراجع كود دقيق ونقدي، منفذ بيمشي على المواصفات بالظبط، باحث بيستكشف كويس قبل ما يقرر.',
+        'agent-role-1': 'بيلاقي bugs، مشاكل أمان، وأخطاء منطقية. مش بيعلق على الستايل أبداً.',
+        'agent-role-2': 'بيحول الأفكار لمواصفات مفصلة وواضحة.',
+        'agent-role-3': 'بيمشي على المواصفات بالظبط. بيختبر كل معيار قبول.',
+        'agent-role-4': 'بيحول التصميمات لمكونات pixel-perfect وقابلة للوصول.',
+        'agent-role-5': 'بيعمل شخصيات مستخدمين، خرائط رحلة، وتحليل تنافسي.',
+        'agent-role-6': 'بينسق خط إنتاج UI/UX الكامل: بحث ← هندسة المعلومات ← واير فريم ← تجربة المستخدم ← واجهة المستخدم ← التنفيذ ← الاختبار. بينسق ٧ وكلاء متخصصين مع بوابات جودة تلقائية بين المراحل.',
+        'agent-code-title': 'تعريف-الوكيل.yaml',
+        // Workflows
+        'workflow-label': 'المكون ٠٣',
+        'workflow-h2': 'نسّق <em>فريق الوكلاء</em> بتاعك',
+        'workflow-body': '<strong>سير العمل</strong> بيربط الوكلاء مع بعض في خطوط أنابيب آلية. قصة المستخدم بتبقى مواصفات (عن طريق <code>spec-writer</code>)، المواصفات بتبقى تنفيذ (عن طريق <code>implementer</code>)، والتنفيذ بيتراجع (عن طريق <code>reviewer</code>). كل وكيل بيسلم للّي بعده، مع بوابات جودة بتمسك المشاكل بدري.',
+        'flow-pill-1': 'فكرة المستخدم',
+        'flow-lbl-1': 'مدخل',
+        'flow-lbl-2': 'تعريف',
+        'flow-lbl-3': 'بناء',
+        'flow-lbl-4': 'تحقق',
+        'flow-pill-5': 'تقرير الامتثال',
+        'flow-lbl-5': 'مخرج',
+        'workflow-code-title': 'سير-العمل-SDD.yaml',
+        // MCP
+        'mcp-label': 'المكون ٠٤',
+        'mcp-h2': 'اتصل بـ <em>أي حاجة</em>',
+        'mcp-body': '<strong>سيرفرات MCP (بروتوكول سياق النموذج)</strong> بتوسّع الوكلاء بتوعك أبعد من تعديل الكود. اتصل بـ GitHub، استعلم من PostgreSQL، ابعت إشعارات Slack، حدّث تيكتات Linear—كل ده من جوه سير عمل الوكلاء. المساعد بتاعك بيبقى منصة أتمتة حقيقية.',
+        'mcp-node-1': 'وكيل مراجعة الكود بتاعك',
+        'mcp-node-2': 'جسر البروتوكول',
+        'mcp-node-3': 'GitHub، Slack، قاعدة بيانات...',
+        'int-desc-1': 'اعمل PRs، علّق على issues، شغّل workflows، استعلم عن إحصائيات الريبو.',
+        'int-desc-2': 'استعلم عن schemas، حلل بيانات، اعمل migrations، حسّن queries.',
+        'int-desc-3': 'ابعت تنبيهات، انشر تحديثات، اقرا القنوات، أدر سير العمل.',
+        'int-desc-4': 'اعمل issues، حدّث الحالة، اربط بـ PRs، تابع السرعة.',
+        'mcp-code-title': 'إعداد سيرفر MCP',
+        // Rules
+        'rules-label': 'المكون ٠٥',
+        'rules-h2': 'الكودبيس بتاعتك، <em>القواعد بتاعتك</em>',
+        'rules-body': '<strong>القواعد</strong> هي قيود دائمة بتشكّل سلوك الوكيل. زي .eslintrc للـ AI: بتفرض ستايل الكود، باترنز المعمار، سياسات الأمان، واتفاقيات الفريق. القواعد بتفضل عبر الجلسات—عرّفها مرة، تتنفذ للأبد.',
+        'rules-before': 'من غير قواعد',
+        'rules-after': 'مع قواعد',
+        'rules-code-title': '.antigravity/rules.md',
+        // CTA
+        'cta-h2': 'جاهز تتحدى <em>الجاذبية؟</em>',
+        'cta-sub': 'اتعلمت المكونات الخمسة: المهارات بتعلّم الستاك بتاعتك، الوكلاء بيتخصصوا في أدوار، سير العمل بينسق الأتمتة، MCP بيوصل لأي حاجة، والقواعد بتفرض المعايير بتاعتك. دلوقتي وقت تبني مساعدين AI فعلاً فاهمين الكودبيس بتاعتك.',
+        'cta-btn-primary': 'حمّل أنتي جرافيتي',
+        'cta-btn-ghost': 'اقرا التوثيق',
+        'cta-footer': '// قريت الكل. احترام.',
+        // Footer
+        'footer-logo': 'أنتي جرافيتي',
+        'footer-tagline': 'تطوير بالذكاء الاصطناعي من غير ما تحارب الجاذبية',
+        'footer-docs': 'التوثيق',
+        'footer-community': 'المجتمع',
+        'footer-contact': 'تواصل',
+        'footer-copy': '* النتايج ممكن تختلف في المدار المنخفض. تجربة خالية من الهلوسة مش مضمونة في بيئات انعدام الجاذبية.'
+      };
+
+      const englishStore = {};
+
+      function toggleLanguage() {
+        const html = document.documentElement;
+        const btn = document.getElementById('lang-toggle');
+        const currentLang = html.getAttribute('lang') || 'en';
+
+        if (currentLang === 'en') {
+          // Save English innerHTML keyed by position index, then apply Arabic
+          document.querySelectorAll('[data-i18n]').forEach((el, idx) => {
+            englishStore[idx] = el.innerHTML;
+            el.setAttribute('data-en-idx', idx);
+          });
+          document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[key] !== undefined) {
+              el.innerHTML = translations[key];
+            }
+          });
+          html.setAttribute('dir', 'rtl');
+          html.setAttribute('lang', 'ar');
+          btn.textContent = 'English';
+        } else {
+          // Restore English
+          document.querySelectorAll('[data-i18n]').forEach(el => {
+            const idx = parseInt(el.getAttribute('data-en-idx'));
+            if (englishStore[idx] !== undefined) {
+              el.innerHTML = englishStore[idx];
+            }
+          });
+          html.setAttribute('dir', 'ltr');
+          html.setAttribute('lang', 'en');
+          btn.textContent = 'عربي';
+        }
+      }
+    </script>
+  </body>
+</html>
