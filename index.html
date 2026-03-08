@@ -1,97 +1,62 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
-    <!-- If you're reading this, you're exactly who this guide is for -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      The Antigravity Guide — Master AI-Powered Development Without Fighting
-      Gravity
-    </title>
+    <title>دليل أنتي جرافيتي — اتحكم في الـ AI بتاعك</title>
     <meta
       name="description"
-      content="A field guide for senior developers: Learn how to make AI assistants actually understand your codebase, rules, and patterns."
-    />
-
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:type" content="article" />
-    <meta
-      property="og:title"
-      content="The Antigravity Guide — Stop Fighting Gravity"
-    />
-    <meta
-      property="og:description"
-      content="A field guide for senior developers: Master AI assistants that actually understand your codebase, rules, and patterns."
-    />
-    <meta property="og:url" content="https://antigravity.dev/guide" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="The Antigravity Guide — Stop Fighting Gravity"
-    />
-    <meta
-      name="twitter:description"
-      content="Skills. Agents. Workflows. MCP. Rules. The five components that make AI dev tools actually useful."
-    />
-
-    <!-- Content Security Policy -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+      content="دليل المهندس المصري: علّم الـ AI يفهم الكودبيس بتاعتك، القواعد بتاعتك، والباترنز بتاعتك."
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Literata:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
     <style>
       /* ══════════════════════════════════════════════════════════════
-   ANTIGRAVITY GUIDE — DESIGN SYSTEM
-   ══════════════════════════════════════════════════════════════ */
+         ANTIGRAVITY GUIDE AR — DESIGN SYSTEM
+         Deep Purple + Electric Teal Theme
+         ══════════════════════════════════════════════════════════════ */
 
       :root {
-        /* Color System — Dark Void Theme */
-        --void: #04060a;
-        --deep: #080c12;
-        --surface: #0d1420;
-        --surface2: #111b2a;
-        --surface3: #151f2e;
-        --border: #1a2d42;
-        --border2: #243a52;
+        --void: #0a0a1a;
+        --deep: #0e0e24;
+        --surface: #13132e;
+        --surface2: #1a1a3e;
+        --surface3: #22224a;
+        --border: #2a2a55;
+        --border2: #3a3a6a;
 
-        /* Text Colors */
-        --ice: #e8f0fa;
-        --ice-dim: #7a9ab8;
-        --ice-dimmer: #4a5d78;
+        --ice: #e8e0ff;
+        --ice-dim: #9a8cc8;
+        --ice-dimmer: #5a4f80;
 
-        /* Accent Colors */
-        --amber: #ff6b00;
-        --amber2: #ff8c00;
-        --amber-dim: rgba(255, 107, 0, 0.12);
-        --amber-glow: rgba(255, 107, 0, 0.3);
+        --teal: #00e5c8;
+        --teal2: #00ffdd;
+        --teal-dim: rgba(0, 229, 200, 0.12);
+        --teal-glow: rgba(0, 229, 200, 0.3);
 
-        --cyan: #00d4ff;
-        --cyan-dim: rgba(0, 212, 255, 0.1);
+        --pink: #ff2d7b;
+        --pink2: #ff5599;
+        --pink-dim: rgba(255, 45, 123, 0.12);
 
-        --green: #00e676;
-        --green-dim: rgba(0, 230, 118, 0.1);
+        --lime: #88ff44;
+        --lime-dim: rgba(136, 255, 68, 0.1);
 
-        --red: #ff3d57;
-        --yellow: #ffd600;
-        --purple: #b39ddb;
+        --gold: #ffc107;
+        --violet: #c4b5fd;
+        --cyan: #67e8f9;
 
-        /* Typography */
         --mono: "JetBrains Mono", monospace;
-        --display: "Bebas Neue", sans-serif;
-        --body: "Literata", serif;
+        --body: "Noto Sans Arabic", sans-serif;
       }
 
       /* ══════════════════════════════════════════════════════════════
-   RESET & BASE
-   ══════════════════════════════════════════════════════════════ */
+         RESET & BASE
+         ══════════════════════════════════════════════════════════════ */
 
       *,
       *::before,
@@ -104,7 +69,6 @@
       html {
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
       }
 
       body {
@@ -112,32 +76,26 @@
         color: var(--ice);
         font-family: var(--body);
         font-size: 17px;
-        line-height: 1.7;
+        line-height: 1.8;
         overflow-x: hidden;
         position: relative;
+        text-align: right;
       }
 
-      /* SVG Noise Overlay */
+      /* Hexagonal noise overlay */
       body::before {
         content: "";
         position: fixed;
         inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
         pointer-events: none;
         z-index: 1;
-        opacity: 0.5;
-      }
-
-      /* Hidden Easter Egg */
-      .easter-egg {
-        position: absolute;
-        left: -9999px;
-        opacity: 0;
+        opacity: 0.4;
       }
 
       /* ══════════════════════════════════════════════════════════════
-   NAVIGATION
-   ══════════════════════════════════════════════════════════════ */
+         NAVIGATION
+         ══════════════════════════════════════════════════════════════ */
 
       nav {
         position: fixed;
@@ -149,41 +107,41 @@
         display: flex;
         align-items: center;
         gap: 2rem;
-        border-bottom: 1px solid rgba(26, 45, 66, 0.5);
-        background: rgba(4, 6, 10, 0.85);
+        border-bottom: 1px solid rgba(42, 42, 85, 0.5);
+        background: rgba(10, 10, 26, 0.85);
         backdrop-filter: blur(20px);
         transition: background 0.3s ease;
       }
 
       nav.scrolled {
-        background: rgba(4, 6, 10, 0.95);
+        background: rgba(10, 10, 26, 0.95);
       }
 
       .nav-logo {
-        font-family: var(--display);
-        font-size: 1.5rem;
-        color: var(--amber);
-        letter-spacing: 0.08em;
+        font-family: var(--body);
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--teal);
+        letter-spacing: 0.02em;
         text-decoration: none;
         transition: color 0.2s;
       }
-
       .nav-logo:hover {
-        color: var(--amber2);
+        color: var(--teal2);
       }
 
       .nav-tagline {
         font-family: var(--mono);
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         color: var(--ice-dim);
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        border-left: 1px solid var(--border);
-        padding-left: 1.5rem;
+        letter-spacing: 0.1em;
+        border-right: 1px solid var(--border);
+        padding-right: 1.5rem;
+        direction: ltr;
       }
 
       .nav-links {
-        margin-left: auto;
+        margin-right: auto;
         display: flex;
         gap: 2rem;
         align-items: center;
@@ -191,39 +149,36 @@
       }
 
       .nav-links a {
-        font-family: var(--mono);
-        font-size: 0.7rem;
+        font-family: var(--body);
+        font-size: 0.8rem;
+        font-weight: 500;
         color: var(--ice-dim);
         text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
         transition: color 0.2s;
       }
-
       .nav-links a:hover {
-        color: var(--amber);
+        color: var(--teal);
       }
 
       .nav-cta {
-        background: var(--amber);
-        color: #000 !important;
+        background: var(--teal);
+        color: #0a0a1a !important;
         padding: 0.5rem 1.2rem;
-        border-radius: 2px;
+        border-radius: 20px;
         font-weight: 700 !important;
         transition:
           background 0.2s,
           transform 0.15s !important;
       }
-
       .nav-cta:hover {
-        background: var(--amber2) !important;
-        color: #000 !important;
+        background: var(--teal2) !important;
+        color: #0a0a1a !important;
         transform: translateY(-1px);
       }
 
       /* ══════════════════════════════════════════════════════════════
-   HERO SECTION — LAUNCHPAD
-   ══════════════════════════════════════════════════════════════ */
+         HERO SECTION
+         ══════════════════════════════════════════════════════════════ */
 
       .hero {
         min-height: 100vh;
@@ -235,30 +190,36 @@
         overflow: hidden;
       }
 
-      /* Grid Lines Background */
+      /* Hexagonal pattern background */
       .hero::before {
         content: "";
         position: absolute;
         inset: 0;
         background-image:
-          linear-gradient(rgba(255, 107, 0, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 107, 0, 0.03) 1px, transparent 1px);
-        background-size: 60px 60px;
+          radial-gradient(
+            circle at 25% 25%,
+            rgba(0, 229, 200, 0.04) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(255, 45, 123, 0.04) 0%,
+            transparent 50%
+          );
         pointer-events: none;
         z-index: 0;
       }
 
-      /* Radial Glow */
       .hero::after {
         content: "";
         position: absolute;
         top: -200px;
-        left: -200px;
+        right: -200px;
         width: 800px;
         height: 800px;
         background: radial-gradient(
           circle,
-          rgba(255, 107, 0, 0.06) 0%,
+          rgba(0, 229, 200, 0.08) 0%,
           transparent 60%
         );
         pointer-events: none;
@@ -275,11 +236,9 @@
       }
 
       .hero-eyebrow {
-        font-family: var(--mono);
-        font-size: 0.68rem;
-        color: var(--amber);
-        text-transform: uppercase;
-        letter-spacing: 0.3em;
+        font-size: 0.78rem;
+        color: var(--teal);
+        font-weight: 600;
         margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
@@ -287,28 +246,30 @@
       }
 
       .eyebrow-dot {
-        width: 6px;
-        height: 6px;
-        background: var(--amber);
+        width: 8px;
+        height: 8px;
+        background: var(--teal);
         border-radius: 50%;
-        animation: blink 1.2s step-end infinite;
+        animation: pulse-glow 2s ease-in-out infinite;
       }
 
-      @keyframes blink {
+      @keyframes pulse-glow {
         0%,
         100% {
           opacity: 1;
+          box-shadow: 0 0 4px var(--teal);
         }
         50% {
-          opacity: 0;
+          opacity: 0.4;
+          box-shadow: 0 0 12px var(--teal);
         }
       }
 
       .hero-h1 {
-        font-family: var(--display);
-        font-size: clamp(4rem, 7vw, 6.5rem);
-        line-height: 0.95;
-        letter-spacing: 0.02em;
+        font-family: var(--body);
+        font-size: clamp(3.5rem, 7vw, 5.5rem);
+        line-height: 1.15;
+        font-weight: 900;
         color: var(--ice);
         margin-bottom: 1.5rem;
       }
@@ -317,16 +278,19 @@
         display: block;
       }
       .hero-h1 .line-accent {
-        color: var(--amber);
+        background: linear-gradient(135deg, var(--teal), var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .hero-sub {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         color: var(--ice-dim);
-        max-width: 480px;
+        max-width: 500px;
         margin-bottom: 2.5rem;
-        font-weight: 300;
-        line-height: 1.65;
+        font-weight: 400;
+        line-height: 1.8;
       }
 
       .hero-actions {
@@ -340,26 +304,23 @@
         display: inline-flex;
         align-items: center;
         gap: 0.6rem;
-        background: var(--amber);
-        color: #000;
-        font-family: var(--mono);
-        font-size: 0.78rem;
+        background: linear-gradient(135deg, var(--teal), #00b8a0);
+        color: #0a0a1a;
+        font-family: var(--body);
+        font-size: 0.9rem;
         font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        padding: 0.9rem 1.8rem;
-        border-radius: 2px;
+        padding: 0.9rem 2rem;
+        border-radius: 25px;
         text-decoration: none;
         border: none;
         transition:
-          background 0.2s,
-          transform 0.15s;
+          transform 0.2s,
+          box-shadow 0.2s;
         cursor: pointer;
       }
-
       .btn-primary:hover {
-        background: var(--amber2);
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 229, 200, 0.3);
       }
 
       .btn-ghost {
@@ -368,22 +329,20 @@
         gap: 0.5rem;
         background: none;
         color: var(--ice-dim);
-        font-family: var(--mono);
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        padding: 0.9rem 1.5rem;
+        font-family: var(--body);
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0.9rem 1.8rem;
         border: 1px solid var(--border2);
-        border-radius: 2px;
+        border-radius: 25px;
         text-decoration: none;
         transition:
           border-color 0.2s,
           color 0.2s;
       }
-
       .btn-ghost:hover {
-        border-color: var(--amber);
-        color: var(--amber);
+        border-color: var(--teal);
+        color: var(--teal);
       }
 
       .hero-stat-row {
@@ -396,26 +355,28 @@
       }
 
       .hero-stat .num {
-        font-family: var(--display);
+        font-family: var(--mono);
         font-size: 2.5rem;
-        color: var(--amber);
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--teal), var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         line-height: 1;
         display: block;
       }
 
       .hero-stat .lbl {
-        font-family: var(--mono);
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         color: var(--ice-dim);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-top: 0.3rem;
+        margin-top: 0.4rem;
+        font-weight: 500;
       }
 
       /* Terminal Panel */
       .hero-right {
         background: var(--deep);
-        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
         display: flex;
         flex-direction: column;
         position: relative;
@@ -430,6 +391,7 @@
         gap: 0.5rem;
         border-bottom: 1px solid var(--border);
         flex-shrink: 0;
+        direction: ltr;
       }
 
       .t-dot {
@@ -437,7 +399,6 @@
         height: 11px;
         border-radius: 50%;
       }
-
       .t-dot.r {
         background: #ff5f57;
       }
@@ -459,11 +420,10 @@
         margin-left: auto;
         font-family: var(--mono);
         font-size: 0.6rem;
-        color: var(--green);
-        background: var(--green-dim);
+        color: var(--lime);
+        background: var(--lime-dim);
         padding: 2px 8px;
-        border-radius: 2px;
-        text-transform: uppercase;
+        border-radius: 10px;
         letter-spacing: 0.1em;
       }
 
@@ -477,7 +437,8 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 0;
+        direction: ltr;
+        text-align: left;
       }
 
       .terminal-body::after {
@@ -496,11 +457,9 @@
         gap: 0.75rem;
         opacity: 0;
       }
-
       .t-line.show {
         animation: fadeLine 0.3s ease forwards;
       }
-
       @keyframes fadeLine {
         to {
           opacity: 1;
@@ -508,54 +467,57 @@
       }
 
       .t-prompt {
-        color: var(--amber);
+        color: var(--teal);
         flex-shrink: 0;
       }
-
       .t-cmd {
         color: var(--ice);
       }
-
       .t-out {
         color: var(--ice-dim);
         padding-left: 1.25rem;
       }
-
       .t-blank {
         padding-left: 1.25rem;
       }
-
       .t-ok {
-        color: var(--green);
+        color: var(--lime);
         font-weight: 700;
       }
-
       .t-warn {
-        color: var(--yellow);
+        color: var(--gold);
         font-weight: 700;
       }
-
       .t-cyan {
         color: var(--cyan);
       }
-
-      .t-amber {
-        color: var(--amber);
+      .t-pink {
+        color: var(--pink);
       }
 
       .t-cursor {
         display: inline-block;
         width: 8px;
         height: 14px;
-        background: var(--amber);
+        background: var(--teal);
         animation: blink 0.9s step-end infinite;
         vertical-align: middle;
         margin-left: 2px;
       }
 
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
       /* ══════════════════════════════════════════════════════════════
-   SECTIONS — SHARED STYLES
-   ══════════════════════════════════════════════════════════════ */
+         SECTIONS — SHARED STYLES
+         ══════════════════════════════════════════════════════════════ */
 
       section {
         max-width: 1200px;
@@ -566,36 +528,37 @@
       }
 
       .section-label {
-        font-family: var(--mono);
-        font-size: 0.65rem;
-        color: var(--amber);
-        text-transform: uppercase;
-        letter-spacing: 0.3em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--teal);
         margin-bottom: 1rem;
         display: flex;
         align-items: center;
         gap: 0.75rem;
       }
 
-      .section-label::before {
+      .section-label::after {
         content: "";
         display: inline-block;
-        width: 24px;
-        height: 1px;
-        background: var(--amber);
+        width: 30px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--teal), transparent);
       }
 
       h2 {
-        font-family: var(--display);
-        font-size: clamp(2.8rem, 5vw, 4.5rem);
-        letter-spacing: 0.02em;
-        line-height: 1;
+        font-family: var(--body);
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        line-height: 1.2;
         color: var(--ice);
         margin-bottom: 1.5rem;
       }
 
       h2 em {
-        color: var(--amber);
+        background: linear-gradient(135deg, var(--teal), var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         font-style: normal;
       }
 
@@ -603,33 +566,42 @@
         font-size: 1.05rem;
         color: var(--ice-dim);
         max-width: 640px;
-        font-weight: 300;
-        line-height: 1.75;
+        font-weight: 400;
+        line-height: 1.8;
         margin-bottom: 3rem;
       }
 
       .section-body strong {
         color: var(--ice);
-        font-weight: 500;
+        font-weight: 600;
+      }
+      .section-body code {
+        font-family: var(--mono);
+        font-size: 0.85em;
+        background: var(--surface2);
+        padding: 0.15em 0.5em;
+        border-radius: 4px;
+        color: var(--teal);
+        direction: ltr;
+        display: inline-block;
       }
 
-      /* Fade-in animation for scroll reveal */
+      /* Scroll reveal */
       .fade-in {
         opacity: 0;
         transform: translateY(30px);
         transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
+          opacity 0.7s ease,
+          transform 0.7s ease;
       }
-
       .fade-in.visible {
         opacity: 1;
         transform: translateY(0);
       }
 
       /* ══════════════════════════════════════════════════════════════
-   BURN SCARS — HOOK SECTION
-   ══════════════════════════════════════════════════════════════ */
+         BURN SCARS — HOOK SECTION
+         ══════════════════════════════════════════════════════════════ */
 
       .burn-scars {
         background: var(--deep);
@@ -642,7 +614,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 1px;
         background: var(--border);
-        border-radius: 4px;
+        border-radius: 12px;
         overflow: hidden;
         margin-top: 3rem;
       }
@@ -652,48 +624,43 @@
         padding: 2.5rem;
         transition: background 0.3s ease;
       }
-
       .grid-cell:hover {
         background: var(--surface2);
       }
 
       .cell-label {
-        font-family: var(--mono);
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
         color: var(--ice-dim);
         margin-bottom: 0.75rem;
         display: block;
       }
-
       .cell-label.pain {
-        color: var(--red);
+        color: var(--pink);
       }
-
       .cell-label.solution {
-        color: var(--green);
+        color: var(--lime);
       }
 
       .grid-cell h3 {
-        font-family: var(--body);
-        font-size: 1.3rem;
-        font-weight: 600;
+        font-size: 1.2rem;
+        font-weight: 700;
         color: var(--ice);
         margin-bottom: 0.75rem;
-        line-height: 1.3;
+        line-height: 1.4;
       }
 
       .grid-cell p {
         font-size: 0.95rem;
         color: var(--ice-dim);
-        line-height: 1.65;
-        font-weight: 300;
+        line-height: 1.7;
+        font-weight: 400;
       }
 
       /* ══════════════════════════════════════════════════════════════
-   SKILLS SECTION — PAYLOAD
-   ══════════════════════════════════════════════════════════════ */
+         SKILLS SECTION — HEXAGONAL CARDS
+         ══════════════════════════════════════════════════════════════ */
 
       .skills-grid {
         display: grid;
@@ -705,25 +672,42 @@
       .skill-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 16px;
         padding: 2rem;
+        position: relative;
+        overflow: hidden;
         transition:
           border-color 0.3s ease,
           transform 0.3s ease,
           box-shadow 0.3s ease;
       }
 
+      .skill-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--teal), var(--pink));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
       .skill-card:hover {
-        border-color: var(--amber);
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(255, 107, 0, 0.15);
+        border-color: var(--teal);
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 229, 200, 0.15);
+      }
+      .skill-card:hover::before {
+        opacity: 1;
       }
 
       .skill-icon {
-        width: 48px;
-        height: 48px;
-        background: var(--amber-dim);
-        border-radius: 4px;
+        width: 52px;
+        height: 52px;
+        background: var(--teal-dim);
+        border-radius: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -734,26 +718,49 @@
       .skill-name {
         font-family: var(--mono);
         font-size: 0.85rem;
-        color: var(--ice);
+        color: var(--teal);
         font-weight: 600;
         margin-bottom: 0.5rem;
+        direction: ltr;
+        text-align: left;
       }
 
       .skill-desc {
         font-size: 0.9rem;
         color: var(--ice-dim);
         line-height: 1.6;
-        font-weight: 300;
+        font-weight: 400;
+      }
+
+      .skill-install {
+        margin-top: 1rem;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--ice-dimmer);
+        background: var(--deep);
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        direction: ltr;
+        text-align: left;
+        display: block;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .skill-install:hover {
+        color: var(--teal);
+        border-color: var(--teal);
       }
 
       /* ══════════════════════════════════════════════════════════════
-   CODE BLOCKS & TERMINAL WINDOWS
-   ══════════════════════════════════════════════════════════════ */
+         CODE BLOCKS & TERMINAL WINDOWS
+         ══════════════════════════════════════════════════════════════ */
 
       .code-block {
         background: var(--deep);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 12px;
         overflow: hidden;
         margin-top: 2rem;
       }
@@ -765,6 +772,7 @@
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid var(--border);
+        direction: ltr;
       }
 
       .code-dots {
@@ -785,21 +793,19 @@
         background: none;
         border: 1px solid var(--border);
         padding: 0.25rem 0.75rem;
-        border-radius: 2px;
+        border-radius: 8px;
         cursor: pointer;
         transition:
           color 0.2s,
           border-color 0.2s;
       }
-
       .copy-btn:hover {
-        color: var(--amber);
-        border-color: var(--amber);
+        color: var(--teal);
+        border-color: var(--teal);
       }
-
       .copy-btn.copied {
-        color: var(--green);
-        border-color: var(--green);
+        color: var(--lime);
+        border-color: var(--lime);
       }
 
       .code-body {
@@ -809,6 +815,8 @@
         line-height: 1.8;
         color: var(--ice);
         overflow-x: auto;
+        direction: ltr;
+        text-align: left;
       }
 
       .code-body pre {
@@ -819,33 +827,29 @@
       .code-comment {
         color: var(--ice-dimmer);
       }
-
       .code-keyword {
-        color: var(--purple);
+        color: var(--violet);
       }
-
       .code-string {
-        color: var(--green);
+        color: var(--lime);
       }
-
       .code-function {
         color: var(--cyan);
       }
-
       .code-variable {
-        color: var(--amber);
+        color: var(--teal);
       }
 
       /* ══════════════════════════════════════════════════════════════
-   AGENTS SECTION — MISSION CONTROL
-   ══════════════════════════════════════════════════════════════ */
+         AGENTS SECTION
+         ══════════════════════════════════════════════════════════════ */
 
       .agent-ecosystem {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 1px;
         background: var(--border);
-        border-radius: 4px;
+        border-radius: 12px;
         overflow: hidden;
         margin-bottom: 2rem;
       }
@@ -862,7 +866,6 @@
           transform 0.2s ease;
         position: relative;
       }
-
       .agent-tile:hover {
         background: var(--surface2);
         transform: scale(1.02);
@@ -871,15 +874,15 @@
       .agent-tile.orchestrator {
         grid-column: 1 / -1;
         flex-direction: row;
-        text-align: left;
+        text-align: right;
         gap: 1.5rem;
       }
 
       .agent-icon {
         width: 56px;
         height: 56px;
-        background: var(--amber-dim);
-        border: 2px solid var(--amber);
+        background: var(--teal-dim);
+        border: 2px solid var(--teal);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -888,7 +891,6 @@
         margin-bottom: 1rem;
         flex-shrink: 0;
       }
-
       .agent-tile.orchestrator .agent-icon {
         width: 64px;
         height: 64px;
@@ -901,18 +903,19 @@
         color: var(--ice);
         font-weight: 600;
         margin-bottom: 0.5rem;
+        direction: ltr;
       }
 
       .agent-role {
         font-size: 0.85rem;
         color: var(--ice-dim);
-        line-height: 1.5;
-        font-weight: 300;
+        line-height: 1.6;
+        font-weight: 400;
       }
 
       /* ══════════════════════════════════════════════════════════════
-   WORKFLOWS SECTION — FLIGHT PLAN
-   ══════════════════════════════════════════════════════════════ */
+         WORKFLOWS SECTION
+         ══════════════════════════════════════════════════════════════ */
 
       .orbital-mechanics {
         display: flex;
@@ -921,6 +924,7 @@
         margin: 3rem 0;
         overflow-x: auto;
         padding: 2rem 0;
+        direction: ltr;
       }
 
       .flow-step {
@@ -934,7 +938,7 @@
       .flow-pill {
         background: var(--surface);
         border: 1px solid var(--border2);
-        border-radius: 20px;
+        border-radius: 25px;
         padding: 0.75rem 1.5rem;
         font-family: var(--mono);
         font-size: 0.8rem;
@@ -944,23 +948,22 @@
           border-color 0.3s ease,
           transform 0.3s ease;
       }
-
       .flow-pill:hover {
-        border-color: var(--amber);
+        border-color: var(--teal);
         transform: translateY(-2px);
       }
 
       .flow-pill.start {
-        background: var(--amber-dim);
-        border-color: var(--amber);
-        color: var(--amber);
+        background: var(--teal-dim);
+        border-color: var(--teal);
+        color: var(--teal);
         font-weight: 600;
       }
 
       .flow-pill.end {
-        background: var(--green-dim);
-        border-color: var(--green);
-        color: var(--green);
+        background: var(--lime-dim);
+        border-color: var(--lime);
+        color: var(--lime);
         font-weight: 600;
       }
 
@@ -970,16 +973,14 @@
       }
 
       .flow-label {
-        font-family: var(--mono);
-        font-size: 0.65rem;
+        font-size: 0.7rem;
         color: var(--ice-dimmer);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+        font-weight: 500;
       }
 
       /* ══════════════════════════════════════════════════════════════
-   MCP SECTION — DOCKING
-   ══════════════════════════════════════════════════════════════ */
+         MCP SECTION
+         ══════════════════════════════════════════════════════════════ */
 
       .mcp-architecture {
         display: flex;
@@ -990,7 +991,8 @@
         padding: 3rem 2rem;
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 12px;
+        direction: ltr;
       }
 
       .mcp-node {
@@ -1004,7 +1006,7 @@
       .mcp-box {
         background: var(--deep);
         border: 2px solid var(--border2);
-        border-radius: 4px;
+        border-radius: 12px;
         padding: 1.5rem 2rem;
         font-family: var(--mono);
         font-size: 0.85rem;
@@ -1013,22 +1015,19 @@
         min-width: 140px;
         transition: border-color 0.3s ease;
       }
-
       .mcp-box:hover {
-        border-color: var(--cyan);
+        border-color: var(--pink);
       }
 
       .mcp-arrow {
         font-size: 2rem;
-        color: var(--cyan);
+        color: var(--pink);
       }
 
       .mcp-node-label {
-        font-family: var(--mono);
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         color: var(--ice-dim);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+        font-weight: 500;
       }
 
       .integration-grid {
@@ -1041,7 +1040,7 @@
       .integration-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 12px;
         padding: 2rem;
         display: flex;
         flex-direction: column;
@@ -1051,18 +1050,17 @@
           border-color 0.3s ease,
           transform 0.3s ease;
       }
-
       .integration-card:hover {
-        border-color: var(--cyan);
+        border-color: var(--pink);
         transform: translateY(-4px);
       }
 
       .integration-icon {
         width: 48px;
         height: 48px;
-        background: var(--cyan-dim);
-        border: 1px solid var(--cyan);
-        border-radius: 4px;
+        background: var(--pink-dim);
+        border: 1px solid var(--pink);
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1085,15 +1083,15 @@
       }
 
       /* ══════════════════════════════════════════════════════════════
-   RULES SECTION — TRAJECTORY
-   ══════════════════════════════════════════════════════════════ */
+         RULES SECTION
+         ══════════════════════════════════════════════════════════════ */
 
       .comparison-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1px;
         background: var(--border);
-        border-radius: 4px;
+        border-radius: 12px;
         overflow: hidden;
         margin-top: 3rem;
       }
@@ -1104,30 +1102,24 @@
       }
 
       .comparison-label {
-        font-family: var(--mono);
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
+        font-size: 0.8rem;
+        font-weight: 700;
         margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
       }
-
       .comparison-label.before {
-        color: var(--red);
+        color: var(--pink);
       }
-
-      .comparison-label.before::before {
+      .comparison-label.before::after {
         content: "✗";
         font-size: 1rem;
       }
-
       .comparison-label.after {
-        color: var(--green);
+        color: var(--lime);
       }
-
-      .comparison-label.after::before {
+      .comparison-label.after::after {
         content: "✓";
         font-size: 1rem;
       }
@@ -1135,17 +1127,19 @@
       .comparison-content {
         background: var(--deep);
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 8px;
         padding: 1.5rem;
         font-family: var(--mono);
         font-size: 0.78rem;
         line-height: 1.8;
         color: var(--ice-dim);
+        direction: ltr;
+        text-align: left;
       }
 
       /* ══════════════════════════════════════════════════════════════
-   CTA SECTION — GROUND CONTROL
-   ══════════════════════════════════════════════════════════════ */
+         CTA SECTION
+         ══════════════════════════════════════════════════════════════ */
 
       .escape-velocity {
         background: var(--deep);
@@ -1155,26 +1149,27 @@
       }
 
       .cta-headline {
-        font-family: var(--display);
-        font-size: clamp(3rem, 6vw, 5.5rem);
-        letter-spacing: 0.02em;
-        line-height: 1.1;
+        font-size: clamp(2.8rem, 6vw, 4.5rem);
+        font-weight: 900;
+        line-height: 1.2;
         color: var(--ice);
         margin-bottom: 1.5rem;
       }
-
       .cta-headline em {
-        color: var(--amber);
+        background: linear-gradient(135deg, var(--teal), var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         font-style: normal;
       }
 
       .cta-sub {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         color: var(--ice-dim);
         max-width: 600px;
         margin: 0 auto 3rem;
-        font-weight: 300;
-        line-height: 1.7;
+        font-weight: 400;
+        line-height: 1.8;
       }
 
       .cta-actions {
@@ -1185,6 +1180,28 @@
         margin-bottom: 4rem;
       }
 
+      .cta-install {
+        max-width: 500px;
+        margin: 0 auto 3rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        color: var(--ice);
+        direction: ltr;
+        text-align: left;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+      .cta-install:hover {
+        border-color: var(--teal);
+      }
+      .cta-install .prompt {
+        color: var(--teal);
+      }
+
       .cta-footer {
         font-family: var(--mono);
         font-size: 0.75rem;
@@ -1192,11 +1209,12 @@
         margin-top: 4rem;
         padding-top: 2rem;
         border-top: 1px solid var(--border);
+        direction: ltr;
       }
 
       /* ══════════════════════════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════════════════════════ */
+         FOOTER
+         ══════════════════════════════════════════════════════════════ */
 
       footer {
         background: var(--void);
@@ -1216,18 +1234,18 @@
       }
 
       .footer-logo {
-        font-family: var(--display);
-        font-size: 2rem;
-        color: var(--amber);
-        letter-spacing: 0.08em;
+        font-size: 1.8rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--teal), var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .footer-tagline {
-        font-family: var(--mono);
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         color: var(--ice-dim);
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
+        font-weight: 500;
       }
 
       .footer-links {
@@ -1239,17 +1257,14 @@
       }
 
       .footer-links a {
-        font-family: var(--mono);
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         color: var(--ice-dim);
         text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+        font-weight: 500;
         transition: color 0.2s;
       }
-
       .footer-links a:hover {
-        color: var(--amber);
+        color: var(--teal);
       }
 
       .footer-copy {
@@ -1259,63 +1274,112 @@
       }
 
       /* ══════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════════════════════════ */
+         SKILLS.SH INSTALL BANNER
+         ══════════════════════════════════════════════════════════════ */
+
+      .install-banner {
+        background: linear-gradient(135deg, var(--surface), var(--surface2));
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 3rem;
+        margin-top: 3rem;
+        text-align: center;
+      }
+
+      .install-banner h3 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--ice);
+        margin-bottom: 1rem;
+      }
+
+      .install-banner p {
+        font-size: 0.95rem;
+        color: var(--ice-dim);
+        margin-bottom: 2rem;
+        line-height: 1.7;
+      }
+
+      .install-commands {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        direction: ltr;
+        text-align: left;
+      }
+
+      .install-cmd {
+        background: var(--deep);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem 1.25rem;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--ice);
+        transition: border-color 0.2s;
+        cursor: pointer;
+      }
+      .install-cmd:hover {
+        border-color: var(--teal);
+      }
+      .install-cmd .cmd-label {
+        display: block;
+        font-size: 0.65rem;
+        color: var(--ice-dimmer);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .install-cmd .cmd-text {
+        color: var(--teal);
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+         RESPONSIVE
+         ══════════════════════════════════════════════════════════════ */
 
       @media (max-width: 1024px) {
         nav {
           padding: 1rem 2rem;
           flex-wrap: wrap;
         }
-
         .nav-tagline {
           display: none;
         }
-
         .hero {
           grid-template-columns: 1fr;
           min-height: auto;
         }
-
         .hero-left {
           padding: 6rem 2rem 4rem;
         }
-
         .hero-right {
-          border-left: none;
+          border-right: none;
           border-top: 1px solid var(--border);
           min-height: 500px;
         }
-
         section {
           padding: 5rem 2rem;
         }
-
         .skills-grid {
           grid-template-columns: repeat(2, 1fr);
           gap: 1rem;
         }
-
         .zero-g-grid {
           grid-template-columns: 1fr;
         }
-
         .comparison-grid {
           grid-template-columns: 1fr;
         }
-
         .orbital-mechanics {
           flex-direction: column;
         }
-
         .flow-arrow {
           transform: rotate(90deg);
         }
-
         .mcp-architecture {
           flex-direction: column;
         }
-
         .mcp-arrow {
           transform: rotate(90deg);
         }
@@ -1325,86 +1389,46 @@
         nav {
           padding: 1rem;
         }
-
         .nav-links {
           display: none;
         }
-
         .hero-h1 {
-          font-size: 3rem;
+          font-size: 2.8rem;
         }
-
         .hero-left {
           padding: 5rem 1.5rem 3rem;
         }
-
         section {
           padding: 4rem 1.5rem;
         }
-
         h2 {
-          font-size: 2.5rem;
+          font-size: 2.2rem;
         }
-
         .skills-grid {
           grid-template-columns: 1fr;
         }
-
         .agent-ecosystem {
           grid-template-columns: 1fr;
         }
-
         .integration-grid {
           grid-template-columns: 1fr;
         }
-
         .hero-stat-row {
           gap: 1.5rem;
         }
-
         .btn-primary,
         .btn-ghost {
           width: 100%;
           justify-content: center;
         }
+        .install-commands {
+          grid-template-columns: 1fr;
+        }
       }
 
       /* ══════════════════════════════════════════════════════════════
-   UTILITY CLASSES
-   ══════════════════════════════════════════════════════════════ */
-
-      .divider {
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(
-          to right,
-          transparent,
-          var(--border2),
-          transparent
-        );
-        margin: 4rem 0;
-      }
-
-      .text-center {
-        text-align: center;
-      }
-
-      .mb-2 {
-        margin-bottom: 2rem;
-      }
-      .mb-3 {
-        margin-bottom: 3rem;
-      }
-      .mt-2 {
-        margin-top: 2rem;
-      }
-      .mt-3 {
-        margin-top: 3rem;
-      }
-
-      /* ══════════════════════════════════════════════════════════════
-   REDUCED MOTION — ACCESSIBILITY
-   ══════════════════════════════════════════════════════════════ */
+         ACCESSIBILITY
+         ══════════════════════════════════════════════════════════════ */
 
       @media (prefers-reduced-motion: reduce) {
         *,
@@ -1425,48 +1449,108 @@
       }
 
       /* ══════════════════════════════════════════════════════════════
-   PRINT STYLES
-   ══════════════════════════════════════════════════════════════ */
+         DOMAIN SELECTOR BAR
+         ══════════════════════════════════════════════════════════════ */
 
-      /* ══════════════════════════════════════════════════════════════
-   LANGUAGE TOGGLE BUTTON
-   ══════════════════════════════════════════════════════════════ */
+      .domain-bar {
+        position: sticky;
+        top: 70px;
+        z-index: 99;
+        background: rgba(10, 10, 26, 0.97);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        padding: 0.55rem 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+        transition: background 0.3s ease;
+      }
 
-      .lang-toggle {
+      .domain-bar-label {
         font-family: var(--mono);
-        font-size: 0.7rem;
-        color: var(--ice-dim);
-        background: transparent;
-        border: 1px solid var(--border);
-        padding: 0.35rem 0.8rem;
-        border-radius: 2px;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        transition: all 0.2s;
+        font-size: 0.62rem;
+        color: var(--ice-dimmer);
+        letter-spacing: 0.12em;
+        margin-left: 0.75rem;
         flex-shrink: 0;
+        text-transform: uppercase;
       }
 
-      .lang-toggle:hover {
-        color: var(--amber);
-        border-color: var(--amber);
+      .domain-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 0.38rem 1rem;
+        font-family: var(--body);
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--ice-dim);
+        cursor: pointer;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease,
+          transform 0.15s ease;
+        white-space: nowrap;
+        user-select: none;
+        outline: none;
+      }
+
+      .domain-pill:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+        background: var(--teal-dim);
+        transform: translateY(-1px);
+      }
+
+      .domain-pill.active {
+        background: var(--teal-dim);
+        border-color: var(--teal);
+        color: var(--teal);
+        box-shadow: 0 0 14px var(--teal-glow);
+      }
+
+      .domain-pill:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 2px;
+      }
+
+      /* Smooth section transitions on domain swap */
+      section {
+        transition: opacity 0.2s ease;
+      }
+
+      @media (max-width: 1024px) {
+        .domain-bar {
+          padding: 0.5rem 1.5rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .domain-bar {
+          top: 58px;
+          padding: 0.45rem 0.75rem;
+          gap: 0.35rem;
+        }
+        .domain-pill {
+          font-size: 0.7rem;
+          padding: 0.3rem 0.7rem;
+        }
+        .domain-bar-label {
+          display: none;
+        }
       }
 
       /* ══════════════════════════════════════════════════════════════
-   RTL SUPPORT — EGYPTIAN ARABIC
-   ══════════════════════════════════════════════════════════════ */
-
-      [dir="rtl"] { text-align: right; }
-      [dir="rtl"] .nav-tagline { border-left: none; border-right: 1px solid var(--border); padding-left: 0; padding-right: 1.5rem; }
-      [dir="rtl"] .nav-links { margin-left: 0; margin-right: auto; }
-      [dir="rtl"] .hero { direction: rtl; }
-      [dir="rtl"] .flow-arrow { transform: scaleX(-1); }
-      [dir="rtl"] .mcp-arrow { transform: scaleX(-1); }
-      [dir="rtl"] .code-block, [dir="rtl"] .code-body, [dir="rtl"] pre, [dir="rtl"] code { direction: ltr; text-align: left; }
-      [dir="rtl"] .comparison-content { direction: ltr; text-align: left; }
-      [dir="rtl"] .terminal-body { direction: ltr; text-align: left; }
-      [dir="rtl"] body { font-family: 'Noto Sans Arabic', var(--body); }
-      [dir="rtl"] .hero-h1, [dir="rtl"] h2, [dir="rtl"] .nav-logo, [dir="rtl"] .footer-logo { font-family: 'Noto Sans Arabic', var(--display); }
+         PRINT STYLES
+         ══════════════════════════════════════════════════════════════ */
 
       @media print {
         body {
@@ -1494,13 +1578,15 @@
         h2,
         .hero-h1 {
           color: #111;
+          -webkit-text-fill-color: #111;
         }
         h2 em,
         .line-accent {
-          color: #c44000;
+          color: #6d28d9;
+          -webkit-text-fill-color: #6d28d9;
         }
         .section-label {
-          color: #c44000;
+          color: #6d28d9;
         }
         * {
           border-color: #ccc !important;
@@ -1510,53 +1596,61 @@
     </style>
   </head>
   <body>
-    <span class="easter-egg" aria-hidden="true"
-      >you found the easter egg — welcome to the resistance</span
-    >
-
     <!-- ══════════════════════════════════════════════════════════════
      NAVIGATION
      ══════════════════════════════════════════════════════════════ -->
 
     <nav id="nav">
-      <a href="#launchpad" class="nav-logo" data-i18n="nav-logo">ANTIGRAVITY</a>
-      <span class="nav-tagline" data-i18n="nav-tagline">Field Guide for the Impatient Engineer</span>
-      <button class="lang-toggle" id="lang-toggle" onclick="toggleLanguage()">عربي</button>
+      <a href="#launchpad" class="nav-logo">⟡ أنتي جرافيتي</a>
+      <span class="nav-tagline">skills.sh • antigravity.dev</span>
       <ul class="nav-links">
-        <li><a href="#payload" data-i18n="nav-skills">Skills</a></li>
-        <li><a href="#mission-control" data-i18n="nav-agents">Agents</a></li>
-        <li><a href="#flight-plan" data-i18n="nav-workflows">Workflows</a></li>
-        <li><a href="#docking" data-i18n="nav-mcp">MCP</a></li>
-        <li><a href="#trajectory" data-i18n="nav-rules">Rules</a></li>
-        <li><a href="#ground-control" class="nav-cta" data-i18n="nav-cta">Get Started</a></li>
+        <li><a href="#payload">المهارات</a></li>
+        <li><a href="#mission-control">الوكلاء</a></li>
+        <li><a href="#flight-plan">سير العمل</a></li>
+        <li><a href="#docking">MCP</a></li>
+        <li><a href="#trajectory">القواعد</a></li>
+        <li><a href="#ground-control" class="nav-cta">يلا نبدأ</a></li>
       </ul>
     </nav>
 
     <!-- ══════════════════════════════════════════════════════════════
-     HERO SECTION — LAUNCHPAD
+     DOMAIN SELECTOR BAR
+     ══════════════════════════════════════════════════════════════ -->
+
+    <div class="domain-bar" id="domain-bar" role="tablist" aria-label="اختر تخصصك">
+      <span class="domain-bar-label">اختر تخصصك:</span>
+      <button class="domain-pill active" data-domain="frontend" role="tab" aria-selected="true"  onclick="setDomain('frontend')">⟨/⟩ فرونت إند</button>
+      <button class="domain-pill"        data-domain="backend"  role="tab" aria-selected="false" onclick="setDomain('backend')">⚙️ باك إند</button>
+      <button class="domain-pill"        data-domain="pm"       role="tab" aria-selected="false" onclick="setDomain('pm')">📋 PM</button>
+      <button class="domain-pill"        data-domain="ui"       role="tab" aria-selected="false" onclick="setDomain('ui')">🎨 UI</button>
+      <button class="domain-pill"        data-domain="ux"       role="tab" aria-selected="false" onclick="setDomain('ux')">🔬 UX</button>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     HERO SECTION
      ══════════════════════════════════════════════════════════════ -->
 
     <section class="hero" id="launchpad">
       <div class="hero-left">
         <div class="hero-eyebrow">
           <span class="eyebrow-dot"></span>
-          <span data-i18n="hero-eyebrow">FIELD GUIDE FOR THE IMPATIENT ENGINEER</span>
+          <span id="hero-eyebrow-text">دليل المهندس اللي مش فاضي يشرح كل حاجة تاني</span>
         </div>
 
         <h1 class="hero-h1">
-          <span class="line" data-i18n="hero-line1">STOP</span>
-          <span class="line" data-i18n="hero-line2">FIGHTING</span>
-          <span class="line line-accent" data-i18n="hero-line3">GRAVITY</span>
+          <span class="line" id="hero-h1-line1">بطّل تحارب</span>
+          <span class="line line-accent" id="hero-h1-line2">الجاذبية</span>
         </h1>
 
-        <p class="hero-sub" data-i18n="hero-sub">
-          Your AI assistant doesn't understand your codebase. Your rules. Your
-          patterns. Let's fix that.
+        <p class="hero-sub" id="hero-sub">
+          مساعد الـ AI بتاعك مش فاهم الكودبيس بتاعتك. مش عارف الباترنز بتاعتك.
+          بينسى كل حاجة بعد ٣ رسايل. الدليل ده هيعلمك تخليه يفهم — من غير ما
+          تتجنن.
         </p>
 
         <div class="hero-actions">
           <a href="#payload" class="btn-primary">
-            <span data-i18n="hero-btn-primary">Explore the Guide</span>
+            <span>استكشف الدليل</span>
             <svg
               width="16"
               height="16"
@@ -1566,30 +1660,24 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M5 12l7-7M12 5v7H5" />
+              <path d="M12 5l-7 7M5 12h7V5" />
             </svg>
           </a>
-          <a
-            href="https://github.com/yourusername/antigravity-guide"
-            class="btn-ghost"
-            data-i18n="hero-btn-ghost"
-          >
-            View Source
-          </a>
+          <a href="https://skills.sh" class="btn-ghost"> skills.sh ← </a>
         </div>
 
         <div class="hero-stat-row">
           <div class="hero-stat">
-            <span class="num" data-target="6">0</span>
-            <span class="lbl" data-i18n="hero-stat-lbl1">Components</span>
+            <span class="num" id="hero-stat1-num" data-target="5">0</span>
+            <span class="lbl" id="hero-stat1-lbl">مكونات أساسية</span>
           </div>
           <div class="hero-stat">
-            <span class="num">∞</span>
-            <span class="lbl" data-i18n="hero-stat-lbl2">Combinations</span>
+            <span class="num" id="hero-stat2-num">∞</span>
+            <span class="lbl" id="hero-stat2-lbl">تركيبات ممكنة</span>
           </div>
           <div class="hero-stat">
-            <span class="num" data-target="0">0</span>
-            <span class="lbl" data-i18n="hero-stat-lbl3">Hallucinations*</span>
+            <span class="num" id="hero-stat3-num" data-target="0">0</span>
+            <span class="lbl" id="hero-stat3-lbl">هلوسات*</span>
           </div>
         </div>
       </div>
@@ -1599,164 +1687,178 @@
           <div class="t-dot r"></div>
           <div class="t-dot y"></div>
           <div class="t-dot g"></div>
-          <span class="t-title">antigravity-demo.sh</span>
-          <span class="t-badge">active</span>
+          <span class="t-title">skills.sh — install</span>
+          <span class="t-badge">LIVE</span>
         </div>
         <div class="terminal-body" id="terminal">
-          <!-- Terminal lines will be added by JavaScript -->
+          <!-- Terminal lines added by JS -->
         </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-     HOOK SECTION — BURN SCARS
+     HOOK SECTION — المشكلة
      ══════════════════════════════════════════════════════════════ -->
 
     <section class="burn-scars fade-in" id="burn-scars">
-      <div class="section-label" data-i18n="burn-label">THE PROBLEM</div>
-      <h2 data-i18n="burn-h2">YOU'VE BEEN <em>BURNED</em> BEFORE</h2>
-      <p class="section-body" data-i18n="burn-body">
-        Every AI coding tool promises magic. Most deliver autocomplete with
-        anxiety. You've seen agents hallucinate dependencies that don't exist,
-        forget your architecture after three messages, and confidently suggest
-        patterns you deprecated two years ago.
+      <div class="section-label">المشكلة</div>
+      <h2 id="burn-h2">إنت <em>اتحرقت</em> قبل كده</h2>
+      <p class="section-body" id="burn-scars-body">
+        كل أداة AI كودنج بتوعدك بسحر. أغلبهم بيديك autocomplete مع صداع. شفت
+        agents بتهلوس dependencies مش موجودة، بتنسى الأركيتكتشر بتاعتك بعد تلات
+        رسايل، وبتقترحلك باترنز إنت عملتلها deprecate من سنتين وكان عندك حق.
       </p>
 
-      <div class="zero-g-grid">
+      <div class="zero-g-grid" id="zero-g-grid">
         <div class="grid-cell">
-          <span class="cell-label pain" data-i18n="pain-label">PAIN POINT</span>
-          <h3 data-i18n="burn-h3-1">Context Amnesia</h3>
-          <p data-i18n="burn-p1">
-            Forgets your architecture after 3 messages. Every conversation
-            starts from zero.
+          <span class="cell-label pain">🔥 نقطة ألم</span>
+          <h3>فقدان الذاكرة</h3>
+          <p>
+            بينسى الأركيتكتشر بتاعتك بعد ٣ رسايل. كل محادثة بتبدأ من الصفر كأنك
+            ما اتكلمتوش قبل كده.
           </p>
         </div>
         <div class="grid-cell">
-          <span class="cell-label solution" data-i18n="solution-label">ANTIGRAVITY SOLUTION</span>
-          <h3 data-i18n="burn-h3-2">Persistent Rules</h3>
-          <p data-i18n="burn-p2">
-            Define once, enforced forever. Your constraints become the agent's
-            reflexes.
+          <span class="cell-label solution">✦ الحل</span>
+          <h3>قواعد دائمة</h3>
+          <p>
+            عرّفها مرة واحدة، تتنفذ للأبد. القيود بتاعتك بتبقى ردود فعل تلقائية
+            للـ agent.
           </p>
         </div>
         <div class="grid-cell">
-          <span class="cell-label pain" data-i18n="pain-label">PAIN POINT</span>
-          <h3 data-i18n="burn-h3-3">Generic Slop</h3>
-          <p data-i18n="burn-p3">
-            StackOverflow copypasta from 2019. Suggestions that don't match your
-            stack.
+          <span class="cell-label pain">🔥 نقطة ألم</span>
+          <h3>اقتراحات جنريك</h3>
+          <p>
+            كوبي باستا من StackOverflow من ٢٠١٩. اقتراحات مش عارفة إنت بتستخدم
+            إيه أصلاً.
           </p>
         </div>
         <div class="grid-cell">
-          <span class="cell-label solution" data-i18n="solution-label">ANTIGRAVITY SOLUTION</span>
-          <h3 data-i18n="burn-h3-4">Domain Skills</h3>
-          <p data-i18n="burn-p4">
-            Your stack, your patterns, your standards. Teach the assistant your
-            expertise.
+          <span class="cell-label solution">✦ الحل</span>
+          <h3>مهارات متخصصة</h3>
+          <p>
+            الستاك بتاعتك، الباترنز بتاعتك، المعايير بتاعتك. علّم المساعد خبرتك
+            عن طريق Skills.
           </p>
         </div>
         <div class="grid-cell">
-          <span class="cell-label pain" data-i18n="pain-label">PAIN POINT</span>
-          <h3 data-i18n="burn-h3-5">Black Box Magic</h3>
-          <p data-i18n="burn-p5">
-            No idea why it suggested that. Debugging AI decisions is impossible.
+          <span class="cell-label pain">🔥 نقطة ألم</span>
+          <h3>صندوق أسود</h3>
+          <p>
+            مش عارف ليه اقترح كده. لو سألته "ليه؟" هيألفلك إجابة جديدة خالص.
           </p>
         </div>
         <div class="grid-cell">
-          <span class="cell-label solution" data-i18n="solution-label">ANTIGRAVITY SOLUTION</span>
-          <h3 data-i18n="burn-h3-6">Transparent Workflows</h3>
-          <p data-i18n="burn-p6">
-            See every step, modify every decision. Full control, zero mystery.
+          <span class="cell-label solution">✦ الحل</span>
+          <h3>سير عمل شفاف</h3>
+          <p>شوف كل خطوة، عدّل كل قرار. تحكم كامل، صفر غموض، صفر هلوسة.</p>
+        </div>
+        <div class="grid-cell">
+          <span class="cell-label pain">🔥 نقطة ألم</span>
+          <h3>مقاس واحد مش بيجي على حد</h3>
+          <p>
+            نفس المساعد لكل حاجة — من code review لحد كتابة CSS. مفيش تخصص خالص.
           </p>
         </div>
         <div class="grid-cell">
-          <span class="cell-label pain" data-i18n="pain-label">PAIN POINT</span>
-          <h3 data-i18n="burn-h3-7">One-Size-Fits-None</h3>
-          <p data-i18n="burn-p7">
-            Same assistant for everything. No specialization, no expertise
-            depth.
-          </p>
-        </div>
-        <div class="grid-cell">
-          <span class="cell-label solution" data-i18n="solution-label">ANTIGRAVITY SOLUTION</span>
-          <h3 data-i18n="burn-h3-8">Specialist Agents</h3>
-          <p data-i18n="burn-p8">
-            Different expert for each job. Code review ≠ feature implementation.
+          <span class="cell-label solution">✦ الحل</span>
+          <h3>وكلاء متخصصين</h3>
+          <p>
+            خبير مختلف لكل شغلانة. مراجع الكود ≠ منفذ الفيتشرز ≠ كاتب المواصفات.
           </p>
         </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-     SKILLS SECTION — PAYLOAD
+     SKILLS SECTION — المهارات
      ══════════════════════════════════════════════════════════════ -->
 
     <section class="fade-in" id="payload">
-      <div class="section-label" data-i18n="skills-label">COMPONENT 01</div>
-      <h2 data-i18n="skills-h2">TEACH YOUR ASSISTANT YOUR <em>STACK</em></h2>
-      <p class="section-body" data-i18n="skills-body">
-        <strong>Skills</strong> are knowledge modules that extend your agent's
-        expertise. Think of them as persistent context that teaches the AI your
-        framework conventions, design patterns, and best practices. Instead of
-        explaining Django DRF patterns in every conversation, load the
-        <code>django-expert</code>
-        skill once and it remembers.
+      <div class="section-label">المكون ٠١</div>
+      <h2 id="skills-h2">علّم الـ AI بتاعك <em>React</em> صح</h2>
+      <p class="section-body" id="skills-body">
+        <strong>المهارات (Skills)</strong> هي وحدات معرفة بتوسّع خبرة الـ agent
+        بتاعك. فكّر فيها كـ context دائم بيعلّم الـ AI اتفاقيات الفريم ورك بتاعك
+        وأفضل الممارسات. بدل ما تشرح React hooks في كل محادثة، حمّل المهارة مرة
+        واحدة عن طريق <code>skills.sh</code> وهو هيفتكر.
       </p>
 
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-icon">🐍</div>
-          <div class="skill-name">django-expert</div>
-          <p class="skill-desc" data-i18n="skill-desc-1">
-            Django best practices, DRF patterns, ORM optimization, security
-            defaults.
-          </p>
-        </div>
-
+      <div class="skills-grid" id="skills-grid">
         <div class="skill-card">
           <div class="skill-icon">⚛️</div>
           <div class="skill-name">react-best-practices</div>
-          <p class="skill-desc" data-i18n="skill-desc-2">
-            Modern React patterns, hooks, performance optimization,
-            accessibility.
+          <p class="skill-desc">
+            باترنز hooks الحديثة، تركيب المكونات، تحسين الأداء بـ React.memo و
+            useMemo و useCallback.
           </p>
+          <code class="skill-install"
+            >curl -sSL https://skills.sh/react-best-practices | sh</code
+          >
         </div>
 
         <div class="skill-card">
-          <div class="skill-icon">🔍</div>
-          <div class="skill-name">systematic-debugging</div>
-          <p class="skill-desc" data-i18n="skill-desc-3">
-            Structured debugging methodology: hypothesize, test, isolate, fix.
+          <div class="skill-icon">▲</div>
+          <div class="skill-name">vercel-react-best-practices</div>
+          <p class="skill-desc">
+            Next.js App Router، Server Components، streaming SSR، تحسين الـ
+            bundle.
           </p>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon">🎮</div>
-          <div class="skill-name">godot-gdscript</div>
-          <p class="skill-desc" data-i18n="skill-desc-4">
-            Godot 4.x patterns, GDScript idioms, scene architecture, signal
-            usage.
-          </p>
+          <code class="skill-install"
+            >curl -sSL https://skills.sh/vercel-react-best-practices | sh</code
+          >
         </div>
 
         <div class="skill-card">
           <div class="skill-icon">🎨</div>
           <div class="skill-name">frontend-design</div>
-          <p class="skill-desc" data-i18n="skill-desc-5">
-            Design systems, component libraries, responsive patterns,
-            accessibility.
+          <p class="skill-desc">
+            أنظمة تصميم، باترنز Tailwind، تصميم responsive، إمكانية الوصول
+            (a11y).
           </p>
+          <code class="skill-install"
+            >curl -sSL https://skills.sh/frontend-design | sh</code
+          >
         </div>
 
         <div class="skill-card">
-          <div class="skill-icon">🔒</div>
-          <div class="skill-name">security-audit</div>
-          <p class="skill-desc" data-i18n="skill-desc-6">
-            OWASP Top 10, auth patterns, input validation, secure defaults.
+          <div class="skill-icon">🧪</div>
+          <div class="skill-name">e2e-testing-patterns</div>
+          <p class="skill-desc">
+            اختبارات Playwright و Cypress، page objects، visual regression
+            testing.
           </p>
+          <code class="skill-install"
+            >curl -sSL https://skills.sh/e2e-testing-patterns | sh</code
+          >
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🔍</div>
+          <div class="skill-name">systematic-debugging</div>
+          <p class="skill-desc">
+            React DevTools، profiling، منهجية debugging للـ state: افترض، اختبر،
+            اعزل، صلّح.
+          </p>
+          <code class="skill-install"
+            >curl -sSL https://skills.sh/systematic-debugging | sh</code
+          >
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-name">webapp-testing</div>
+          <p class="skill-desc">
+            أتمتة المتصفح، التحقق من screenshots، capture لـ console logs.
+          </p>
+          <code class="skill-install"
+            >curl -sSL https://skills.sh/webapp-testing | sh</code
+          >
         </div>
       </div>
 
+      <!-- React Skill Example Code Block -->
       <div class="code-block">
         <div class="code-header">
           <div class="code-dots">
@@ -1764,94 +1866,180 @@
             <div class="t-dot y"></div>
             <div class="t-dot g"></div>
           </div>
-          <span class="code-title" data-i18n="skill-code-title">Skill Invocation Example</span>
-          <button class="copy-btn" data-copy="skill-invoke">Copy</button>
+          <span class="code-title">react-best-practices — مثال حي</span>
+          <button class="copy-btn" data-copy="react-example">Copy</button>
         </div>
-        <div class="code-body" id="skill-invoke">
-          <pre><code><span class="code-comment"># Invoke an agent with specific skills loaded</span>
-$ antigravity invoke <span class="code-keyword">--agent</span> code-review \
-    <span class="code-keyword">--skill</span> rust-ownership \
-    <span class="code-keyword">--skill</span> security-audit
+        <div class="code-body" id="react-example">
+          <pre><code><span class="code-comment">// الـ skill بيعلم الـ agent يكتب كود React بالشكل ده:</span>
 
-<span class="code-comment"># The agent now has deep knowledge of Rust borrow checking</span>
-<span class="code-comment"># and security patterns. No need to explain in prompts.</span>
+<span class="code-keyword">import</span> { <span class="code-function">memo</span>, <span class="code-function">useCallback</span>, <span class="code-function">useMemo</span> } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;
 
-[code-review] Analyzing src/auth.rs...
-<span class="code-variable">⚠️  Line 42:</span> Mutable borrow while shared ref exists
-<span class="code-variable">⚠️  Line 58:</span> Potential SQL injection via string concatenation
-<span class="code-function">✓  47 files reviewed. 2 issues found.</span>
+<span class="code-comment">// ✅ الـ agent بيستخدم memo صح — مش بيحطه على كل حاجة</span>
+<span class="code-keyword">const</span> <span class="code-function">UserCard</span> = <span class="code-function">memo</span>(<span class="code-keyword">function</span> <span class="code-function">UserCard</span>({ <span class="code-variable">user</span>, <span class="code-variable">onSelect</span> }) {
+  <span class="code-comment">// ✅ بيستخدم useMemo للحسابات الغالية بس</span>
+  <span class="code-keyword">const</span> <span class="code-variable">initials</span> = <span class="code-function">useMemo</span>(() =&gt;
+    <span class="code-variable">user</span>.name.split(<span class="code-string">' '</span>).map(n =&gt; n[0]).join(<span class="code-string">''</span>),
+    [<span class="code-variable">user</span>.name]
+  );
 
-<span class="code-comment">// Skills persist across the session</span>
-<span class="code-keyword">const</span> gravitationalConstant = <span class="code-keyword">null</span>; <span class="code-comment">// not needed here</span></code></pre>
+  <span class="code-keyword">return</span> (
+    &lt;<span class="code-function">button</span> <span class="code-variable">onClick</span>={() =&gt; <span class="code-variable">onSelect</span>(<span class="code-variable">user</span>.id)}&gt;
+      &lt;<span class="code-function">Avatar</span> <span class="code-variable">initials</span>={<span class="code-variable">initials</span>} /&gt;
+      &lt;<span class="code-function">span</span>&gt;{<span class="code-variable">user</span>.name}&lt;/<span class="code-function">span</span>&gt;
+    &lt;/<span class="code-function">button</span>&gt;
+  );
+});
+
+<span class="code-comment">// ✅ useCallback في الـ parent عشان الـ reference ما يتغيرش</span>
+<span class="code-keyword">function</span> <span class="code-function">UserList</span>({ <span class="code-variable">users</span> }) {
+  <span class="code-keyword">const</span> <span class="code-variable">handleSelect</span> = <span class="code-function">useCallback</span>((<span class="code-variable">id</span>) =&gt; {
+    router.push(<span class="code-string">`/users/${<span class="code-variable">id</span>}`</span>);
+  }, []);
+
+  <span class="code-keyword">return</span> <span class="code-variable">users</span>.map(<span class="code-variable">u</span> =&gt;
+    &lt;<span class="code-function">UserCard</span> <span class="code-variable">key</span>={<span class="code-variable">u</span>.id} <span class="code-variable">user</span>={<span class="code-variable">u</span>} <span class="code-variable">onSelect</span>={<span class="code-variable">handleSelect</span>} /&gt;
+  );
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Skills.sh Install Banner -->
+      <div class="install-banner">
+        <h3>⚡ ثبّت أي مهارة في ثانية واحدة</h3>
+        <p>
+          <code>skills.sh</code> هو الطريقة الأسرع تضيف معرفة جديدة للـ agent
+          بتاعك. أمر واحد بس وخلاص — المهارة بتتحمل وتتفعل أوتوماتيك.
+        </p>
+
+        <div class="install-commands" id="install-commands">
+          <div class="install-cmd" onclick="copyCmd(this)">
+            <span class="cmd-label">تثبيت مهارة واحدة</span>
+            <span class="cmd-text"
+              >curl -sSL https://skills.sh/react-best-practices | sh</span
+            >
+          </div>
+          <div class="install-cmd" onclick="copyCmd(this)">
+            <span class="cmd-label">تثبيت حزمة كاملة</span>
+            <span class="cmd-text"
+              >curl -sSL https://skills.sh/bundle/react-fullstack | sh</span
+            >
+          </div>
+          <div class="install-cmd" onclick="copyCmd(this)">
+            <span class="cmd-label">تثبيت من ملف manifest</span>
+            <span class="cmd-text">skills install --from skills.yaml</span>
+          </div>
+          <div class="install-cmd" onclick="copyCmd(this)">
+            <span class="cmd-label">البحث عن مهارات</span>
+            <span class="cmd-text">skills search react</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next.js / Vercel Example -->
+      <div class="code-block" style="margin-top: 2.5rem">
+        <div class="code-header">
+          <div class="code-dots">
+            <div class="t-dot r"></div>
+            <div class="t-dot y"></div>
+            <div class="t-dot g"></div>
+          </div>
+          <span class="code-title"
+            >vercel-react-best-practices — Next.js App Router</span
+          >
+          <button class="copy-btn" data-copy="nextjs-example">Copy</button>
+        </div>
+        <div class="code-body" id="nextjs-example">
+          <pre><code><span class="code-comment">// الـ skill ده بيعلم الـ agent App Router و Server Components</span>
+
+<span class="code-comment">// ✅ Server Component — ده الـ default في Next.js 14+</span>
+<span class="code-keyword">async function</span> <span class="code-function">UsersPage</span>() {
+  <span class="code-comment">// ✅ بيعمل fetch على السيرفر — مفيش bundle عند الكلاينت</span>
+  <span class="code-keyword">const</span> <span class="code-variable">users</span> = <span class="code-keyword">await</span> <span class="code-function">fetch</span>(<span class="code-string">'https://api.example.com/users'</span>, {
+    <span class="code-variable">next</span>: { <span class="code-variable">revalidate</span>: 3600 } <span class="code-comment">// ISR — كل ساعة</span>
+  }).<span class="code-function">then</span>(r =&gt; r.<span class="code-function">json</span>());
+
+  <span class="code-keyword">return</span> (
+    &lt;<span class="code-function">main</span>&gt;
+      &lt;<span class="code-function">h1</span>&gt;Users&lt;/<span class="code-function">h1</span>&gt;
+      <span class="code-comment">{/* ✅ streaming مع Suspense */}</span>
+      &lt;<span class="code-function">Suspense</span> <span class="code-variable">fallback</span>={&lt;<span class="code-function">Skeleton</span> /&gt;}&gt;
+        &lt;<span class="code-function">UserList</span> <span class="code-variable">users</span>={<span class="code-variable">users</span>} /&gt;
+      &lt;/<span class="code-function">Suspense</span>&gt;
+    &lt;/<span class="code-function">main</span>&gt;
+  );
+}
+
+<span class="code-comment">// ✅ Client Component بس لما تحتاج interactivity</span>
+<span class="code-string">'use client'</span>;
+<span class="code-keyword">function</span> <span class="code-function">SearchBar</span>() {
+  <span class="code-keyword">const</span> [<span class="code-variable">query</span>, <span class="code-variable">setQuery</span>] = <span class="code-function">useState</span>(<span class="code-string">''</span>);
+  <span class="code-keyword">return</span> &lt;<span class="code-function">input</span> <span class="code-variable">value</span>={<span class="code-variable">query</span>} <span class="code-variable">onChange</span>={e =&gt; <span class="code-variable">setQuery</span>(e.target.value)} /&gt;;
+}</code></pre>
         </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-     AGENTS SECTION — MISSION CONTROL
+     AGENTS SECTION — الوكلاء
      ══════════════════════════════════════════════════════════════ -->
 
     <section class="fade-in" id="mission-control">
-      <div class="section-label" data-i18n="agents-label">COMPONENT 02</div>
-      <h2 data-i18n="agents-h2">SPECIALISTS, NOT <em>GENERALISTS</em></h2>
-      <p class="section-body" data-i18n="agents-body">
-        <strong>Custom Agents</strong> are specialist personas with specific
-        roles, tools, and expertise. Instead of one assistant trying to do
-        everything, you build a team: a code reviewer who's thorough and
-        critical, an implementer who follows specs exactly, a researcher who
-        explores thoroughly before deciding.
+      <div class="section-label">المكون ٠٢</div>
+      <h2 id="agents-h2">متخصصين، مش <em>عموميين</em></h2>
+      <p class="section-body" id="agents-body">
+        <strong>الوكلاء المخصصين (Custom Agents)</strong> هم شخصيات متخصصة
+        بأدوار وأدوات وخبرات محددة. بدل مساعد واحد بيحاول يعمل كل حاجة (وبيفشل
+        في أغلبها)، إنت بتبني فريق: مراجع كود دقيق ونقدي، منفذ بيمشي على
+        المواصفات بالظبط، باحث بيستكشف كويس قبل ما يقرر.
       </p>
 
-      <div class="agent-ecosystem">
+      <div class="agent-ecosystem" id="agent-ecosystem">
         <div class="agent-tile">
           <div class="agent-icon">👁️</div>
           <div class="agent-name">code-review</div>
-          <p class="agent-role" data-i18n="agent-role-1">
-            Finds bugs, security issues, and logic errors. Never comments on
-            style.
+          <p class="agent-role">
+            بيلاقي bugs ومشاكل أمان وأخطاء منطقية. مش بيضيع وقتك على الستايل.
           </p>
         </div>
 
         <div class="agent-tile">
           <div class="agent-icon">📋</div>
           <div class="agent-name">spec-writer</div>
-          <p class="agent-role" data-i18n="agent-role-2">
-            Transforms ideas into detailed, unambiguous specifications.
+          <p class="agent-role">
+            بيحول الأفكار لمواصفات مفصلة وواضحة ما فيهاش أي لبس.
           </p>
         </div>
 
         <div class="agent-tile">
           <div class="agent-icon">⚙️</div>
           <div class="agent-name">implementer</div>
-          <p class="agent-role" data-i18n="agent-role-3">
-            Follows specs exactly. Tests every acceptance criterion.
+          <p class="agent-role">
+            بيمشي على المواصفات بالظبط. بيختبر كل acceptance criterion.
           </p>
         </div>
 
         <div class="agent-tile">
-          <div class="agent-icon">🎨</div>
+          <div class="agent-icon">⚛️</div>
           <div class="agent-name">frontend-impl</div>
-          <p class="agent-role" data-i18n="agent-role-4">
-            Turns designs into pixel-perfect, accessible components.
+          <p class="agent-role">
+            بيحول التصميمات لمكونات React مظبوطة وقابلة للوصول.
           </p>
         </div>
 
         <div class="agent-tile">
           <div class="agent-icon">🔬</div>
           <div class="agent-name">ux-research</div>
-          <p class="agent-role" data-i18n="agent-role-5">
-            Creates personas, journey maps, and competitive analysis.
-          </p>
+          <p class="agent-role">بيعمل personas، journey maps، وتحليل تنافسي.</p>
         </div>
 
         <div class="agent-tile orchestrator">
           <div class="agent-icon">🎯</div>
           <div>
             <div class="agent-name">ui-lifecycle-master</div>
-            <p class="agent-role" data-i18n="agent-role-6">
-              Orchestrates the complete UI/UX pipeline: research → IA →
-              wireframes → UX → UI → implementation → testing. Coordinates 7
-              specialized agents with automatic quality gates between phases.
+            <p class="agent-role">
+              بينسق خط إنتاج UI/UX الكامل: بحث ← هندسة معلومات ← واير فريم ← UX
+              ← UI ← تنفيذ ← اختبار. بينسق ٧ وكلاء متخصصين مع بوابات جودة
+              تلقائية بين كل مرحلة والتانية.
             </p>
           </div>
         </div>
@@ -1864,11 +2052,12 @@ $ antigravity invoke <span class="code-keyword">--agent</span> code-review \
             <div class="t-dot y"></div>
             <div class="t-dot g"></div>
           </div>
-          <span class="code-title" data-i18n="agent-code-title">agent-definition.yaml</span>
+          <span class="code-title">agent-definition.yaml</span>
           <button class="copy-btn" data-copy="agent-def">Copy</button>
         </div>
         <div class="code-body" id="agent-def">
-          <pre><code><span class="code-keyword">name:</span> code-review
+          <pre><code><span class="code-comment"># تعريف وكيل مراجعة الكود</span>
+<span class="code-keyword">name:</span> code-review
 <span class="code-keyword">type:</span> specialist
 <span class="code-keyword">model:</span> claude-opus-4.6
 
@@ -1878,62 +2067,63 @@ $ antigravity invoke <span class="code-keyword">--agent</span> code-review \
   <span class="code-string">ignore:</span> style, formatting, trivial matters
 
 <span class="code-keyword">tools:</span>
-  - grep <span class="code-comment"># search codebase</span>
-  - view <span class="code-comment"># read files</span>
-  - powershell <span class="code-comment"># run tests</span>
+  - grep   <span class="code-comment"># بيدور في الكودبيس</span>
+  - view   <span class="code-comment"># بيقرا الفايلات</span>
+  - powershell <span class="code-comment"># بيشغل تيستات</span>
 
-<span class="code-keyword">skills:</span>
-  - security-audit
+<span class="code-keyword">skills:</span>  <span class="code-comment"># بيتحملوا أوتوماتيك من skills.sh</span>
+  - react-best-practices
   - systematic-debugging
-  - rust-ownership <span class="code-comment"># if reviewing Rust</span>
+  - e2e-testing-patterns
 
 <span class="code-keyword">rules:</span>
-  - <span class="code-string">"Never comment on code style or formatting"</span>
-  - <span class="code-string">"Only surface issues that genuinely matter"</span>
-  - <span class="code-string">"Include fix suggestions, not just complaints"</span></code></pre>
+  - <span class="code-string">"ما تعلقش على الستايل أو الفورماتينج أبداً"</span>
+  - <span class="code-string">"بس surfac المشاكل اللي فعلاً مهمة"</span>
+  - <span class="code-string">"قدّم حلول مش شكاوي"</span></code></pre>
         </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-     WORKFLOWS SECTION — FLIGHT PLAN
+     WORKFLOWS SECTION — سير العمل
      ══════════════════════════════════════════════════════════════ -->
 
     <section class="fade-in" id="flight-plan">
-      <div class="section-label" data-i18n="workflow-label">COMPONENT 03</div>
-      <h2 data-i18n="workflow-h2">ORCHESTRATE YOUR <em>AGENT TEAM</em></h2>
-      <p class="section-body" data-i18n="workflow-body">
-        <strong>Workflows</strong> chain agents together into automated
-        pipelines. A user story becomes a spec (via <code>spec-writer</code>),
-        the spec becomes implementation (via <code>implementer</code>), and the
-        implementation gets reviewed (via <code>reviewer</code>). Each agent
-        hands off to the next, with quality gates to catch issues early.
+      <div class="section-label">المكون ٠٣</div>
+      <h2 id="workflows-h2">نسّق <em>فريق الوكلاء</em> بتاعك</h2>
+      <p class="section-body" id="workflows-body">
+        <strong>سير العمل (Workflows)</strong> بيربط الوكلاء مع بعض في خطوط
+        أنابيب آلية. فكرة المستخدم بتبقى مواصفات (عن طريق
+        <code>spec-writer</code>)، المواصفات بتبقى تنفيذ (عن طريق
+        <code>implementer</code>)، والتنفيذ بيتراجع (عن طريق
+        <code>reviewer</code>). كل وكيل بيسلم للّي بعده، مع بوابات جودة بتمسك
+        المشاكل بدري.
       </p>
 
-      <div class="orbital-mechanics">
+      <div class="orbital-mechanics" id="orbital-mechanics">
         <div class="flow-step">
-          <div class="flow-pill start" data-i18n="flow-pill-1">User Idea</div>
-          <div class="flow-label" data-i18n="flow-lbl-1">Input</div>
+          <div class="flow-pill start">فكرة</div>
+          <div class="flow-label">مدخل</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
           <div class="flow-pill">spec-writer</div>
-          <div class="flow-label" data-i18n="flow-lbl-2">Define</div>
+          <div class="flow-label">تعريف</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
           <div class="flow-pill">implementer</div>
-          <div class="flow-label" data-i18n="flow-lbl-3">Build</div>
+          <div class="flow-label">بناء</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
           <div class="flow-pill">reviewer</div>
-          <div class="flow-label" data-i18n="flow-lbl-4">Validate</div>
+          <div class="flow-label">تحقق</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
-          <div class="flow-pill end" data-i18n="flow-pill-5">Compliance Report</div>
-          <div class="flow-label" data-i18n="flow-lbl-5">Output</div>
+          <div class="flow-pill end">تقرير ✓</div>
+          <div class="flow-label">مخرج</div>
         </div>
       </div>
 
@@ -1944,37 +2134,38 @@ $ antigravity invoke <span class="code-keyword">--agent</span> code-review \
             <div class="t-dot y"></div>
             <div class="t-dot g"></div>
           </div>
-          <span class="code-title" data-i18n="workflow-code-title">workflow-sdd-pipeline.yaml</span>
+          <span class="code-title">workflow-sdd-pipeline.yaml</span>
           <button class="copy-btn" data-copy="workflow-yaml">Copy</button>
         </div>
         <div class="code-body" id="workflow-yaml">
-          <pre><code><span class="code-keyword">name:</span> spec-driven-development
-<span class="code-keyword">description:</span> <span class="code-string">"Idea → Spec → Implementation → Review"</span>
+          <pre><code><span class="code-comment"># فكرة ← مواصفات ← تنفيذ ← مراجعة</span>
+<span class="code-keyword">name:</span> spec-driven-development
+<span class="code-keyword">description:</span> <span class="code-string">"من الفكرة للبرودكشن في خطوات واضحة"</span>
 
 <span class="code-keyword">steps:</span>
   - <span class="code-keyword">agent:</span> spec-writer
     <span class="code-keyword">input:</span> <span class="code-variable">${user_idea}</span>
     <span class="code-keyword">output:</span> spec.md
     <span class="code-keyword">quality_gate:</span>
-      - check: <span class="code-string">"Contains user stories"</span>
-      - check: <span class="code-string">"Has acceptance criteria"</span>
-      - check: <span class="code-string">"Defines edge cases"</span>
+      - check: <span class="code-string">"فيه user stories"</span>
+      - check: <span class="code-string">"فيه acceptance criteria"</span>
+      - check: <span class="code-string">"فيه edge cases"</span>
 
   - <span class="code-keyword">agent:</span> implementer
     <span class="code-keyword">input:</span> spec.md
     <span class="code-keyword">output:</span> implementation/
-    <span class="code-keyword">skills:</span>
+    <span class="code-keyword">skills:</span>  <span class="code-comment"># بيتحملوا من skills.sh</span>
       - react-best-practices
-      - typescript-patterns
+      - vercel-react-best-practices
     <span class="code-keyword">quality_gate:</span>
-      - check: <span class="code-string">"All tests pass"</span>
-      - check: <span class="code-string">"Code builds without errors"</span>
+      - check: <span class="code-string">"كل التيستات بتعدي"</span>
+      - check: <span class="code-string">"الكود بيتبيلد من غير errors"</span>
 
   - <span class="code-keyword">agent:</span> reviewer
     <span class="code-keyword">input:</span> [spec.md, implementation/]
     <span class="code-keyword">output:</span> compliance-report.html
     <span class="code-keyword">quality_gate:</span>
-      - check: <span class="code-string">"Compliance score &gt;= 90%"</span>
+      - check: <span class="code-string">"نسبة الامتثال >= 90%"</span>
 
 <span class="code-keyword">on_failure:</span>
   - notify: slack
@@ -1984,66 +2175,67 @@ $ antigravity invoke <span class="code-keyword">--agent</span> code-review \
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-     MCP SECTION — DOCKING
+     MCP SECTION — الاتصالات
      ══════════════════════════════════════════════════════════════ -->
 
     <section class="fade-in" id="docking">
-      <div class="section-label" data-i18n="mcp-label">COMPONENT 04</div>
-      <h2 data-i18n="mcp-h2">CONNECT TO <em>ANYTHING</em></h2>
-      <p class="section-body" data-i18n="mcp-body">
-        <strong>MCP (Model Context Protocol) Servers</strong> extend your agents
-        beyond code editing. Connect to GitHub, query PostgreSQL, send Slack
-        notifications, update Linear tickets—all from within agent workflows.
-        Your assistant becomes a true automation platform.
+      <div class="section-label">المكون ٠٤</div>
+      <h2 id="mcp-h2">اتصل بـ <em>أي حاجة</em></h2>
+      <p class="section-body" id="mcp-body">
+        <strong>سيرفرات MCP (بروتوكول سياق النموذج)</strong> بتوسّع الوكلاء
+        بتوعك أبعد من تعديل الكود. اتصل بـ GitHub، استعلم من PostgreSQL، ابعت
+        إشعارات Slack، حدّث تيكتات Linear — كل ده من جوه سير عمل الوكلاء.
+        المساعد بتاعك بيبقى منصة أتمتة حقيقية.
       </p>
 
       <div class="mcp-architecture">
         <div class="mcp-node">
           <div class="mcp-box">Agent</div>
-          <div class="mcp-node-label" data-i18n="mcp-node-1">Your Code Review Agent</div>
+          <div class="mcp-node-label">الوكيل بتاعك</div>
         </div>
         <div class="mcp-arrow">⟷</div>
         <div class="mcp-node">
           <div class="mcp-box">MCP Server</div>
-          <div class="mcp-node-label" data-i18n="mcp-node-2">Protocol Bridge</div>
+          <div class="mcp-node-label">جسر البروتوكول</div>
         </div>
         <div class="mcp-arrow">⟷</div>
         <div class="mcp-node">
           <div class="mcp-box">External API</div>
-          <div class="mcp-node-label" data-i18n="mcp-node-3">GitHub, Slack, DB...</div>
+          <div class="mcp-node-label">GitHub, Slack, DB...</div>
         </div>
       </div>
 
-      <div class="integration-grid">
+      <div class="integration-grid" id="integration-grid">
         <div class="integration-card">
           <div class="integration-icon">🐙</div>
           <div class="integration-name">GitHub</div>
-          <p class="integration-desc" data-i18n="int-desc-1">
-            Create PRs, comment on issues, trigger workflows, query repo stats.
+          <p class="integration-desc">
+            اعمل PRs، علّق على issues، شغّل workflows، استعلم عن إحصائيات
+            الريبو.
           </p>
         </div>
 
         <div class="integration-card">
           <div class="integration-icon">🐘</div>
           <div class="integration-name">PostgreSQL</div>
-          <p class="integration-desc" data-i18n="int-desc-2">
-            Query schemas, analyze data, generate migrations, optimize queries.
+          <p class="integration-desc">
+            استعلم عن schemas، حلل بيانات، اعمل migrations، حسّن queries.
           </p>
         </div>
 
         <div class="integration-card">
           <div class="integration-icon">💬</div>
           <div class="integration-name">Slack</div>
-          <p class="integration-desc" data-i18n="int-desc-3">
-            Send alerts, post updates, read channels, manage workflows.
+          <p class="integration-desc">
+            ابعت تنبيهات، انشر تحديثات، اقرا القنوات، أدر سير العمل.
           </p>
         </div>
 
         <div class="integration-card">
           <div class="integration-icon">📊</div>
           <div class="integration-name">Linear</div>
-          <p class="integration-desc" data-i18n="int-desc-4">
-            Create issues, update status, link to PRs, track velocity.
+          <p class="integration-desc">
+            اعمل issues، حدّث الحالة، اربط بـ PRs، تابع السرعة.
           </p>
         </div>
       </div>
@@ -2055,18 +2247,18 @@ $ antigravity invoke <span class="code-keyword">--agent</span> code-review \
             <div class="t-dot y"></div>
             <div class="t-dot g"></div>
           </div>
-          <span class="code-title" data-i18n="mcp-code-title">MCP Server Setup</span>
+          <span class="code-title">MCP Server Setup</span>
           <button class="copy-btn" data-copy="mcp-setup">Copy</button>
         </div>
         <div class="code-body" id="mcp-setup">
-          <pre><code><span class="code-comment"># Add GitHub MCP server</span>
+          <pre><code><span class="code-comment"># ضيف GitHub MCP server</span>
 $ antigravity mcp add github \
     <span class="code-keyword">--token</span> <span class="code-variable">$GITHUB_TOKEN</span> \
     <span class="code-keyword">--repo</span> <span class="code-string">"yourorg/yourrepo"</span>
 
 <span class="code-function">✓ GitHub MCP server configured</span>
 
-<span class="code-comment"># Now agents can interact with GitHub</span>
+<span class="code-comment"># دلوقتي الوكلاء يقدروا يتكلموا مع GitHub</span>
 $ antigravity invoke <span class="code-keyword">--agent</span> code-review
 
 [code-review] Reviewing PR #127...
@@ -2074,144 +2266,137 @@ $ antigravity invoke <span class="code-keyword">--agent</span> code-review
 [code-review] Posting review to GitHub...
 <span class="code-function">✓ Review posted: https://github.com/yourorg/yourrepo/pull/127</span>
 
-<span class="code-comment"># MCP servers are persistent — configure once, use forever</span></code></pre>
+<span class="code-comment"># سيرفرات MCP بتفضل — عرّفها مرة، استخدمها للأبد</span></code></pre>
         </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-     RULES SECTION — TRAJECTORY
+     RULES SECTION — القواعد
      ══════════════════════════════════════════════════════════════ -->
 
     <section class="fade-in" id="trajectory">
-      <div class="section-label" data-i18n="rules-label">COMPONENT 05</div>
-      <h2 data-i18n="rules-h2">YOUR CODEBASE, <em>YOUR RULES</em></h2>
-      <p class="section-body" data-i18n="rules-body">
-        <strong>Rules</strong> are persistent constraints that shape agent
-        behavior. They're like .eslintrc for AI: enforce code style,
-        architectural patterns, security policies, and team conventions. Rules
-        persist across sessions—define once, enforced forever.
+      <div class="section-label">المكون ٠٥</div>
+      <h2 id="rules-h2">الكودبيس بتاعتك، <em>القواعد بتاعتك</em></h2>
+      <p class="section-body" id="rules-body">
+        <strong>القواعد (Rules)</strong> هي قيود دائمة بتشكّل سلوك الوكيل. زي
+        <code>.eslintrc</code> للـ AI: بتفرض ستايل الكود، باترنز المعمار، سياسات
+        الأمان، واتفاقيات الفريق. القواعد بتفضل عبر الجلسات — عرّفها مرة، تتنفذ
+        للأبد.
       </p>
 
-      <div class="comparison-grid">
+      <div class="comparison-grid" id="comparison-grid">
         <div class="comparison-side">
-          <div class="comparison-label before" data-i18n="rules-before">WITHOUT RULES</div>
+          <div class="comparison-label before">من غير قواعد</div>
           <div class="comparison-content">
             <pre>
-// Agent suggests generic patterns
+// بيقترح باترنز عشوائية
 function fetchUser(id) {
   console.log('Fetching user:', id);
   return fetch(`/api/users/${id}`)
     .then(res => res.json());
 }
 
-// Uses whatever naming it feels like
+// بيستخدم أي naming convention جاله
 const userData = await fetchUser(123);
 
-// No consistency across suggestions</pre
+// مفيش consistency خالص</pre
             >
           </div>
         </div>
 
         <div class="comparison-side">
-          <div class="comparison-label after" data-i18n="rules-after">WITH RULES</div>
+          <div class="comparison-label after">مع قواعد</div>
           <div class="comparison-content">
             <pre>
-// Follows your team's patterns exactly
-async function fetchUserById(userId: string): Promise&lt;User&gt; {
+// بيمشي على باترنز الفريق بالظبط
+async function fetchUserById(
+  userId: string
+): Promise&lt;User&gt; {
   return apiClient.get(`/users/${userId}`);
 }
 
-// Matches your naming conventions
+// بيطبق naming conventions بتاعتكم
 const user = await fetchUserById('123');
 
-// Enforces: async/await, TypeScript, no console.log</pre
+// async/await, TypeScript, no console.log ✓</pre
             >
           </div>
         </div>
       </div>
 
-      <div class="code-block mt-3">
+      <div class="code-block" style="margin-top: 2rem">
         <div class="code-header">
           <div class="code-dots">
             <div class="t-dot r"></div>
             <div class="t-dot y"></div>
             <div class="t-dot g"></div>
           </div>
-          <span class="code-title" data-i18n="rules-code-title">.antigravity/rules.md</span>
+          <span class="code-title">.antigravity/rules.md</span>
           <button class="copy-btn" data-copy="rules-file">Copy</button>
         </div>
         <div class="code-body" id="rules-file">
-          <pre><code><span class="code-comment"># Project Rules — Enforced Across All Agents</span>
+          <pre><code><span class="code-comment"># قواعد المشروع — بتتطبق على كل الوكلاء</span>
 
-<span class="code-keyword">## Code Style</span>
+<span class="code-keyword">## ستايل الكود</span>
 - Use async/await, never .then() chains
 - TypeScript for all new code
-- No console.log in production code (use logger.info)
+- No console.log in production (use logger.info)
 - Destructure props in function signatures
 
-<span class="code-keyword">## Architecture</span>
+<span class="code-keyword">## المعمار</span>
 - API calls must go through apiClient wrapper
-- React components: presentational vs. container pattern
+- React: Server Components by default, 'use client' only when needed
 - State management: Zustand only, no Redux
 - File naming: kebab-case for files, PascalCase for components
 
-<span class="code-keyword">## Security</span>
-- Never concatenate user input into SQL queries
-- All API endpoints require authentication by default
-- Sanitize user input before rendering (XSS prevention)
-- Use environment variables for secrets, never hardcode
+<span class="code-keyword">## الأمان</span>
+- Never concatenate user input into queries
+- All API endpoints require auth by default
+- Sanitize user input before rendering (XSS)
+- Environment variables for secrets, never hardcode
 
-<span class="code-keyword">## Testing</span>
+<span class="code-keyword">## الاختبارات</span>
 - Every new feature requires tests
-- Test file naming: ComponentName.test.tsx
+- Test files: ComponentName.test.tsx
 - Mock external API calls in tests
-- Aim for 80% coverage on new code
+- 80%+ coverage on new code
 
-<span class="code-comment"># These rules persist across all agent sessions</span>
-<span class="code-comment"># Agents will follow them automatically</span></code></pre>
+<span class="code-comment"># القواعد دي بتفضل في كل جلسات الوكلاء</span>
+<span class="code-comment"># الوكلاء بيمشوا عليها أوتوماتيك</span></code></pre>
         </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════
-     CTA SECTION — GROUND CONTROL
+     CTA SECTION — يلا نبدأ
      ══════════════════════════════════════════════════════════════ -->
 
     <section class="escape-velocity fade-in" id="ground-control">
-      <h2 class="cta-headline" data-i18n="cta-h2">READY TO DEFY <em>GRAVITY?</em></h2>
-      <p class="cta-sub" data-i18n="cta-sub">
-        You've learned the five components: Skills teach your stack, Agents
-        specialize in roles, Workflows orchestrate automation, MCP connects to
-        anything, and Rules enforce your standards. Now it's time to build AI
-        assistants that actually understand your codebase.
+      <h2 class="cta-headline" id="cta-h2">جاهز تتحدى <em>الجاذبية؟</em></h2>
+      <p class="cta-sub" id="cta-sub">
+        اتعلمت المكونات الخمسة: المهارات بتعلّم الستاك بتاعتك، الوكلاء بيتخصصوا
+        في أدوار، سير العمل بينسق الأتمتة، MCP بيوصل لأي حاجة، والقواعد بتفرض
+        المعايير بتاعتك. دلوقتي وقت تبني مساعدين AI فعلاً فاهمين الكودبيس
+        بتاعتك.
       </p>
 
+      <div class="cta-install" id="cta-install-cmd" onclick="copyCmd(this)">
+        <span class="prompt">$</span> curl -sSL
+        https://skills.sh/bundle/react-fullstack | sh
+      </div>
+
       <div class="cta-actions">
-        <a
-          href="https://github.com/yourusername/antigravity"
-          class="btn-primary"
-        >
-          <span data-i18n="cta-btn-primary">Get Antigravity</span>
-          <svg
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M5 12l7-7M12 5v7H5" />
-          </svg>
+        <a href="https://skills.sh" class="btn-primary">
+          <span>skills.sh ←</span>
         </a>
-        <a href="https://docs.antigravity.dev" class="btn-ghost" data-i18n="cta-btn-ghost">
-          Read the Docs
+        <a href="https://docs.antigravity.dev" class="btn-ghost">
+          اقرا التوثيق
         </a>
       </div>
 
       <div class="cta-footer">
-        <code data-i18n="cta-footer">// you read the whole thing. respect.</code>
+        <code>// قريت لحد هنا؟ احترام يا معلم. 🫡</code>
       </div>
     </section>
 
@@ -2221,52 +2406,47 @@ const user = await fetchUserById('123');
 
     <footer>
       <div class="footer-content">
-        <div class="footer-logo" data-i18n="footer-logo">ANTIGRAVITY</div>
-        <div class="footer-tagline" data-i18n="footer-tagline">
-          AI-Powered Development Without Fighting Gravity
+        <div class="footer-logo">⟡ أنتي جرافيتي</div>
+        <div class="footer-tagline">
+          تطوير بالذكاء الاصطناعي من غير ما تحارب الجاذبية
         </div>
 
         <ul class="footer-links">
+          <li><a href="https://skills.sh">Skills.sh</a></li>
           <li>
             <a href="https://github.com/yourusername/antigravity">GitHub</a>
           </li>
-          <li><a href="https://docs.antigravity.dev" data-i18n="footer-docs">Documentation</a></li>
-          <li><a href="https://discord.gg/antigravity" data-i18n="footer-community">Community</a></li>
-          <li><a href="https://twitter.com/antigravitydev">Twitter</a></li>
-          <li><a href="mailto:hello@antigravity.dev" data-i18n="footer-contact">Contact</a></li>
+          <li><a href="https://docs.antigravity.dev">التوثيق</a></li>
+          <li><a href="https://discord.gg/antigravity">المجتمع</a></li>
+          <li><a href="mailto:hello@antigravity.dev">تواصل</a></li>
         </ul>
 
-        <div class="footer-copy" data-i18n="footer-copy">
-          * Results may vary in low orbit. Hallucination-free experience not
-          guaranteed in zero-G environments.
+        <div class="footer-copy">
+          * النتايج ممكن تختلف في المدار المنخفض. تجربة خالية من الهلوسة مش
+          مضمونة في بيئات انعدام الجاذبية.
+          <br />بُني بـ ❤️ في مصر.
         </div>
       </div>
     </footer>
 
     <!-- ══════════════════════════════════════════════════════════════
-     JAVASCRIPT — INTERACTIONS & ANIMATIONS
+     JAVASCRIPT
      ══════════════════════════════════════════════════════════════ -->
 
     <script>
-      console.log(
-        "👋 Hey, you opened DevTools. That's the spirit. Welcome to Antigravity.",
-      );
+      console.log("👋 فتحت DevTools؟ إنت الريّس. أهلاً بيك في أنتي جرافيتي.");
 
       // ══════════════════════════════════════════════════════════════
-      // NAVIGATION SCROLL EFFECT
+      // NAVIGATION SCROLL
       // ══════════════════════════════════════════════════════════════
 
       const nav = document.getElementById("nav");
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-          nav.classList.add("scrolled");
-        } else {
-          nav.classList.remove("scrolled");
-        }
+        nav.classList.toggle("scrolled", window.scrollY > 50);
       });
 
       // ══════════════════════════════════════════════════════════════
-      // SMOOTH SCROLL FOR NAVIGATION LINKS
+      // SMOOTH SCROLL
       // ══════════════════════════════════════════════════════════════
 
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -2274,64 +2454,24 @@ const user = await fetchUserById('123');
           e.preventDefault();
           const target = document.querySelector(this.getAttribute("href"));
           if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
           }
         });
       });
 
       // ══════════════════════════════════════════════════════════════
-      // TERMINAL TYPING ANIMATION
+      // TERMINAL ANIMATION (accepts lines array)
       // ══════════════════════════════════════════════════════════════
 
-      const terminalLines = [
-        { type: "cmd", prompt: "$", text: "antigravity --help" },
-        { type: "blank" },
-        { type: "out", text: "Usage: antigravity <command> [options]" },
-        { type: "blank" },
-        { type: "out", text: "Commands:" },
-        { type: "out", text: "  invoke    Run an agent with skills" },
-        { type: "out", text: "  workflow  Execute a multi-agent pipeline" },
-        { type: "out", text: "  mcp       Manage external integrations" },
-        { type: "out", text: "  rules     Configure behavior constraints" },
-        { type: "blank" },
-        {
-          type: "cmd",
-          prompt: "$",
-          text: "antigravity invoke --agent code-review \\",
-        },
-        { type: "out", text: "    --skill rust-ownership \\" },
-        { type: "out", text: "    --skill security-audit" },
-        { type: "blank" },
-        {
-          type: "out",
-          text: "[code-review] Analyzing src/auth.rs...",
-          class: "t-cyan",
-        },
-        {
-          type: "out",
-          text: "⚠️  Line 42: Mutable borrow while shared ref exists",
-          class: "t-warn",
-        },
-        {
-          type: "out",
-          text: "✓  47 files reviewed. 2 issues found.",
-          class: "t-ok",
-        },
-      ];
-
-      function animateTerminal() {
+      function animateTerminalLines(lines) {
         const terminal = document.getElementById("terminal");
+        terminal.innerHTML = '';
         let index = 0;
 
         function showNextLine() {
-          if (index >= terminalLines.length) {
-            return;
-          }
+          if (index >= lines.length) return;
 
-          const line = terminalLines[index];
+          const line = lines[index];
           const lineEl = document.createElement("div");
           lineEl.className = "t-line";
 
@@ -2344,58 +2484,41 @@ const user = await fetchUserById('123');
           }
 
           terminal.appendChild(lineEl);
-
-          // Trigger animation
-          setTimeout(() => {
-            lineEl.classList.add("show");
-          }, 10);
+          setTimeout(() => lineEl.classList.add("show"), 10);
 
           index++;
-
-          // Delay before next line
           const delay =
-            line.type === "blank" ? 100 : line.type === "cmd" ? 400 : 200;
+            line.type === "blank" ? 100 : line.type === "cmd" ? 500 : 200;
           setTimeout(showNextLine, delay);
         }
 
-        // Start animation after page load
-        setTimeout(showNextLine, 500);
+        setTimeout(showNextLine, 600);
       }
 
-      // Start terminal animation
-      animateTerminal();
-
       // ══════════════════════════════════════════════════════════════
-      // SCROLL-TRIGGERED FADE-IN ANIMATIONS
+      // SCROLL FADE-IN
       // ══════════════════════════════════════════════════════════════
 
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
-      };
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
+      );
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, observerOptions);
-
-      // Observe all fade-in elements
-      document.querySelectorAll(".fade-in").forEach((el) => {
-        observer.observe(el);
-      });
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
 
       // ══════════════════════════════════════════════════════════════
-      // STAT COUNTER ANIMATION
+      // STAT COUNTER
       // ══════════════════════════════════════════════════════════════
 
       function animateCounter(element, target, duration = 1000) {
-        const start = 0;
-        const increment = target / (duration / 16); // 60fps
-        let current = start;
-
+        const increment = target / (duration / 16);
+        let current = 0;
         const timer = setInterval(() => {
           current += increment;
           if (current >= target) {
@@ -2407,7 +2530,6 @@ const user = await fetchUserById('123');
         }, 16);
       }
 
-      // Trigger stat counters when hero is visible
       const statsObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -2426,12 +2548,10 @@ const user = await fetchUserById('123');
       );
 
       const heroStats = document.querySelector(".hero-stat-row");
-      if (heroStats) {
-        statsObserver.observe(heroStats);
-      }
+      if (heroStats) statsObserver.observe(heroStats);
 
       // ══════════════════════════════════════════════════════════════
-      // COPY BUTTON FUNCTIONALITY
+      // COPY BUTTONS
       // ══════════════════════════════════════════════════════════════
 
       document.querySelectorAll(".copy-btn").forEach((btn) => {
@@ -2440,21 +2560,17 @@ const user = await fetchUserById('123');
           const codeBlock = document.getElementById(targetId);
 
           if (codeBlock) {
-            const text = codeBlock.textContent;
-
             navigator.clipboard
-              .writeText(text)
+              .writeText(codeBlock.textContent)
               .then(() => {
-                btn.textContent = "Copied!";
+                btn.textContent = "Copied! ✓";
                 btn.classList.add("copied");
-
                 setTimeout(() => {
                   btn.textContent = "Copy";
                   btn.classList.remove("copied");
                 }, 2000);
               })
-              .catch((err) => {
-                console.error("Failed to copy:", err);
+              .catch(() => {
                 btn.textContent = "Failed";
                 setTimeout(() => {
                   btn.textContent = "Copy";
@@ -2465,35 +2581,25 @@ const user = await fetchUserById('123');
       });
 
       // ══════════════════════════════════════════════════════════════
-      // CARD HOVER EFFECTS (enhance accessibility)
+      // COPY INSTALL COMMANDS
       // ══════════════════════════════════════════════════════════════
 
-      document
-        .querySelectorAll(".skill-card, .agent-tile, .integration-card")
-        .forEach((card) => {
-          card.addEventListener("mouseenter", () => {
-            card.style.transition = "all 0.3s ease";
-          });
+      function copyCmd(el) {
+        const text = el.querySelector(".cmd-text")
+          ? el.querySelector(".cmd-text").textContent
+          : el.textContent.replace("$", "").trim();
+
+        navigator.clipboard.writeText(text).then(() => {
+          const original = el.style.borderColor;
+          el.style.borderColor = "#88ff44";
+          setTimeout(() => {
+            el.style.borderColor = original;
+          }, 1500);
         });
+      }
 
       // ══════════════════════════════════════════════════════════════
-      // KEYBOARD NAVIGATION ENHANCEMENTS
-      // ══════════════════════════════════════════════════════════════
-
-      document.addEventListener("keydown", (e) => {
-        // Press '?' to show keyboard shortcuts (could expand this)
-        if (e.key === "?" && !e.ctrlKey && !e.metaKey) {
-          console.log("Keyboard shortcuts:", {
-            "↑/↓": "Scroll",
-            Tab: "Navigate links",
-            Enter: "Activate link",
-            "?": "Show this help",
-          });
-        }
-      });
-
-      // ══════════════════════════════════════════════════════════════
-      // PERFORMANCE: Lazy load code blocks when visible
+      // LAZY LOAD CODE BLOCKS
       // ══════════════════════════════════════════════════════════════
 
       const codeBlockObserver = new IntersectionObserver(
@@ -2510,160 +2616,757 @@ const user = await fetchUserById('123');
 
       document.querySelectorAll(".code-block").forEach((block) => {
         block.style.opacity = "0";
-        block.style.transition = "opacity 0.4s ease";
+        block.style.transition = "opacity 0.5s ease";
         codeBlockObserver.observe(block);
       });
 
+
+// ══════════════════════════════════════════════════════════════
+// DOMAINS DATA + setDomain()
+// ══════════════════════════════════════════════════════════════
+
+const DOMAINS = {
+
+// ─────────────────────────────────────────────────────────────
+// FRONTEND
+// ─────────────────────────────────────────────────────────────
+frontend: {
+  label: "فرونت إند",
+  heroEyebrow: "دليل المهندس اللي مش فاضي يشرح كل حاجة تاني",
+  heroLine1: "بطّل تحارب",
+  heroLine2: "الجاذبية",
+  heroSub: "مساعد الـ AI بتاعك مش فاهم الكودبيس بتاعتك. مش عارف الباترنز بتاعتك. بينسى كل حاجة بعد ٣ رسايل. الدليل ده هيعلمك تخليه يفهم — من غير ما تتجنن.",
+  stat1: { target: 5, lbl: "مكونات أساسية" },
+  stat2: { display: "∞", lbl: "تركيبات ممكنة" },
+  stat3: { target: 0, lbl: "هلوسات*" },
+
+  burnH2: 'إنت <em>اتحرقت</em> قبل كده',
+  burnBody: "كل أداة AI كودنج بتوعدك بسحر. أغلبهم بيديك autocomplete مع صداع. شفت agents بتهلوس dependencies مش موجودة، بتنسى الأركيتكتشر بتاعتك بعد تلات رسايل، وبتقترحلك باترنز إنت عملتلها deprecate من سنتين وكان عندك حق.",
+  zeroGGrid: `
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>فقدان الذاكرة</h3><p>بينسى الأركيتكتشر بتاعتك بعد ٣ رسايل. كل محادثة بتبدأ من الصفر كأنك ما اتكلمتوش قبل كده.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>قواعد دائمة</h3><p>عرّفها مرة واحدة، تتنفذ للأبد. القيود بتاعتك بتبقى ردود فعل تلقائية للـ agent.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>اقتراحات جنريك</h3><p>كوبي باستا من StackOverflow من ٢٠١٩. اقتراحات مش عارفة إنت بتستخدم إيه أصلاً.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>مهارات متخصصة</h3><p>الستاك بتاعتك، الباترنز بتاعتك، المعايير بتاعتك. علّم المساعد خبرتك عن طريق Skills.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>صندوق أسود</h3><p>مش عارف ليه اقترح كده. لو سألته "ليه؟" هيألفلك إجابة جديدة خالص.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>سير عمل شفاف</h3><p>شوف كل خطوة، عدّل كل قرار. تحكم كامل، صفر غموض، صفر هلوسة.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>مقاس واحد مش بيجي على حد</h3><p>نفس المساعد لكل حاجة — من code review لحد كتابة CSS. مفيش تخصص خالص.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>وكلاء متخصصين</h3><p>خبير مختلف لكل شغلانة. مراجع الكود ≠ منفذ الفيتشرز ≠ كاتب المواصفات.</p></div>`,
+
+  skillsH2: 'علّم الـ AI بتاعك <em>React</em> صح',
+  skillsBody: '<strong>المهارات (Skills)</strong> هي وحدات معرفة بتوسّع خبرة الـ agent بتاعك. فكّر فيها كـ context دائم بيعلّم الـ AI اتفاقيات الفريم ورك بتاعك وأفضل الممارسات. بدل ما تشرح React hooks في كل محادثة، حمّل المهارة مرة واحدة عن طريق <code>skills.sh</code> وهو هيفتكر.',
+  skillsGrid: `
+    <div class="skill-card"><div class="skill-icon">⚛️</div><div class="skill-name">react-best-practices</div><p class="skill-desc">باترنز hooks الحديثة، تركيب المكونات، تحسين الأداء بـ React.memo و useMemo و useCallback.</p><code class="skill-install">curl -sSL https://skills.sh/react-best-practices | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">▲</div><div class="skill-name">vercel-react-best-practices</div><p class="skill-desc">Next.js App Router، Server Components، streaming SSR، تحسين الـ bundle.</p><code class="skill-install">curl -sSL https://skills.sh/vercel-react-best-practices | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">frontend-design</div><p class="skill-desc">أنظمة تصميم، باترنز Tailwind، تصميم responsive، إمكانية الوصول (a11y).</p><code class="skill-install">curl -sSL https://skills.sh/frontend-design | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🧪</div><div class="skill-name">e2e-testing-patterns</div><p class="skill-desc">اختبارات Playwright و Cypress، page objects، visual regression testing.</p><code class="skill-install">curl -sSL https://skills.sh/e2e-testing-patterns | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🔍</div><div class="skill-name">systematic-debugging</div><p class="skill-desc">React DevTools، profiling، منهجية debugging للـ state: افترض، اختبر، اعزل، صلّح.</p><code class="skill-install">curl -sSL https://skills.sh/systematic-debugging | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">webapp-testing</div><p class="skill-desc">أتمتة المتصفح، التحقق من screenshots، capture لـ console logs.</p><code class="skill-install">curl -sSL https://skills.sh/webapp-testing | sh</code></div>`,
+
+  installCmds: `
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت مهارة واحدة</span><span class="cmd-text">curl -sSL https://skills.sh/react-best-practices | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت حزمة كاملة</span><span class="cmd-text">curl -sSL https://skills.sh/bundle/react-fullstack | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت من ملف manifest</span><span class="cmd-text">skills install --from skills.yaml</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">البحث عن مهارات</span><span class="cmd-text">skills search react</span></div>`,
+
+  agentsH2: 'متخصصين، مش <em>عموميين</em>',
+  agentsBody: '<strong>الوكلاء المخصصين (Custom Agents)</strong> هم شخصيات متخصصة بأدوار وأدوات وخبرات محددة. بدل مساعد واحد بيحاول يعمل كل حاجة (وبيفشل في أغلبها)، إنت بتبني فريق: مراجع كود دقيق ونقدي، منفذ بيمشي على المواصفات بالظبط، باحث بيستكشف كويس قبل ما يقرر.',
+  agentEcosystem: `
+    <div class="agent-tile"><div class="agent-icon">👁️</div><div class="agent-name">code-review</div><p class="agent-role">بيلاقي bugs ومشاكل أمان وأخطاء منطقية. مش بيضيع وقتك على الستايل.</p></div>
+    <div class="agent-tile"><div class="agent-icon">📋</div><div class="agent-name">spec-writer</div><p class="agent-role">بيحول الأفكار لمواصفات مفصلة وواضحة ما فيهاش أي لبس.</p></div>
+    <div class="agent-tile"><div class="agent-icon">⚙️</div><div class="agent-name">implementer</div><p class="agent-role">بيمشي على المواصفات بالظبط. بيختبر كل acceptance criterion.</p></div>
+    <div class="agent-tile"><div class="agent-icon">⚛️</div><div class="agent-name">frontend-impl</div><p class="agent-role">بيحول التصميمات لمكونات React مظبوطة وقابلة للوصول.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🔬</div><div class="agent-name">ux-research</div><p class="agent-role">بيعمل personas، journey maps، وتحليل تنافسي.</p></div>
+    <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">بينسق خط إنتاج UI/UX الكامل: بحث ← هندسة معلومات ← واير فريم ← UX ← UI ← تنفيذ ← اختبار. بينسق ٧ وكلاء متخصصين مع بوابات جودة تلقائية بين كل مرحلة والتانية.</p></div></div>`,
+
+  workflowsH2: 'نسّق <em>فريق الوكلاء</em> بتاعك',
+  workflowsBody: '<strong>سير العمل (Workflows)</strong> بيربط الوكلاء مع بعض في خطوط أنابيب آلية. فكرة المستخدم بتبقى مواصفات (عن طريق <code>spec-writer</code>)، المواصفات بتبقى تنفيذ (عن طريق <code>implementer</code>)، والتنفيذ بيتراجع (عن طريق <code>reviewer</code>). كل وكيل بيسلم للّي بعده، مع بوابات جودة بتمسك المشاكل بدري.',
+  orbitalMechanics: `
+    <div class="flow-step"><div class="flow-pill start">فكرة</div><div class="flow-label">مدخل</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">spec-writer</div><div class="flow-label">تعريف</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">implementer</div><div class="flow-label">بناء</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">reviewer</div><div class="flow-label">تحقق</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill end">تقرير ✓</div><div class="flow-label">مخرج</div></div>`,
+
+  mcpH2: 'اتصل بـ <em>أي حاجة</em>',
+  mcpBody: '<strong>سيرفرات MCP (بروتوكول سياق النموذج)</strong> بتوسّع الوكلاء بتوعك أبعد من تعديل الكود. اتصل بـ GitHub، استعلم من PostgreSQL، ابعت إشعارات Slack، حدّث تيكتات Linear — كل ده من جوه سير عمل الوكلاء. المساعد بتاعك بيبقى منصة أتمتة حقيقية.',
+  integrationGrid: `
+    <div class="integration-card"><div class="integration-icon">🐙</div><div class="integration-name">GitHub</div><p class="integration-desc">اعمل PRs، علّق على issues، شغّل workflows، استعلم عن إحصائيات الريبو.</p></div>
+    <div class="integration-card"><div class="integration-icon">🐘</div><div class="integration-name">PostgreSQL</div><p class="integration-desc">استعلم عن schemas، حلل بيانات، اعمل migrations، حسّن queries.</p></div>
+    <div class="integration-card"><div class="integration-icon">💬</div><div class="integration-name">Slack</div><p class="integration-desc">ابعت تنبيهات، انشر تحديثات، اقرا القنوات، أدر سير العمل.</p></div>
+    <div class="integration-card"><div class="integration-icon">📊</div><div class="integration-name">Linear</div><p class="integration-desc">اعمل issues، حدّث الحالة، اربط بـ PRs، تابع السرعة.</p></div>`,
+
+  rulesH2: 'الكودبيس بتاعتك، <em>القواعد بتاعتك</em>',
+  rulesBody: '<strong>القواعد (Rules)</strong> هي قيود دائمة بتشكّل سلوك الوكيل. زي <code>.eslintrc</code> للـ AI: بتفرض ستايل الكود، باترنز المعمار، سياسات الأمان، واتفاقيات الفريق. القواعد بتفضل عبر الجلسات — عرّفها مرة، تتنفذ للأبد.',
+  comparisonGrid: `
+    <div class="comparison-side"><div class="comparison-label before">من غير قواعد</div><div class="comparison-content"><pre>
+// بيقترح باترنز عشوائية
+function fetchUser(id) {
+  console.log('Fetching user:', id);
+  return fetch(\`/api/users/\${id}\`)
+    .then(res => res.json());
+}
+
+// بيستخدم أي naming convention جاله
+const userData = await fetchUser(123);
+
+// مفيش consistency خالص</pre></div></div>
+    <div class="comparison-side"><div class="comparison-label after">مع قواعد</div><div class="comparison-content"><pre>
+// بيمشي على باترنز الفريق بالظبط
+async function fetchUserById(
+  userId: string
+): Promise&lt;User&gt; {
+  return apiClient.get(\`/users/\${userId}\`);
+}
+
+// بيطبق naming conventions بتاعتكم
+const user = await fetchUserById('123');
+
+// async/await, TypeScript, no console.log ✓</pre></div></div>`,
+
+  ctaH2: 'جاهز تتحدى <em>الجاذبية؟</em>',
+  ctaSub: "اتعلمت المكونات الخمسة: المهارات بتعلّم الستاك بتاعتك، الوكلاء بيتخصصوا في أدوار، سير العمل بينسق الأتمتة، MCP بيوصل لأي حاجة، والقواعد بتفرض المعايير بتاعتك. دلوقتي وقت تبني مساعدين AI فعلاً فاهمين الكودبيس بتاعتك.",
+  ctaInstall: "curl -sSL https://skills.sh/bundle/react-fullstack | sh",
+
+  terminalLines: [
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/react-best-practices | sh" },
+    { type: "out", text: "✓ react-best-practices installed (v2.1.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/vercel-react-best-practices | sh" },
+    { type: "out", text: "✓ vercel-react-best-practices installed (v1.8.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "skills list --installed" },
+    { type: "out", text: "  react-best-practices        v2.1.0  ⚛️  React hooks, memo, performance" },
+    { type: "out", text: "  vercel-react-best-practices v1.8.0  ▲  Next.js, SSR, App Router" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "antigravity invoke --agent frontend-impl \\" },
+    { type: "out", text: "    --skill react-best-practices" },
+    { type: "blank" },
+    { type: "out", text: "[frontend-impl] Loading skills...", class: "t-cyan" },
+    { type: "out", text: "[frontend-impl] Building components...", class: "t-cyan" },
+    { type: "out", text: "✓ 12 components generated. 0 issues.", class: "t-ok" },
+  ],
+},
+
+// ─────────────────────────────────────────────────────────────
+// BACKEND
+// ─────────────────────────────────────────────────────────────
+backend: {
+  label: "باك إند",
+  heroEyebrow: "دليل المهندس اللي بيبني الـ API وبيحوّش",
+  heroLine1: "بطّل تكافح",
+  heroLine2: "الـ N+1",
+  heroSub: "مساعد الـ AI بتاعك بيقترح queries بطيئة وبيكتب APIs مش آمنة. بينسى الـ ORM بتاعك وبيستخدم raw SQL في كل حتة. الدليل ده هيعلمك تخليه يفهم الأرشيتكتشر بتاعتك من غير ما تشرح من الأول.",
+  stat1: { target: 5, lbl: "مكونات أساسية" },
+  stat2: { display: "∞", lbl: "تركيبات ممكنة" },
+  stat3: { target: 0, lbl: "N+1 queries*" },
+
+  burnH2: 'إنت <em>شفت</em> النار دي قبل كده',
+  burnBody: "كل مرة تطلب من الـ AI يكتب database query، بيجيبلك N+1 مختبية جوه loop. كل endpoint بيكتبه مفتوح من غير auth. بيقترحلك patterns من tutorial من ٢٠١٨ ومفيش حد بيستخدمها في production.",
+  zeroGGrid: `
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>N+1 Queries</h3><p>بيعمل query لكل record جوه loop. أداء الـ API بينهار مع أي scale حقيقي.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>ORM Skills</h3><p>المهارات بتعلم الـ agent يستخدم select_related و prefetch_related صح من أول مرة.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>APIs مفتوحة</h3><p>بينسى الـ auth والـ rate limiting. كل endpoint بيكتبه أي حد يقدر يضربه.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>قواعد أمان</h3><p>القواعد بتفرض auth على كل endpoint، rate limiting، و input validation أوتوماتيك.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Raw SQL في كل حتة</h3><p>بيكتب SQL يدوي بدل ما يستخدم الـ ORM. بيفتح الباب لـ SQL injection.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>باترنز ORM</h3><p>المهارات بتعلم الـ agent يستخدم الـ ORM صح: managers, querysets, annotations.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Migrations عشوائية</h3><p>بيعمل migrations مكسورة أو بتضارب مع بعض. كل merge بيبوظ الـ schema.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Workflow منظم</h3><p>سير العمل بيراجع الـ migrations قبل ما يتعملها merge. بيكتشف التضاربات بدري.</p></div>`,
+
+  skillsH2: 'علّم الـ AI بتاعك <em>Django</em> صح',
+  skillsBody: '<strong>المهارات (Skills)</strong> هي وحدات معرفة بتوسّع خبرة الـ agent بتاعك. بدل ما تشرحله الـ ORM في كل محادثة، حمّل المهارة مرة واحدة عن طريق <code>skills.sh</code> وهو هيعرف يستخدم select_related و annotations و custom managers.',
+  skillsGrid: `
+    <div class="skill-card"><div class="skill-icon">🐍</div><div class="skill-name">django-expert</div><p class="skill-desc">Django views, models, admin, authentication، وأفضل الممارسات لبناء تطبيقات production.</p><code class="skill-install">curl -sSL https://skills.sh/django-expert | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🗃️</div><div class="skill-name">django-orm-patterns</div><p class="skill-desc">QuerySets متقدمة، select_related، prefetch_related، annotations، custom managers.</p><code class="skill-install">curl -sSL https://skills.sh/django-orm-patterns | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🔌</div><div class="skill-name">django-rest-framework</div><p class="skill-desc">Serializers، ViewSets، permissions، pagination، throttling، API versioning.</p><code class="skill-install">curl -sSL https://skills.sh/django-rest-framework | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">⚙️</div><div class="skill-name">backend-development</div><p class="skill-desc">API design، database architecture، microservices patterns، وtest-driven development.</p><code class="skill-install">curl -sSL https://skills.sh/backend-development | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🔍</div><div class="skill-name">systematic-debugging</div><p class="skill-desc">منهجية debugging: افترض، اختبر، اعزل، صلّح. Django Debug Toolbar وquery profiling.</p><code class="skill-install">curl -sSL https://skills.sh/systematic-debugging | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🏗️</div><div class="skill-name">mcp-builder</div><p class="skill-desc">بناء MCP servers بـ FastMCP (Python) للربط بين الوكلاء والخدمات الخارجية.</p><code class="skill-install">curl -sSL https://skills.sh/mcp-builder | sh</code></div>`,
+
+  installCmds: `
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت مهارة واحدة</span><span class="cmd-text">curl -sSL https://skills.sh/django-expert | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت حزمة كاملة</span><span class="cmd-text">curl -sSL https://skills.sh/bundle/django-fullstack | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت من ملف manifest</span><span class="cmd-text">skills install --from skills.yaml</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">البحث عن مهارات</span><span class="cmd-text">skills search django</span></div>`,
+
+  agentsH2: 'وكلاء <em>باك إند</em> متخصصين',
+  agentsBody: '<strong>الوكلاء المخصصين (Custom Agents)</strong> بيتخصصوا في مهام محددة. وكيل لمراجعة الـ queries والـ security، وكيل لتنفيذ المواصفات، وكيل للبحث التقني العميق. كل واحد بيعرف دوره وبيعمله صح.',
+  agentEcosystem: `
+    <div class="agent-tile"><div class="agent-icon">👁️</div><div class="agent-name">code-review</div><p class="agent-role">بيلاقي N+1 queries، ثغرات أمان، وأخطاء في الـ ORM usage. صفر تعليقات على الستايل.</p></div>
+    <div class="agent-tile"><div class="agent-icon">📋</div><div class="agent-name">spec-writer</div><p class="agent-role">بيحول فكرة الـ API لمواصفات كاملة: endpoints، schemas، auth، error handling.</p></div>
+    <div class="agent-tile"><div class="agent-icon">⚙️</div><div class="agent-name">implementer</div><p class="agent-role">بيمشي على المواصفات بالظبط. بيكتب tests لكل endpoint وكل edge case.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🔬</div><div class="agent-name">ade-researcher</div><p class="agent-role">بيعمل بحث تقني عميق: مقارنة بين libraries، architecture decisions، performance benchmarks.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🏗️</div><div class="agent-name">mcp-builder</div><p class="agent-role">بيبني MCP servers بـ FastMCP للربط بين الوكلاء وقواعد البيانات والـ APIs الخارجية.</p></div>
+    <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">reviewer</div><p class="agent-role">بيراجع التنفيذ ضد المواصفات: compliance check كامل مع تقرير HTML مفصل. بيكتشف أي deviation من الـ spec.</p></div></div>`,
+
+  workflowsH2: 'نسّق <em>خط أنابيب</em> الباك إند',
+  workflowsBody: '<strong>سير العمل (Workflows)</strong> بيربط الوكلاء في pipeline واحد: من تصميم الـ API لحد الـ deployment. <code>spec-writer</code> بيعرّف الـ endpoints، <code>implementer</code> بيكتب الكود والتيستات، <code>code-review</code> بيراجع الأمان والأداء.',
+  orbitalMechanics: `
+    <div class="flow-step"><div class="flow-pill start">API فكرة</div><div class="flow-label">مدخل</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">spec-writer</div><div class="flow-label">OpenAPI spec</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">implementer</div><div class="flow-label">كود + تيستات</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">code-review</div><div class="flow-label">أمان + أداء</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill end">Deploy ✓</div><div class="flow-label">مخرج</div></div>`,
+
+  mcpH2: 'اتصل بـ <em>قواعد البيانات</em>',
+  mcpBody: '<strong>سيرفرات MCP</strong> بتخلي الوكلاء يتكلموا مع أي خدمة خارجية. استعلم من PostgreSQL مباشرة، ابعت إشعارات Slack لما build يقع، حدّث issues على GitHub أوتوماتيك، أو اعمل cache invalidation في Redis.',
+  integrationGrid: `
+    <div class="integration-card"><div class="integration-icon">🐘</div><div class="integration-name">PostgreSQL</div><p class="integration-desc">استعلم عن schemas، حلل query plans، اعمل migrations، حسّن الأداء مباشرة.</p></div>
+    <div class="integration-card"><div class="integration-icon">🔴</div><div class="integration-name">Redis</div><p class="integration-desc">أدر الـ cache، اعمل rate limiting، pub/sub messaging، session management.</p></div>
+    <div class="integration-card"><div class="integration-icon">🐙</div><div class="integration-name">GitHub</div><p class="integration-desc">اعمل PRs، شغّل CI/CD pipelines، راجع code changes، أدر releases.</p></div>
+    <div class="integration-card"><div class="integration-icon">💬</div><div class="integration-name">Slack</div><p class="integration-desc">إشعارات deployment، تنبيهات errors، تقارير يومية، تواصل الفريق.</p></div>`,
+
+  rulesH2: 'الـ API بتاعك، <em>القواعد بتاعتك</em>',
+  rulesBody: '<strong>القواعد (Rules)</strong> بتفرض معايير الكود على كل الوكلاء. زي <code>.flake8</code> للـ AI: بتحدد أسلوب Python، باترنز Django، سياسات الأمان. الوكلاء بيمشوا عليها أوتوماتيك.',
+  comparisonGrid: `
+    <div class="comparison-side"><div class="comparison-label before">من غير قواعد</div><div class="comparison-content"><pre>
+# N+1 query مختبي جوه loop
+def get_orders(request):
+    orders = Order.objects.all()
+    for order in orders:
+        print(order.customer.name)  # query لكل order!
+    return JsonResponse({"count": len(orders)})
+
+# مفيش auth، مفيش validation
+# raw SQL في كل حتة</pre></div></div>
+    <div class="comparison-side"><div class="comparison-label after">مع قواعد</div><div class="comparison-content"><pre>
+# بيمشي على باترنز الفريق بالظبط
+@login_required
+@require_http_methods(["GET"])
+def get_orders(request: HttpRequest) -> JsonResponse:
+    orders = (Order.objects
+        .select_related("customer")
+        .filter(is_active=True))
+    data = OrderSerializer(orders, many=True).data
+    return JsonResponse({"orders": data})
+
+# select_related, auth, typed, serialized ✓</pre></div></div>`,
+
+  ctaH2: 'جاهز تبني <em>APIs محترمة؟</em>',
+  ctaSub: "اتعلمت المكونات الخمسة: المهارات بتعلّم الـ ORM بتاعك، الوكلاء بيتخصصوا في مهام الباك إند، سير العمل بينسق من الـ spec للـ deployment، MCP بيوصلك بقواعد البيانات، والقواعد بتفرض معايير Python/Django. يلا نبني APIs تشتغل صح.",
+  ctaInstall: "curl -sSL https://skills.sh/bundle/django-fullstack | sh",
+
+  terminalLines: [
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/django-expert | sh" },
+    { type: "out", text: "✓ django-expert installed (v3.2.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/django-orm-patterns | sh" },
+    { type: "out", text: "✓ django-orm-patterns installed (v1.5.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "skills list --installed" },
+    { type: "out", text: "  django-expert           v3.2.0  🐍  Models, views, admin, auth" },
+    { type: "out", text: "  django-orm-patterns     v1.5.0  🗃️  QuerySets, select_related, annotations" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "antigravity invoke --agent code-review \\" },
+    { type: "out", text: "    --skill django-orm-patterns" },
+    { type: "blank" },
+    { type: "out", text: "[code-review] Scanning for N+1 queries...", class: "t-cyan" },
+    { type: "out", text: "[code-review] Found 3 missing select_related calls", class: "t-cyan" },
+    { type: "out", text: "✓ Review complete. 3 fixes applied.", class: "t-ok" },
+  ],
+},
+
+// ─────────────────────────────────────────────────────────────
+// PM
+// ─────────────────────────────────────────────────────────────
+pm: {
+  label: "PM",
+  heroEyebrow: "دليل مدير المنتج اللي عايز specs تتنفذ من أول مرة",
+  heroLine1: "بطّل تكتب",
+  heroLine2: "specs ناقصة",
+  heroSub: "الـ AI بتاعك بيولد user stories من غير acceptance criteria وبيكتب متطلبات غامضة بتوقف الـ devs. الدليل ده هيعلمك تخليه يكتب مواصفات محكمة تتنفذ من أول مرة.",
+  stat1: { target: 5, lbl: "مكونات أساسية" },
+  stat2: { display: "∞", lbl: "تركيبات ممكنة" },
+  stat3: { target: 0, lbl: "specs غامضة*" },
+
+  burnH2: 'إنت <em>عشت</em> الكارثة دي',
+  burnBody: "كتبت PRD و spec وبعتته للفريق. بعد أسبوع اكتشفت إن كل واحد فهم حاجة مختلفة. الـ AI بيكتب requirements عامة مفيهاش تفاصيل، من غير edge cases، ومن غير acceptance criteria واضحة.",
+  zeroGGrid: `
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>متطلبات غامضة</h3><p>الـ AI بيكتب requirements عامة زي \"المستخدم يقدر يعمل login\" من غير أي تفاصيل عن edge cases أو error handling.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Spec Writer Agent</h3><p>وكيل متخصص بيحول أفكارك لمواصفات مفصلة مع acceptance criteria لكل user story.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Edge cases ضايعة</h3><p>بعد الـ launch بتكتشف سيناريوهات ما حدش فكر فيها. الـ AI مش بيسأل عن الحالات الاستثنائية.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>QA Test Planner</h3><p>وكيل بيولد test plans شاملة من المواصفات — بيغطي happy paths و edge cases و error scenarios.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Dev-PM Miscommunication</h3><p>الـ devs بيسألوا أسئلة كان المفروض الـ spec يجاوبها. كل sprint فيه ساعات ضايعة على التوضيح.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Structured Specs</h3><p>المهارات بتفرض format موحد: user stories + AC + technical notes + dependencies. صفر غموض.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Handoff مكسور</h3><p>التصميم بيوصل الـ devs ناقص. مفيش spec واضح يربط الفكرة بالتنفيذ.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Workflow كامل</h3><p>من الفكرة للـ spec للـ test plan للتنفيذ — كل خطوة موثقة مع quality gates تلقائية.</p></div>`,
+
+  skillsH2: 'علّم الـ AI بتاعك يكتب <em>specs محكمة</em>',
+  skillsBody: '<strong>المهارات (Skills)</strong> بتوسّع خبرة الـ agent في كتابة المواصفات وتخطيط المنتجات. بدل ما تعيد شرح format الـ spec في كل مرة، حمّل المهارة مرة واحدة وهو هيفتكر.',
+  skillsGrid: `
+    <div class="skill-card"><div class="skill-icon">📋</div><div class="skill-name">spec-writer</div><p class="skill-desc">تحويل الأفكار لمواصفات مفصلة مع user stories و acceptance criteria و edge cases.</p><code class="skill-install">curl -sSL https://skills.sh/spec-writer | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🏛️</div><div class="skill-name">info-architecture</div><p class="skill-desc">هندسة المعلومات: sitemaps, navigation design, content strategy, user flows.</p><code class="skill-install">curl -sSL https://skills.sh/info-architecture | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🧪</div><div class="skill-name">qa-test-planner</div><p class="skill-desc">توليد test plans شاملة، manual test cases، regression suites، وbug reports.</p><code class="skill-install">curl -sSL https://skills.sh/qa-test-planner | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🎯</div><div class="skill-name">prompt-architect</div><p class="skill-desc">تحسين الـ prompts بـ 7 frameworks بحثية: CO-STAR, RISEN, TIDD-EC, Chain of Thought.</p><code class="skill-install">curl -sSL https://skills.sh/prompt-architect | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🔬</div><div class="skill-name">ux-research</div><p class="skill-desc">بحث المستخدمين: personas, journey maps, competitive analysis, research synthesis.</p><code class="skill-install">curl -sSL https://skills.sh/ux-research | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🧪</div><div class="skill-name">e2e-testing-patterns</div><p class="skill-desc">باترنز اختبار E2E لضمان الجودة: Playwright, Cypress, test strategies.</p><code class="skill-install">curl -sSL https://skills.sh/e2e-testing-patterns | sh</code></div>`,
+
+  installCmds: `
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت مهارة واحدة</span><span class="cmd-text">curl -sSL https://skills.sh/spec-writer | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت حزمة كاملة</span><span class="cmd-text">curl -sSL https://skills.sh/bundle/pm-toolkit | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت من ملف manifest</span><span class="cmd-text">skills install --from skills.yaml</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">البحث عن مهارات</span><span class="cmd-text">skills search spec</span></div>`,
+
+  agentsH2: 'وكلاء <em>إدارة المنتج</em>',
+  agentsBody: '<strong>الوكلاء المخصصين</strong> بيبنوا pipeline متكامل من الفكرة للتسليم. وكيل بيكتب المواصفات، وكيل بيبني هندسة المعلومات، وكيل بيخطط الاختبارات، وكيل بيراجع التنفيذ ضد المواصفات.',
+  agentEcosystem: `
+    <div class="agent-tile"><div class="agent-icon">📋</div><div class="agent-name">spec-writer</div><p class="agent-role">بيحول الأفكار الخام لمواصفات مفصلة مع user stories و acceptance criteria.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🏛️</div><div class="agent-name">info-arch</div><p class="agent-role">بيبني sitemaps، navigation، content strategy، وscreen inventories.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🔬</div><div class="agent-name">ux-research</div><p class="agent-role">بيعمل user research، personas، journey maps، وتحليل تنافسي.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🧪</div><div class="agent-name">qa-test-planner</div><p class="agent-role">بيولد test plans شاملة من المواصفات مع coverage لكل edge case.</p></div>
+    <div class="agent-tile"><div class="agent-icon">✅</div><div class="agent-name">reviewer</div><p class="agent-role">بيراجع التنفيذ ضد المواصفات ويطلع compliance report مفصل.</p></div>
+    <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">بينسق خط الإنتاج الكامل: بحث ← IA ← واير فريم ← UX ← UI ← تنفيذ ← اختبار. أوتوماتيك بالكامل مع quality gates.</p></div></div>`,
+
+  workflowsH2: 'من <em>الفكرة</em> للتسليم',
+  workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة المنتج بالكامل. الفكرة بتبقى <code>spec</code>، الـ spec بيبقى <code>test plan</code>، الـ test plan بيتسلم للـ <code>devs</code>، والتنفيذ بيتراجع ضد المواصفات الأصلية.',
+  orbitalMechanics: `
+    <div class="flow-step"><div class="flow-pill start">فكرة</div><div class="flow-label">مدخل</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">ux-research</div><div class="flow-label">بحث</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">spec-writer</div><div class="flow-label">مواصفات</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">qa-test-planner</div><div class="flow-label">خطة اختبار</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill end">Handoff ✓</div><div class="flow-label">تسليم</div></div>`,
+
+  mcpH2: 'اتصل بـ <em>أدوات الفريق</em>',
+  mcpBody: '<strong>سيرفرات MCP</strong> بتخلي الوكلاء يتكلموا مع أدوات إدارة المشاريع مباشرة. اعمل issues على Linear، ابعت تحديثات Slack، حدّث الـ wiki، أو اربط بـ Jira — كل ده من جوه الـ workflow.',
+  integrationGrid: `
+    <div class="integration-card"><div class="integration-icon">📊</div><div class="integration-name">Linear</div><p class="integration-desc">اعمل issues، حدّث الحالة، اربط بـ PRs، تابع velocity الفريق.</p></div>
+    <div class="integration-card"><div class="integration-icon">💬</div><div class="integration-name">Slack</div><p class="integration-desc">ابعت تحديثات sprint، تنبيهات blockers، ملخصات يومية، واستطلاعات رأي.</p></div>
+    <div class="integration-card"><div class="integration-icon">📝</div><div class="integration-name">Notion</div><p class="integration-desc">حدّث الـ wiki، اكتب meeting notes، نظم الـ roadmap، وثّق القرارات.</p></div>
+    <div class="integration-card"><div class="integration-icon">🐙</div><div class="integration-name">GitHub</div><p class="integration-desc">تابع PRs، راجع milestones، أدر releases، واربط issues بالكود.</p></div>`,
+
+  rulesH2: 'المنتج بتاعك، <em>المعايير بتاعتك</em>',
+  rulesBody: '<strong>القواعد (Rules)</strong> بتفرض format موحد على كل المواصفات والمخرجات. بتضمن إن كل spec فيه acceptance criteria، كل user story فيها edge cases، وكل handoff فيه كل التفاصيل.',
+  comparisonGrid: `
+    <div class="comparison-side"><div class="comparison-label before">من غير قواعد</div><div class="comparison-content"><pre>
+## Login Feature
+- User can login
+- User can logout
+- Remember me option
+
+// مفيش acceptance criteria
+// مفيش edge cases
+// مفيش error handling specs
+// الـ devs هيسألوا ١٠٠ سؤال</pre></div></div>
+    <div class="comparison-side"><div class="comparison-label after">مع قواعد</div><div class="comparison-content"><pre>
+## US-042: Login Feature
+
+**As a** registered user
+**I want to** login with email/password
+**So that** I can access my dashboard
+
+### Acceptance Criteria
+- [ ] Email validation (RFC 5322)
+- [ ] Rate limit: 5 attempts / 15min
+- [ ] Remember me: 30-day token
+- [ ] Error: "Invalid credentials" (generic)
+- [ ] Redirect to original URL after login
+// واضح، مفصل، قابل للتنفيذ ✓</pre></div></div>`,
+
+  ctaH2: 'جاهز تكتب <em>specs تتنفذ؟</em>',
+  ctaSub: "اتعلمت المكونات الخمسة: المهارات بتعلّم الـ AI يكتب مواصفات محكمة، الوكلاء بيتخصصوا في بحث وتخطيط واختبار، سير العمل بينسق من الفكرة للتسليم، MCP بيوصلك بأدوات الفريق، والقواعد بتفرض format موحد. يلا نرتب الشغل.",
+  ctaInstall: "curl -sSL https://skills.sh/bundle/pm-toolkit | sh",
+
+  terminalLines: [
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/spec-writer | sh" },
+    { type: "out", text: "✓ spec-writer installed (v2.0.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/qa-test-planner | sh" },
+    { type: "out", text: "✓ qa-test-planner installed (v1.3.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "antigravity invoke --agent spec-writer" },
+    { type: "blank" },
+    { type: "out", text: "[spec-writer] Analyzing your idea...", class: "t-cyan" },
+    { type: "out", text: "[spec-writer] Generating user stories...", class: "t-cyan" },
+    { type: "out", text: "[spec-writer] Adding acceptance criteria...", class: "t-cyan" },
+    { type: "out", text: "[spec-writer] Identifying edge cases...", class: "t-cyan" },
+    { type: "out", text: "✓ spec.md generated. 12 user stories, 47 ACs.", class: "t-ok" },
+  ],
+},
+
+// ─────────────────────────────────────────────────────────────
+// UI
+// ─────────────────────────────────────────────────────────────
+ui: {
+  label: "UI",
+  heroEyebrow: "دليل المصمم اللي عايز design system يمشي على نفسه",
+  heroLine1: "بطّل تصمم",
+  heroLine2: "من غير نظام",
+  heroSub: "الـ AI بتاعك بيولد components من غير design tokens وبيكسر الـ consistency بتاعتك. بيستخدم ألوان عشوائية وspacing مش موحد. الدليل ده هيعلمك تخليه يفهم الـ design system بتاعتك ويمشي عليه.",
+  stat1: { target: 5, lbl: "مكونات أساسية" },
+  stat2: { display: "∞", lbl: "تركيبات ممكنة" },
+  stat3: { target: 0, lbl: "off-brand outputs*" },
+
+  burnH2: 'إنت <em>شفت</em> الفوضى دي',
+  burnBody: "كل مرة تطلب من الـ AI يعملك component، بيستخدم ألوان مش من الـ palette بتاعتك. spacing مختلف في كل حتة. typography مش متسقة. الـ design system بتاعك بيتكسر قطعة قطعة.",
+  zeroGGrid: `
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>ألوان عشوائية</h3><p>بيختار ألوان من عنده. مش عارف الـ palette بتاعتك ولا الـ semantic colors.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Design Tokens</h3><p>المهارات بتعلم الـ agent الـ tokens بتاعتك: ألوان, spacing, typography, shadows.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Spacing مكسور</h3><p>padding: 13px هنا و padding: 17px هناك. مفيش scale موحد والعين بتلاحظ.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Spacing System</h3><p>القواعد بتفرض استخدام الـ spacing scale بس: 4, 8, 12, 16, 24, 32, 48, 64.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Handoff ضايع</h3><p>التصميم بيوصل الـ devs كصورة. مفيش specs للـ states, interactions, أو responsive.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Design Handoff Agent</h3><p>وكيل بيولد specs كاملة: كل state, كل breakpoint, كل interaction — جاهز للتنفيذ.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Components مش متسقة</h3><p>كل صفحة فيها button شكل مختلف. مفيش component library موحدة.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Component Library</h3><p>المهارات + القواعد بيفرضوا استخدام components موحدة من الـ design system.</p></div>`,
+
+  skillsH2: 'علّم الـ AI بتاعك <em>Design System</em>',
+  skillsBody: '<strong>المهارات (Skills)</strong> بتوسّع خبرة الـ agent في التصميم المرئي. بدل ما تشرحله الـ tokens كل مرة، حمّل المهارة مرة واحدة وهو هيعرف الـ color system, typography scale, وspacing.',
+  skillsGrid: `
+    <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">ui-visual-design</div><p class="skill-desc">نظرية الألوان، typography systems، visual hierarchy، design tokens، وtrends حديثة.</p><code class="skill-install">curl -sSL https://skills.sh/ui-visual-design | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🖌️</div><div class="skill-name">frontend-design</div><p class="skill-desc">بناء interfaces بجودة production عالية. أنظمة تصميم، Tailwind، responsive design.</p><code class="skill-install">curl -sSL https://skills.sh/frontend-design | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">📐</div><div class="skill-name">wireframing</div><p class="skill-desc">باترنز wireframe: layout grids, content blocks, responsive breakpoints, page patterns.</p><code class="skill-install">curl -sSL https://skills.sh/wireframing | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">📦</div><div class="skill-name">design-handoff</div><p class="skill-desc">بروتوكولات handoff: artifact formats, lifecycle states, inter-agent communication.</p><code class="skill-install">curl -sSL https://skills.sh/design-handoff | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">✅</div><div class="skill-name">design-review</div><p class="skill-desc">مراجعة التصميم: heuristic evaluation, consistency checking, accessibility compliance.</p><code class="skill-install">curl -sSL https://skills.sh/design-review | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">📱</div><div class="skill-name">mobile-design</div><p class="skill-desc">تصميم Mobile-first: touch interactions, platform conventions, performance patterns.</p><code class="skill-install">curl -sSL https://skills.sh/mobile-design | sh</code></div>`,
+
+  installCmds: `
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت مهارة واحدة</span><span class="cmd-text">curl -sSL https://skills.sh/ui-visual-design | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت حزمة كاملة</span><span class="cmd-text">curl -sSL https://skills.sh/bundle/ui-design-system | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت من ملف manifest</span><span class="cmd-text">skills install --from skills.yaml</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">البحث عن مهارات</span><span class="cmd-text">skills search design</span></div>`,
+
+  agentsH2: 'وكلاء <em>تصميم UI</em>',
+  agentsBody: '<strong>الوكلاء المخصصين</strong> بيبنوا pipeline تصميم متكامل. وكيل بيعمل wireframes، وكيل بيصمم الـ UI عالي الجودة، وكيل بيراجع الاتساق، وكيل بيحول التصميم لكود.',
+  agentEcosystem: `
+    <div class="agent-tile"><div class="agent-icon">🎨</div><div class="agent-name">ui-design</div><p class="agent-role">بيعمل visual designs عالية الجودة: design tokens, component libraries, hero sections, page designs.</p></div>
+    <div class="agent-tile"><div class="agent-icon">📐</div><div class="agent-name">wireframe</div><p class="agent-role">بيعمل wireframes لكل صفحة: layout-focused, grayscale, مع responsive annotations.</p></div>
+    <div class="agent-tile"><div class="agent-icon">✅</div><div class="agent-name">design-reviewer</div><p class="agent-role">بيراجع جودة التصميم: consistency, accessibility, visual quality. بيديك scored verdict.</p></div>
+    <div class="agent-tile"><div class="agent-icon">⚛️</div><div class="agent-name">frontend-impl</div><p class="agent-role">بيحول التصميمات لكود production-ready: React components, responsive, accessible.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🏛️</div><div class="agent-name">info-arch</div><p class="agent-role">بيبني هندسة المعلومات: sitemaps, navigation, content strategy, user flows.</p></div>
+    <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">بينسق pipeline التصميم الكامل: بحث ← IA ← wireframe ← UX ← UI ← impl ← test. ٧ وكلاء مع quality gates.</p></div></div>`,
+
+  workflowsH2: 'من <em>الفكرة</em> للـ Pixel',
+  workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة التصميم بالكامل. من الـ wireframe الأولي لحد الـ pixel-perfect implementation. كل وكيل بيسلم للّي بعده مع quality gate بيضمن الاتساق.',
+  orbitalMechanics: `
+    <div class="flow-step"><div class="flow-pill start">فكرة</div><div class="flow-label">مدخل</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">wireframe</div><div class="flow-label">هيكل</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">ui-design</div><div class="flow-label">تصميم</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">design-reviewer</div><div class="flow-label">مراجعة</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill end">Handoff ✓</div><div class="flow-label">تسليم</div></div>`,
+
+  mcpH2: 'اتصل بـ <em>أدوات التصميم</em>',
+  mcpBody: '<strong>سيرفرات MCP</strong> بتخلي الوكلاء يتكلموا مع أدوات التصميم مباشرة. اقرا من Figma، صدّر design tokens، حدّث الـ component library، أو اعمل sync بين التصميم والكود.',
+  integrationGrid: `
+    <div class="integration-card"><div class="integration-icon">🎨</div><div class="integration-name">Figma</div><p class="integration-desc">اقرا التصميمات، صدّر assets، sync design tokens، وراجع components.</p></div>
+    <div class="integration-card"><div class="integration-icon">🎭</div><div class="integration-name">Storybook</div><p class="integration-desc">اعرض components، اختبر states، وثّق variants، وvalidate visual regression.</p></div>
+    <div class="integration-card"><div class="integration-icon">🐙</div><div class="integration-name">GitHub</div><p class="integration-desc">اعمل PRs لتحديثات الـ design system، تابع changes، وأدر versioning.</p></div>
+    <div class="integration-card"><div class="integration-icon">📊</div><div class="integration-name">Linear</div><p class="integration-desc">اعمل design tasks، تابع الـ sprint، واربط التصميمات بالـ issues.</p></div>`,
+
+  rulesH2: 'الـ Design System بتاعك، <em>قواعدك</em>',
+  rulesBody: '<strong>القواعد (Rules)</strong> بتفرض الـ design system على كل الوكلاء. بتضمن إن كل component بيستخدم الـ tokens الصح، الـ spacing الصح، والـ typography الصح.',
+  comparisonGrid: `
+    <div class="comparison-side"><div class="comparison-label before">من غير قواعد</div><div class="comparison-content"><pre>
+/* ألوان عشوائية، spacing مكسور */
+.card {
+  background: #f5f5f5;
+  padding: 13px 17px;
+  border-radius: 6px;
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 11px;
+}
+
+/* مفيش tokens, مفيش consistency */
+/* كل component عالم لوحده */</pre></div></div>
+    <div class="comparison-side"><div class="comparison-label after">مع قواعد</div><div class="comparison-content"><pre>
+/* Design tokens + spacing scale */
+.card {
+  background: var(--color-surface);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+}
+
+/* Tokens, scale, consistent ✓ */
+/* الـ design system سليم */</pre></div></div>`,
+
+  ctaH2: 'جاهز تبني <em>design system يعيش؟</em>',
+  ctaSub: "اتعلمت المكونات الخمسة: المهارات بتعلّم الـ AI الـ design tokens بتاعتك، الوكلاء بيتخصصوا في wireframing وvisual design، سير العمل بينسق من الفكرة للـ pixel، MCP بيوصلك بـ Figma، والقواعد بتفرض الاتساق. يلا نصمم صح.",
+  ctaInstall: "curl -sSL https://skills.sh/bundle/ui-design-system | sh",
+
+  terminalLines: [
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/ui-visual-design | sh" },
+    { type: "out", text: "✓ ui-visual-design installed (v1.4.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/design-handoff | sh" },
+    { type: "out", text: "✓ design-handoff installed (v1.1.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "antigravity invoke --agent ui-design" },
+    { type: "blank" },
+    { type: "out", text: "[ui-design] Loading design tokens...", class: "t-cyan" },
+    { type: "out", text: "[ui-design] Generating component library...", class: "t-cyan" },
+    { type: "out", text: "[ui-design] Creating hero section...", class: "t-cyan" },
+    { type: "out", text: "[ui-design] Applying visual hierarchy...", class: "t-cyan" },
+    { type: "out", text: "✓ Design system generated. 24 components.", class: "t-ok" },
+  ],
+},
+
+// ─────────────────────────────────────────────────────────────
+// UX
+// ─────────────────────────────────────────────────────────────
+ux: {
+  label: "UX",
+  heroEyebrow: "دليل المصمم اللي عايز يبني على data مش افتراضات",
+  heroLine1: "بطّل تفترض",
+  heroLine2: "وابدأ تبحث",
+  heroSub: "الـ AI بتاعك بيصمم UX من غير research وبيفترض سلوك المستخدم. بيبني flows مبنية على حدس مش data. الدليل ده هيعلمك تخليه يبني على user research حقيقي ويولد insights فعلية.",
+  stat1: { target: 5, lbl: "مكونات أساسية" },
+  stat2: { display: "∞", lbl: "تركيبات ممكنة" },
+  stat3: { target: 0, lbl: "افتراضات خاطئة*" },
+
+  burnH2: 'إنت <em>افترضت</em> وغلطت',
+  burnBody: "صممت flow كامل بناءً على افتراضات. بعد الـ launch اكتشفت إن المستخدمين بيعملوا حاجة مختلفة تماماً. الـ AI بيبني UX من غير ما يسأل عن الـ users أو يعمل أي research.",
+  zeroGGrid: `
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>صفر Research</h3><p>الـ AI بيصمم على طول من غير ما يسأل مين المستخدم أو إيه الـ context.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>UX Research Agent</h3><p>وكيل متخصص بيعمل personas, journey maps, وcompetitive analysis قبل أي تصميم.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Flows مفترضة</h3><p>بيبني user flows بناءً على حدس. مفيش data عن سلوك المستخدم الحقيقي.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>Journey Mapping</h3><p>المهارات بتعلم الـ agent يبني flows بناءً على research حقيقي مع pain points واضحة.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>Accessibility مفقودة</h3><p>بينسى a11y تماماً: contrast ضعيف, مفيش keyboard nav, screen readers مش شغالة.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>قواعد Accessibility</h3><p>القواعد بتفرض WCAG 2.1 AA كحد أدنى على كل output. contrast, focus states, aria labels.</p></div>
+    <div class="grid-cell"><span class="cell-label pain">🔥 نقطة ألم</span><h3>مفيش Usability Testing</h3><p>بتطلق من غير ما تختبر. بتكتشف المشاكل من شكاوي المستخدمين بعد الـ launch.</p></div>
+    <div class="grid-cell"><span class="cell-label solution">✦ الحل</span><h3>UX Testing Agent</h3><p>وكيل بيختبر الـ flows: task completion, error recovery, cognitive load, responsive behavior.</p></div>`,
+
+  skillsH2: 'علّم الـ AI بتاعك <em>UX Research</em>',
+  skillsBody: '<strong>المهارات (Skills)</strong> بتوسّع خبرة الـ agent في بحث المستخدمين وتصميم التفاعلات. بدل ما تشرحله منهجية البحث كل مرة، حمّل المهارة مرة واحدة وهو هيعرف يعمل personas وjourney maps.',
+  skillsGrid: `
+    <div class="skill-card"><div class="skill-icon">🔬</div><div class="skill-name">ux-research</div><p class="skill-desc">بحث المستخدمين: personas, journey maps, competitive analysis, research synthesis.</p><code class="skill-install">curl -sSL https://skills.sh/ux-research | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🎭</div><div class="skill-name">ux-interaction-design</div><p class="skill-desc">تصميم التفاعلات: micro-interactions, UI state machines, transitions, form UX.</p><code class="skill-install">curl -sSL https://skills.sh/ux-interaction-design | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🧪</div><div class="skill-name">ux-test-suite</div><p class="skill-desc">اختبار UX: task completion, error recovery, usability scoring, cognitive load.</p><code class="skill-install">curl -sSL https://skills.sh/ux-test-suite | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">📱</div><div class="skill-name">mobile-design</div><p class="skill-desc">تصميم Mobile-first: touch targets, gestures, platform conventions, offline behavior.</p><code class="skill-install">curl -sSL https://skills.sh/mobile-design | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🏛️</div><div class="skill-name">info-architecture</div><p class="skill-desc">هندسة المعلومات: sitemaps, navigation patterns, content strategy, user flows.</p><code class="skill-install">curl -sSL https://skills.sh/info-architecture | sh</code></div>
+    <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">web-design-guidelines</div><p class="skill-desc">مراجعة UI ضد Web Interface Guidelines: accessibility, best practices, usability.</p><code class="skill-install">curl -sSL https://skills.sh/web-design-guidelines | sh</code></div>`,
+
+  installCmds: `
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت مهارة واحدة</span><span class="cmd-text">curl -sSL https://skills.sh/ux-research | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت حزمة كاملة</span><span class="cmd-text">curl -sSL https://skills.sh/bundle/ux-complete | sh</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت من ملف manifest</span><span class="cmd-text">skills install --from skills.yaml</span></div>
+    <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">البحث عن مهارات</span><span class="cmd-text">skills search ux</span></div>`,
+
+  agentsH2: 'وكلاء <em>تجربة المستخدم</em>',
+  agentsBody: '<strong>الوكلاء المخصصين</strong> بيغطوا رحلة UX بالكامل. وكيل للبحث، وكيل لتصميم التفاعلات، وكيل لاختبار الـ usability. كل واحد متخصص وبيسلم للّي بعده.',
+  agentEcosystem: `
+    <div class="agent-tile"><div class="agent-icon">🔬</div><div class="agent-name">ux-research</div><p class="agent-role">بيعمل user research كامل: personas, journey maps, competitive analysis, synthesis.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🎭</div><div class="agent-name">ux-design</div><p class="agent-role">بيحدد interaction patterns, component states, transitions, form UX, وaccessibility.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🧪</div><div class="agent-name">ux-testing</div><p class="agent-role">بيختبر الـ frontend: E2E flows, accessibility audits, responsive checks, performance.</p></div>
+    <div class="agent-tile"><div class="agent-icon">🏛️</div><div class="agent-name">info-arch</div><p class="agent-role">بيبني هندسة المعلومات: sitemaps, navigation, content strategy, screen inventories.</p></div>
+    <div class="agent-tile"><div class="agent-icon">📐</div><div class="agent-name">wireframe</div><p class="agent-role">بيعمل low-fidelity wireframes لكل صفحة مع responsive annotations.</p></div>
+    <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">بينسق pipeline UX الكامل: research ← IA ← wireframe ← UX ← UI ← impl ← test. أوتوماتيك مع quality gates.</p></div></div>`,
+
+  workflowsH2: 'من <em>البحث</em> للاختبار',
+  workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة UX بالكامل. الـ research بيبقى personas، الـ personas بتبقى journey maps، الـ maps بتبقى wireframes، والـ wireframes بتتختبر مع real users.',
+  orbitalMechanics: `
+    <div class="flow-step"><div class="flow-pill start">Research</div><div class="flow-label">بحث</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">ux-research</div><div class="flow-label">Personas</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">info-arch</div><div class="flow-label">IA + Flows</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill">ux-design</div><div class="flow-label">تفاعلات</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-pill end">Test ✓</div><div class="flow-label">اختبار</div></div>`,
+
+  mcpH2: 'اتصل بـ <em>أدوات البحث</em>',
+  mcpBody: '<strong>سيرفرات MCP</strong> بتخلي الوكلاء يتكلموا مع أدوات UX مباشرة. اقرا من Figma، حلل user analytics، اعمل A/B test setups، أو اربط بـ user testing platforms.',
+  integrationGrid: `
+    <div class="integration-card"><div class="integration-icon">🎨</div><div class="integration-name">Figma</div><p class="integration-desc">اقرا prototypes، حلل user flows، صدّر assets، وvalidate designs.</p></div>
+    <div class="integration-card"><div class="integration-icon">📈</div><div class="integration-name">Analytics</div><p class="integration-desc">حلل user behavior، heatmaps، funnel analysis، وdrop-off points.</p></div>
+    <div class="integration-card"><div class="integration-icon">🧪</div><div class="integration-name">UserTesting</div><p class="integration-desc">اعمل usability tests، اجمع feedback، حلل task completion rates.</p></div>
+    <div class="integration-card"><div class="integration-icon">📊</div><div class="integration-name">Linear</div><p class="integration-desc">اعمل UX research tasks، تابع findings، واربط insights بالـ backlog.</p></div>`,
+
+  rulesH2: 'المستخدمين بتوعك، <em>معاييرك</em>',
+  rulesBody: '<strong>القواعد (Rules)</strong> بتفرض معايير UX على كل الوكلاء. بتضمن إن كل output بيراعي accessibility، بيعتمد على research، وبيتبع best practices.',
+  comparisonGrid: `
+    <div class="comparison-side"><div class="comparison-label before">من غير قواعد</div><div class="comparison-content"><pre>
+/* مفيش research, مفيش accessibility */
+- User flow مبني على افتراضات
+- مفيش personas
+- Contrast ratio: من عينيك
+- Touch targets: أي حاجة
+- Error messages: "Error occurred"
+- مفيش keyboard navigation
+- مفيش screen reader support
+// حدس بس 🎲</pre></div></div>
+    <div class="comparison-side"><div class="comparison-label after">مع قواعد</div><div class="comparison-content"><pre>
+/* Research-driven, accessible */
+- User flow based on journey map
+- 3 validated personas
+- Contrast ratio: 4.5:1 minimum
+- Touch targets: 44x44px minimum
+- Error: specific + actionable
+- Full keyboard navigation
+- ARIA labels on all interactive
+// مبني على data ✓</pre></div></div>`,
+
+  ctaH2: 'جاهز تبني <em>UX مبني على data؟</em>',
+  ctaSub: "اتعلمت المكونات الخمسة: المهارات بتعلّم الـ AI يعمل research حقيقي، الوكلاء بيتخصصوا في بحث وتصميم واختبار، سير العمل بينسق من البحث للاختبار، MCP بيوصلك بأدوات UX، والقواعد بتفرض accessibility ومعايير مبنية على data. يلا نصمم للمستخدمين.",
+  ctaInstall: "curl -sSL https://skills.sh/bundle/ux-complete | sh",
+
+  terminalLines: [
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/ux-research | sh" },
+    { type: "out", text: "✓ ux-research installed (v1.6.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "curl -sSL https://skills.sh/ux-interaction-design | sh" },
+    { type: "out", text: "✓ ux-interaction-design installed (v1.2.0)", class: "t-ok" },
+    { type: "blank" },
+    { type: "cmd", prompt: "$", text: "antigravity invoke --agent ux-research" },
+    { type: "blank" },
+    { type: "out", text: "[ux-research] Analyzing target audience...", class: "t-cyan" },
+    { type: "out", text: "[ux-research] Creating personas...", class: "t-cyan" },
+    { type: "out", text: "[ux-research] Mapping user journeys...", class: "t-cyan" },
+    { type: "out", text: "[ux-research] Running competitive analysis...", class: "t-cyan" },
+    { type: "out", text: "✓ Research brief complete. 3 personas, 5 journeys.", class: "t-ok" },
+  ],
+},
+
+}; // end DOMAINS
+
+// ══════════════════════════════════════════════════════════════
+// setDomain() — DOMAIN SWITCHER
+// ══════════════════════════════════════════════════════════════
+
+let currentDomain = null;
+
+function setDomain(key, skipTransition) {
+  if (key === currentDomain) return;
+  const d = DOMAINS[key];
+  if (!d) return;
+  currentDomain = key;
+
+  // Update pills
+  document.querySelectorAll('.domain-pill').forEach(p => {
+    const isActive = p.dataset.domain === key;
+    p.classList.toggle('active', isActive);
+    p.setAttribute('aria-selected', isActive);
+  });
+
+  // Helper to set innerHTML safely
+  const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+  const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+
+  const doSwap = () => {
+    // Hero
+    setText('hero-eyebrow-text', d.heroEyebrow);
+    setText('hero-h1-line1', d.heroLine1);
+    setText('hero-h1-line2', d.heroLine2);
+    setText('hero-sub', d.heroSub);
+
+    // Stats
+    const s1 = document.getElementById('hero-stat1-num');
+    if (s1) { s1.textContent = d.stat1.target; s1.setAttribute('data-target', d.stat1.target); }
+    setText('hero-stat1-lbl', d.stat1.lbl);
+
+    const s2 = document.getElementById('hero-stat2-num');
+    if (s2) s2.textContent = d.stat2.display || d.stat2.target;
+    setText('hero-stat2-lbl', d.stat2.lbl);
+
+    const s3 = document.getElementById('hero-stat3-num');
+    if (s3) { s3.textContent = d.stat3.target; s3.setAttribute('data-target', d.stat3.target); }
+    setText('hero-stat3-lbl', d.stat3.lbl);
+
+    // Burn / Hook section
+    setHTML('burn-h2', d.burnH2);
+    setText('burn-scars-body', d.burnBody);
+    setHTML('zero-g-grid', d.zeroGGrid);
+
+    // Skills section
+    setHTML('skills-h2', d.skillsH2);
+    setHTML('skills-body', d.skillsBody);
+    setHTML('skills-grid', d.skillsGrid);
+    setHTML('install-commands', d.installCmds);
+
+    // Agents section
+    setHTML('agents-h2', d.agentsH2);
+    setHTML('agents-body', d.agentsBody);
+    setHTML('agent-ecosystem', d.agentEcosystem);
+
+    // Workflows section
+    setHTML('workflows-h2', d.workflowsH2);
+    setHTML('workflows-body', d.workflowsBody);
+    setHTML('orbital-mechanics', d.orbitalMechanics);
+
+    // MCP section
+    setHTML('mcp-h2', d.mcpH2);
+    setHTML('mcp-body', d.mcpBody);
+    setHTML('integration-grid', d.integrationGrid);
+
+    // Rules section
+    setHTML('rules-h2', d.rulesH2);
+    setHTML('rules-body', d.rulesBody);
+    setHTML('comparison-grid', d.comparisonGrid);
+
+    // CTA section
+    setHTML('cta-h2', d.ctaH2);
+    setText('cta-sub', d.ctaSub);
+    const ctaCmd = document.getElementById('cta-install-cmd');
+    if (ctaCmd) {
+      ctaCmd.innerHTML = '<span class="prompt">$</span> ' + d.ctaInstall;
+    }
+
+    // Terminal animation restart
+    if (d.terminalLines) {
+      animateTerminalLines(d.terminalLines);
+    }
+
+    // Save preference
+    try { localStorage.setItem('ag-domain', key); } catch(e) {}
+  };
+
+  if (skipTransition) {
+    doSwap();
+    return;
+  }
+
+  // Fade transition
+  const sections = document.querySelectorAll('section');
+  sections.forEach(s => { s.style.opacity = '0.15'; s.style.transform = 'translateY(6px)'; });
+  setTimeout(() => {
+    doSwap();
+    sections.forEach(s => { s.style.opacity = ''; s.style.transform = ''; });
+  }, 220);
+}
+
+// ── Initialize on load ──────────────────────────────────────
+(function initDomain() {
+  let saved = 'frontend';
+  try { saved = localStorage.getItem('ag-domain') || 'frontend'; } catch(e) {}
+  if (!DOMAINS[saved]) saved = 'frontend';
+  setDomain(saved, true);
+  // Start terminal animation for initial domain
+  if (DOMAINS[saved] && DOMAINS[saved].terminalLines) {
+    animateTerminalLines(DOMAINS[saved].terminalLines);
+  }
+})();
+
+
+            // ══════════════════════════════════════════════════════════════
+      // KEYBOARD NAV
       // ══════════════════════════════════════════════════════════════
-      // I18N — EGYPTIAN ARABIC TRANSLATION SYSTEM
-      // ══════════════════════════════════════════════════════════════
 
-      const translations = {
-        // Nav
-        'nav-logo': 'أنتي جرافيتي',
-        'nav-tagline': 'دليل المهندس اللي مش فاضي',
-        'nav-skills': 'المهارات',
-        'nav-agents': 'الوكلاء',
-        'nav-workflows': 'سير العمل',
-        'nav-mcp': 'MCP',
-        'nav-rules': 'القواعد',
-        'nav-cta': 'يلا نبدأ',
-        // Hero
-        'hero-eyebrow': 'دليل المهندس اللي مش فاضي',
-        'hero-line1': 'بطّل',
-        'hero-line2': 'تحارب',
-        'hero-line3': 'الجاذبية',
-        'hero-sub': 'مساعد الـ AI بتاعك مش فاهم الكودبيس بتاعتك. القواعد بتاعتك. الباترنز بتاعتك. يلا نصلح ده.',
-        'hero-btn-primary': 'استكشف الدليل',
-        'hero-btn-ghost': 'شوف السورس',
-        'hero-stat-lbl1': 'مكونات',
-        'hero-stat-lbl2': 'تركيبات',
-        'hero-stat-lbl3': 'هلوسات*',
-        // Burn section
-        'burn-label': 'المشكلة',
-        'burn-h2': 'اتحرقت <em>قبل كده</em>',
-        'burn-body': 'كل أداة AI كودنج بتوعدك بسحر. أغلبهم بيديك autocomplete مع قلق. شفت agents بتهلوس dependencies مش موجودة، بتنسى الـ architecture بتاعتك بعد تلات رسايل، وبتقترحلك patterns إنت عملتلها deprecate من سنتين.',
-        'pain-label': 'نقطة ألم',
-        'solution-label': 'حل أنتي جرافيتي',
-        'burn-h3-1': 'فقدان الذاكرة',
-        'burn-p1': 'بينسى الـ architecture بتاعتك بعد ٣ رسايل. كل محادثة بتبدأ من الصفر.',
-        'burn-h3-2': 'قواعد دائمة',
-        'burn-p2': 'عرّفها مرة، تتنفذ للأبد. القيود بتاعتك بتبقى ردود فعل تلقائية للـ agent.',
-        'burn-h3-3': 'كلام جنريك',
-        'burn-p3': 'كوبي باستا من StackOverflow من ٢٠١٩. اقتراحات مش متوافقة مع الستاك بتاعتك.',
-        'burn-h3-4': 'مهارات متخصصة',
-        'burn-p4': 'الستاك بتاعتك، الباترنز بتاعتك، المعايير بتاعتك. علّم المساعد خبرتك.',
-        'burn-h3-5': 'سحر الصندوق الأسود',
-        'burn-p5': 'مش عارف ليه اقترح كده. تصحيح قرارات الـ AI مستحيل.',
-        'burn-h3-6': 'سير عمل شفاف',
-        'burn-p6': 'شوف كل خطوة، عدّل كل قرار. تحكم كامل، صفر غموض.',
-        'burn-h3-7': 'مقاس واحد مش بيجي على حد',
-        'burn-p7': 'نفس المساعد لكل حاجة. مفيش تخصص، مفيش عمق خبرة.',
-        'burn-h3-8': 'وكلاء متخصصين',
-        'burn-p8': 'خبير مختلف لكل شغلانة. مراجعة الكود ≠ تنفيذ الفيتشرز.',
-        // Skills
-        'skills-label': 'المكون ٠١',
-        'skills-h2': 'علّم المساعد بتاعك <em>الستاك</em> بتاعتك',
-        'skills-body': '<strong>المهارات</strong> هي وحدات معرفة بتوسّع خبرة الـ agent بتاعك. فكّر فيها كـ context دائم بيعلّم الـ AI اتفاقيات الفريم ورك بتاعك، الديزاين باترنز، وأفضل الممارسات. بدل ما تشرح Django DRF patterns في كل محادثة، حمّل مهارة <code>django-expert</code> مرة واحدة وهو هيفتكر.',
-        'skill-desc-1': 'أفضل ممارسات Django، باترنز DRF، تحسين ORM، إعدادات الأمان.',
-        'skill-desc-2': 'باترنز React الحديثة، hooks، تحسين الأداء، إمكانية الوصول.',
-        'skill-desc-3': 'منهجية debugging منظمة: افترض، اختبر، اعزل، صلّح.',
-        'skill-desc-4': 'باترنز Godot 4.x، أساليب GDScript، هندسة المشاهد، استخدام الإشارات.',
-        'skill-desc-5': 'أنظمة التصميم، مكتبات المكونات، باترنز الاستجابة، إمكانية الوصول.',
-        'skill-desc-6': 'OWASP Top 10، باترنز المصادقة، التحقق من المدخلات، إعدادات أمان.',
-        'skill-code-title': 'مثال على استدعاء مهارة',
-        // Agents
-        'agents-label': 'المكون ٠٢',
-        'agents-h2': 'متخصصين، مش <em>عموميين</em>',
-        'agents-body': '<strong>الوكلاء المخصصين</strong> هم شخصيات متخصصة بأدوار وأدوات وخبرات محددة. بدل مساعد واحد بيحاول يعمل كل حاجة، إنت بتبني فريق: مراجع كود دقيق ونقدي، منفذ بيمشي على المواصفات بالظبط، باحث بيستكشف كويس قبل ما يقرر.',
-        'agent-role-1': 'بيلاقي bugs، مشاكل أمان، وأخطاء منطقية. مش بيعلق على الستايل أبداً.',
-        'agent-role-2': 'بيحول الأفكار لمواصفات مفصلة وواضحة.',
-        'agent-role-3': 'بيمشي على المواصفات بالظبط. بيختبر كل معيار قبول.',
-        'agent-role-4': 'بيحول التصميمات لمكونات pixel-perfect وقابلة للوصول.',
-        'agent-role-5': 'بيعمل شخصيات مستخدمين، خرائط رحلة، وتحليل تنافسي.',
-        'agent-role-6': 'بينسق خط إنتاج UI/UX الكامل: بحث ← هندسة المعلومات ← واير فريم ← تجربة المستخدم ← واجهة المستخدم ← التنفيذ ← الاختبار. بينسق ٧ وكلاء متخصصين مع بوابات جودة تلقائية بين المراحل.',
-        'agent-code-title': 'تعريف-الوكيل.yaml',
-        // Workflows
-        'workflow-label': 'المكون ٠٣',
-        'workflow-h2': 'نسّق <em>فريق الوكلاء</em> بتاعك',
-        'workflow-body': '<strong>سير العمل</strong> بيربط الوكلاء مع بعض في خطوط أنابيب آلية. قصة المستخدم بتبقى مواصفات (عن طريق <code>spec-writer</code>)، المواصفات بتبقى تنفيذ (عن طريق <code>implementer</code>)، والتنفيذ بيتراجع (عن طريق <code>reviewer</code>). كل وكيل بيسلم للّي بعده، مع بوابات جودة بتمسك المشاكل بدري.',
-        'flow-pill-1': 'فكرة المستخدم',
-        'flow-lbl-1': 'مدخل',
-        'flow-lbl-2': 'تعريف',
-        'flow-lbl-3': 'بناء',
-        'flow-lbl-4': 'تحقق',
-        'flow-pill-5': 'تقرير الامتثال',
-        'flow-lbl-5': 'مخرج',
-        'workflow-code-title': 'سير-العمل-SDD.yaml',
-        // MCP
-        'mcp-label': 'المكون ٠٤',
-        'mcp-h2': 'اتصل بـ <em>أي حاجة</em>',
-        'mcp-body': '<strong>سيرفرات MCP (بروتوكول سياق النموذج)</strong> بتوسّع الوكلاء بتوعك أبعد من تعديل الكود. اتصل بـ GitHub، استعلم من PostgreSQL، ابعت إشعارات Slack، حدّث تيكتات Linear—كل ده من جوه سير عمل الوكلاء. المساعد بتاعك بيبقى منصة أتمتة حقيقية.',
-        'mcp-node-1': 'وكيل مراجعة الكود بتاعك',
-        'mcp-node-2': 'جسر البروتوكول',
-        'mcp-node-3': 'GitHub، Slack، قاعدة بيانات...',
-        'int-desc-1': 'اعمل PRs، علّق على issues، شغّل workflows، استعلم عن إحصائيات الريبو.',
-        'int-desc-2': 'استعلم عن schemas، حلل بيانات، اعمل migrations، حسّن queries.',
-        'int-desc-3': 'ابعت تنبيهات، انشر تحديثات، اقرا القنوات، أدر سير العمل.',
-        'int-desc-4': 'اعمل issues، حدّث الحالة، اربط بـ PRs، تابع السرعة.',
-        'mcp-code-title': 'إعداد سيرفر MCP',
-        // Rules
-        'rules-label': 'المكون ٠٥',
-        'rules-h2': 'الكودبيس بتاعتك، <em>القواعد بتاعتك</em>',
-        'rules-body': '<strong>القواعد</strong> هي قيود دائمة بتشكّل سلوك الوكيل. زي .eslintrc للـ AI: بتفرض ستايل الكود، باترنز المعمار، سياسات الأمان، واتفاقيات الفريق. القواعد بتفضل عبر الجلسات—عرّفها مرة، تتنفذ للأبد.',
-        'rules-before': 'من غير قواعد',
-        'rules-after': 'مع قواعد',
-        'rules-code-title': '.antigravity/rules.md',
-        // CTA
-        'cta-h2': 'جاهز تتحدى <em>الجاذبية؟</em>',
-        'cta-sub': 'اتعلمت المكونات الخمسة: المهارات بتعلّم الستاك بتاعتك، الوكلاء بيتخصصوا في أدوار، سير العمل بينسق الأتمتة، MCP بيوصل لأي حاجة، والقواعد بتفرض المعايير بتاعتك. دلوقتي وقت تبني مساعدين AI فعلاً فاهمين الكودبيس بتاعتك.',
-        'cta-btn-primary': 'حمّل أنتي جرافيتي',
-        'cta-btn-ghost': 'اقرا التوثيق',
-        'cta-footer': '// قريت الكل. احترام.',
-        // Footer
-        'footer-logo': 'أنتي جرافيتي',
-        'footer-tagline': 'تطوير بالذكاء الاصطناعي من غير ما تحارب الجاذبية',
-        'footer-docs': 'التوثيق',
-        'footer-community': 'المجتمع',
-        'footer-contact': 'تواصل',
-        'footer-copy': '* النتايج ممكن تختلف في المدار المنخفض. تجربة خالية من الهلوسة مش مضمونة في بيئات انعدام الجاذبية.'
-      };
-
-      const englishStore = {};
-
-      function toggleLanguage() {
-        const html = document.documentElement;
-        const btn = document.getElementById('lang-toggle');
-        const currentLang = html.getAttribute('lang') || 'en';
-
-        if (currentLang === 'en') {
-          // Save English innerHTML keyed by position index, then apply Arabic
-          document.querySelectorAll('[data-i18n]').forEach((el, idx) => {
-            englishStore[idx] = el.innerHTML;
-            el.setAttribute('data-en-idx', idx);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "?" && !e.ctrlKey && !e.metaKey) {
+          console.log("⌨️ Shortcuts:", {
+            "↑/↓": "Scroll",
+            Tab: "Navigate",
+            "?": "This help",
           });
-          document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[key] !== undefined) {
-              el.innerHTML = translations[key];
-            }
-          });
-          html.setAttribute('dir', 'rtl');
-          html.setAttribute('lang', 'ar');
-          btn.textContent = 'English';
-        } else {
-          // Restore English
-          document.querySelectorAll('[data-i18n]').forEach(el => {
-            const idx = parseInt(el.getAttribute('data-en-idx'));
-            if (englishStore[idx] !== undefined) {
-              el.innerHTML = englishStore[idx];
-            }
-          });
-          html.setAttribute('dir', 'ltr');
-          html.setAttribute('lang', 'en');
-          btn.textContent = 'عربي';
         }
-      }
+      });
     </script>
   </body>
 </html>
