@@ -1647,6 +1647,7 @@
         .hamburger,
         .lang-toggle,
         .domain-bar,
+        .onboarding-overlay,
         footer {
           display: none;
         }
@@ -1876,6 +1877,430 @@
       body.menu-open {
         overflow: hidden;
       }
+
+      /* ══════════════════════════════════════════════════════════════
+         ONBOARDING MODAL
+         ══════════════════════════════════════════════════════════════ */
+
+      .onboarding-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: rgba(10, 10, 26, 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        padding: 1rem;
+      }
+      .onboarding-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .onboarding-overlay.closing {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .onboarding-content {
+        background: linear-gradient(165deg, var(--surface) 0%, var(--deep) 50%, var(--surface) 100%);
+        border: 1px solid var(--border2);
+        border-radius: 24px;
+        max-width: 720px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 2.5rem 2rem;
+        position: relative;
+        box-shadow: 0 0 80px rgba(0, 229, 200, 0.08), 0 0 40px rgba(0, 0, 0, 0.4);
+        transform: translateY(20px) scale(0.97);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .onboarding-overlay.active .onboarding-content {
+        transform: translateY(0) scale(1);
+      }
+
+      .onboarding-progress {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+      .onboarding-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--border2);
+        transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+      }
+      .onboarding-dot.active {
+        background: var(--teal);
+        box-shadow: 0 0 10px var(--teal-glow);
+        transform: scale(1.2);
+      }
+      .onboarding-dot.completed {
+        background: var(--teal);
+        opacity: 0.5;
+      }
+
+      .onboarding-step {
+        animation: onboardFadeIn 0.35s ease forwards;
+      }
+      @keyframes onboardFadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .onboarding-title {
+        font-family: var(--body);
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--ice);
+        text-align: center;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, var(--ice), var(--teal));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .onboarding-subtitle {
+        font-family: var(--body);
+        font-size: 0.9rem;
+        color: var(--ice-dimmer);
+        text-align: center;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .onboarding-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+      }
+      .onboarding-cards.experience-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ob-card {
+        background: linear-gradient(135deg, var(--surface2) 0%, var(--surface) 100%);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.5rem 1.2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: border-color 0.25s, background 0.25s, transform 0.2s, box-shadow 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .ob-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 0%, var(--teal-dim) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .ob-card:hover {
+        border-color: var(--teal);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(0, 229, 200, 0.15);
+      }
+      .ob-card:hover::before {
+        opacity: 1;
+      }
+      .ob-card.selected {
+        border-color: var(--teal);
+        background: var(--teal-dim);
+        box-shadow: 0 0 24px var(--teal-glow);
+      }
+      .ob-card:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 2px;
+      }
+
+      .ob-card-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+        position: relative;
+        z-index: 1;
+        display: block;
+      }
+      .ob-card-title {
+        font-family: var(--body);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--ice);
+        margin-bottom: 0.4rem;
+        position: relative;
+        z-index: 1;
+      }
+      .ob-card-desc {
+        font-family: var(--body);
+        font-size: 0.75rem;
+        color: var(--ice-dimmer);
+        line-height: 1.5;
+        position: relative;
+        z-index: 1;
+      }
+
+      .ob-card-badge {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        background: var(--teal-dim);
+        color: var(--teal);
+        border: 1px solid rgba(0, 229, 200, 0.2);
+        border-radius: 8px;
+        padding: 0.15rem 0.5rem;
+        margin-top: 0.6rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .onboarding-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: transparent;
+        border: none;
+        color: var(--ice-dimmer);
+        font-family: var(--body);
+        font-size: 0.8rem;
+        cursor: pointer;
+        padding: 0.5rem 0;
+        margin-bottom: 1rem;
+        transition: color 0.2s;
+      }
+      .onboarding-back:hover {
+        color: var(--teal);
+      }
+
+      @media (max-width: 600px) {
+        .onboarding-content {
+          padding: 1.5rem 1rem;
+          border-radius: 16px;
+        }
+        .onboarding-cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .onboarding-cards.experience-cards {
+          grid-template-columns: 1fr;
+        }
+        .onboarding-title {
+          font-size: 1.3rem;
+        }
+        .ob-card {
+          padding: 1.2rem 0.8rem;
+        }
+        .ob-card-icon {
+          font-size: 1.6rem;
+        }
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+         COMPACT DOMAIN BAR
+         ══════════════════════════════════════════════════════════════ */
+
+      .domain-bar.compact {
+        justify-content: center;
+        padding: 0.35rem 1rem;
+        gap: 0.5rem;
+      }
+      .domain-bar.compact .domain-bar-label,
+      .domain-bar.compact .domain-pill {
+        display: none;
+      }
+
+      .compact-chip {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 0.35rem 1rem;
+        font-family: var(--body);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--teal);
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        white-space: nowrap;
+      }
+      .compact-chip:hover {
+        border-color: var(--teal);
+        background: var(--teal-dim);
+        box-shadow: 0 0 12px var(--teal-glow);
+      }
+      .domain-bar.compact .compact-chip {
+        display: inline-flex;
+      }
+
+      .compact-chip .chip-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        flex-shrink: 0;
+      }
+
+      .settings-btn {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        color: var(--ice-dimmer);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: border-color 0.2s, color 0.2s, transform 0.3s, background 0.2s;
+        flex-shrink: 0;
+      }
+      .settings-btn:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+        background: var(--teal-dim);
+        transform: rotate(60deg);
+      }
+      .settings-btn:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 2px;
+      }
+      .domain-bar.compact .settings-btn {
+        display: inline-flex;
+      }
+
+      .expand-pills-btn {
+        display: none;
+        align-items: center;
+        gap: 0.3rem;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 0.3rem 0.75rem;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--ice-dimmer);
+        cursor: pointer;
+        transition: border-color 0.2s, color 0.2s;
+      }
+      .expand-pills-btn:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+      }
+      .domain-bar.compact .expand-pills-btn {
+        display: inline-flex;
+      }
+
+      /* When pills are expanded from compact mode */
+      .domain-bar.compact.expanded .domain-pill {
+        display: inline-flex;
+      }
+      .domain-bar.compact.expanded .expand-pills-btn {
+        display: none;
+      }
+
+      /* ══════════════════════════════════════════════════════════════
+         EXPERIENCE-BASED CONTENT
+         ══════════════════════════════════════════════════════════════ */
+
+      .exp-content {
+        display: none;
+      }
+      body.exp-beginner .exp-content.exp-beginner,
+      body.exp-intermediate .exp-content.exp-intermediate,
+      body.exp-advanced .exp-content.exp-advanced,
+      body.exp-expert .exp-content.exp-expert {
+        display: block;
+      }
+
+      /* Show content for levels at or below the user's level */
+      body.exp-intermediate .exp-content.exp-beginner,
+      body.exp-advanced .exp-content.exp-beginner,
+      body.exp-advanced .exp-content.exp-intermediate,
+      body.exp-expert .exp-content.exp-beginner,
+      body.exp-expert .exp-content.exp-intermediate,
+      body.exp-expert .exp-content.exp-advanced {
+        display: block;
+      }
+
+      .deep-dive {
+        margin-top: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .deep-dive-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: var(--surface2);
+        border: none;
+        color: var(--teal);
+        font-family: var(--body);
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .deep-dive-toggle:hover {
+        background: var(--surface3);
+      }
+      .deep-dive-toggle .dd-arrow {
+        transition: transform 0.3s;
+      }
+      .deep-dive.open .deep-dive-toggle .dd-arrow {
+        transform: rotate(180deg);
+      }
+      .deep-dive-body {
+        padding: 0 1rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+      }
+      .deep-dive.open .deep-dive-body {
+        padding: 1rem;
+        max-height: 600px;
+      }
+      .deep-dive-body p {
+        font-size: 0.85rem;
+        color: var(--ice-dim);
+        line-height: 1.7;
+      }
+
+      .beginner-tip {
+        background: linear-gradient(135deg, rgba(0, 229, 200, 0.06), rgba(0, 229, 200, 0.02));
+        border: 1px solid rgba(0, 229, 200, 0.15);
+        border-radius: 12px;
+        padding: 1rem 1.2rem;
+        margin-top: 1rem;
+        display: flex;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+      .beginner-tip-icon {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+      .beginner-tip-text {
+        font-size: 0.82rem;
+        color: var(--ice-dim);
+        line-height: 1.6;
+      }
+      .beginner-tip-text strong {
+        color: var(--teal);
+      }
+
     </style>
   </head>
   <body>
@@ -1917,6 +2342,89 @@
       <button class="domain-pill"        data-domain="pm"       role="tab" aria-selected="false" onclick="setDomain('pm')">📋 PM</button>
       <button class="domain-pill"        data-domain="ui"       role="tab" aria-selected="false" onclick="setDomain('ui')">🎨 UI</button>
       <button class="domain-pill"        data-domain="ux"       role="tab" aria-selected="false" onclick="setDomain('ux')">🔬 UX</button>
+      <!-- Compact mode elements (hidden until onboarded) -->
+      <button class="compact-chip" id="compact-chip" onclick="togglePillsExpand()" aria-label="Role and experience"><span class="chip-dot"></span><span id="compact-chip-text">⟨/⟩ Frontend • 🌱 Beginner</span></button>
+      <button class="expand-pills-btn" id="expand-pills-btn" onclick="togglePillsExpand()" aria-label="Switch role">⇄</button>
+      <button class="settings-btn" id="settings-btn" onclick="showOnboarding()" aria-label="Settings" title="Settings">⚙</button>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     ONBOARDING MODAL
+     ══════════════════════════════════════════════════════════════ -->
+
+    <div class="onboarding-overlay" id="onboarding-overlay">
+      <div class="onboarding-content" role="dialog" aria-modal="true" aria-labelledby="onboarding-title">
+        <div class="onboarding-progress">
+          <div class="onboarding-dot active" id="ob-dot-1"></div>
+          <div class="onboarding-dot" id="ob-dot-2"></div>
+        </div>
+
+        <!-- Step 1: Choose Role -->
+        <div class="onboarding-step" id="ob-step-role">
+          <h2 class="onboarding-title" id="onboarding-title">اختر تخصصك</h2>
+          <p class="onboarding-subtitle" id="onboarding-subtitle">الدليل هيتخصص حسب شغلك. اختار أقرب دور ليك.</p>
+          <div class="onboarding-cards" id="ob-role-cards">
+            <button class="ob-card" onclick="selectRole('frontend')" data-role="frontend" tabindex="0">
+              <span class="ob-card-icon">⟨/⟩</span>
+              <div class="ob-card-title" data-ob="role-frontend-title">فرونت إند</div>
+              <div class="ob-card-desc" data-ob="role-frontend-desc">React, Next.js, Vue, CSS — بناء واجهات المستخدم</div>
+            </button>
+            <button class="ob-card" onclick="selectRole('backend')" data-role="backend" tabindex="0">
+              <span class="ob-card-icon">⚙️</span>
+              <div class="ob-card-title" data-ob="role-backend-title">باك إند</div>
+              <div class="ob-card-desc" data-ob="role-backend-desc">APIs, قواعد بيانات, بنية تحتية, وأمان</div>
+            </button>
+            <button class="ob-card" onclick="selectRole('pm')" data-role="pm" tabindex="0">
+              <span class="ob-card-icon">📋</span>
+              <div class="ob-card-title" data-ob="role-pm-title">PM</div>
+              <div class="ob-card-desc" data-ob="role-pm-desc">إدارة المنتج، المواصفات، وسير العمل</div>
+            </button>
+            <button class="ob-card" onclick="selectRole('ui')" data-role="ui" tabindex="0">
+              <span class="ob-card-icon">🎨</span>
+              <div class="ob-card-title" data-ob="role-ui-title">UI</div>
+              <div class="ob-card-desc" data-ob="role-ui-desc">تصميم بصري، أنظمة تصميم، وتوكنز</div>
+            </button>
+            <button class="ob-card" onclick="selectRole('ux')" data-role="ux" tabindex="0">
+              <span class="ob-card-icon">🔬</span>
+              <div class="ob-card-title" data-ob="role-ux-title">UX</div>
+              <div class="ob-card-desc" data-ob="role-ux-desc">أبحاث المستخدمين، رحلة العميل، واختبار القابلية</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Choose Experience Level (hidden initially) -->
+        <div class="onboarding-step" id="ob-step-experience" style="display:none;">
+          <button class="onboarding-back" id="ob-back-btn" onclick="onboardingBack()">← رجوع</button>
+          <h2 class="onboarding-title" id="onboarding-exp-title">مستوى خبرتك مع الـ AI</h2>
+          <p class="onboarding-subtitle" id="onboarding-exp-subtitle">هنظبط عمق المحتوى حسب مستواك</p>
+          <div class="onboarding-cards experience-cards" id="ob-exp-cards">
+            <button class="ob-card" onclick="selectExperience('beginner')" data-exp="beginner" tabindex="0">
+              <span class="ob-card-icon">🌱</span>
+              <div class="ob-card-title" data-ob="exp-beginner-title">مبتدئ</div>
+              <div class="ob-card-desc" data-ob="exp-beginner-desc">ما استخدمت AI قبل كده</div>
+              <div class="ob-card-badge" data-ob="exp-beginner-badge">شرح بسيط + أمثلة خطوة بخطوة</div>
+            </button>
+            <button class="ob-card" onclick="selectExperience('intermediate')" data-exp="intermediate" tabindex="0">
+              <span class="ob-card-icon">🌿</span>
+              <div class="ob-card-title" data-ob="exp-intermediate-title">متوسط</div>
+              <div class="ob-card-desc" data-ob="exp-intermediate-desc">استخدمت ChatGPT أو Copilot أحياناً</div>
+              <div class="ob-card-badge" data-ob="exp-intermediate-badge">شرح واضح مع سياق</div>
+            </button>
+            <button class="ob-card" onclick="selectExperience('advanced')" data-exp="advanced" tabindex="0">
+              <span class="ob-card-icon">🌳</span>
+              <div class="ob-card-title" data-ob="exp-advanced-title">متقدم</div>
+              <div class="ob-card-desc" data-ob="exp-advanced-desc">بستخدم أدوات AI يومياً</div>
+              <div class="ob-card-badge" data-ob="exp-advanced-badge">عمق تقني + أفضل الممارسات</div>
+            </button>
+            <button class="ob-card" onclick="selectExperience('expert')" data-exp="expert" tabindex="0">
+              <span class="ob-card-icon">🚀</span>
+              <div class="ob-card-title" data-ob="exp-expert-title">خبير</div>
+              <div class="ob-card-desc" data-ob="exp-expert-desc">بابني AI workflows و agents</div>
+              <div class="ob-card-badge" data-ob="exp-expert-badge">أنماط متقدمة + مراجع معمارية</div>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ══════════════════════════════════════════════════════════════
@@ -2964,7 +3472,29 @@ const STATIC_I18N = {
     backToTop: "العودة لأعلى",
     openMenu: "فتح قائمة التنقل",
     closeMenu: "إغلاق قائمة التنقل",
-    domainBarAriaLabel: "اختر تخصصك"
+    domainBarAriaLabel: "اختر تخصصك",
+    // Onboarding
+    obRoleTitle: "اختر تخصصك",
+    obRoleSubtitle: "الدليل هيتخصص حسب شغلك. اختار أقرب دور ليك.",
+    obExpTitle: "مستوى خبرتك مع الـ AI",
+    obExpSubtitle: "هنظبط عمق المحتوى حسب مستواك",
+    obBack: "← رجوع",
+    obRoles: {
+      frontend: { title: "فرونت إند", desc: "React, Next.js, Vue, CSS — بناء واجهات المستخدم" },
+      backend: { title: "باك إند", desc: "APIs, قواعد بيانات, بنية تحتية, وأمان" },
+      pm: { title: "PM", desc: "إدارة المنتج، المواصفات، وسير العمل" },
+      ui: { title: "UI", desc: "تصميم بصري، أنظمة تصميم، وتوكنز" },
+      ux: { title: "UX", desc: "أبحاث المستخدمين، رحلة العميل، واختبار القابلية" }
+    },
+    obExperience: {
+      beginner: { title: "مبتدئ", desc: "ما استخدمت AI قبل كده", badge: "شرح بسيط + أمثلة خطوة بخطوة" },
+      intermediate: { title: "متوسط", desc: "استخدمت ChatGPT أو Copilot أحياناً", badge: "شرح واضح مع سياق" },
+      advanced: { title: "متقدم", desc: "بستخدم أدوات AI يومياً", badge: "عمق تقني + أفضل الممارسات" },
+      expert: { title: "خبير", desc: "بابني AI workflows و agents", badge: "أنماط متقدمة + مراجع معمارية" }
+    },
+    obExpEmojis: { beginner: "🌱", intermediate: "🌿", advanced: "🌳", expert: "🚀" },
+    settingsLabel: "الإعدادات",
+    switchRole: "تغيير الدور"
   },
   en: {
     navLogo: "⟡ ANTIGRAVITY",
@@ -2994,7 +3524,29 @@ const STATIC_I18N = {
     backToTop: "Back to top",
     openMenu: "Open navigation menu",
     closeMenu: "Close navigation menu",
-    domainBarAriaLabel: "Choose your role"
+    domainBarAriaLabel: "Choose your role",
+    // Onboarding
+    obRoleTitle: "Choose Your Role",
+    obRoleSubtitle: "The guide will personalize content for your role. Pick the closest match.",
+    obExpTitle: "Your AI Experience Level",
+    obExpSubtitle: "We'll adjust content depth to match your level",
+    obBack: "← Back",
+    obRoles: {
+      frontend: { title: "Frontend", desc: "React, Next.js, Vue, CSS — building user interfaces" },
+      backend: { title: "Backend", desc: "APIs, databases, infrastructure & security" },
+      pm: { title: "PM", desc: "Product management, specs & workflows" },
+      ui: { title: "UI", desc: "Visual design, design systems & tokens" },
+      ux: { title: "UX", desc: "User research, journey mapping & usability testing" }
+    },
+    obExperience: {
+      beginner: { title: "Beginner", desc: "Never used AI before", badge: "Simple explanations + step-by-step" },
+      intermediate: { title: "Intermediate", desc: "Used ChatGPT/Copilot casually", badge: "Clear explanations with context" },
+      advanced: { title: "Advanced", desc: "Use AI tools daily", badge: "Technical depth + best practices" },
+      expert: { title: "Expert", desc: "Building AI workflows/agents", badge: "Advanced patterns + architecture refs" }
+    },
+    obExpEmojis: { beginner: "🌱", intermediate: "🌿", advanced: "🌳", expert: "🚀" },
+    settingsLabel: "Settings",
+    switchRole: "Switch Role"
   }
 };
 
@@ -4231,6 +4783,12 @@ function setDomain(key, skipTransition) {
     p.setAttribute('aria-selected', isActive);
   });
 
+  // Collapse expanded compact bar after selection
+  const bar = document.getElementById('domain-bar');
+  if (bar.classList.contains('compact') && bar.classList.contains('expanded')) {
+    bar.classList.remove('expanded');
+  }
+
   // Helper to set innerHTML safely
   const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
   const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
@@ -4301,6 +4859,9 @@ function setDomain(key, skipTransition) {
 
     // Save preference
     try { localStorage.setItem('ag-domain', key); } catch(e) {}
+
+    // Update compact chip if in compact mode
+    if (typeof updateCompactChip === 'function') updateCompactChip();
   };
 
   if (skipTransition) {
@@ -4338,6 +4899,10 @@ function toggleLanguage() {
   const prevDomain = currentDomain;
   currentDomain = null; // Reset so setDomain doesn't early-return
   setDomain(prevDomain, false);
+
+  // Update compact chip & onboarding if visible
+  updateCompactChip();
+  applyOnboardingI18N(currentLang);
 
   // Persist
   try { localStorage.setItem('ag-lang', currentLang); } catch(e) {}
@@ -4438,6 +5003,247 @@ window.addEventListener('resize', () => {
 })();
 
 // ══════════════════════════════════════════════════════════════
+// ONBOARDING SYSTEM
+// ══════════════════════════════════════════════════════════════
+
+let currentExperience = 'intermediate';
+let onboardingSelectedRole = null;
+
+function showOnboarding() {
+  const overlay = document.getElementById('onboarding-overlay');
+  const stepRole = document.getElementById('ob-step-role');
+  const stepExp = document.getElementById('ob-step-experience');
+
+  // Reset to step 1
+  stepRole.style.display = '';
+  stepExp.style.display = 'none';
+  onboardingSelectedRole = null;
+
+  // Update progress dots
+  document.getElementById('ob-dot-1').className = 'onboarding-dot active';
+  document.getElementById('ob-dot-2').className = 'onboarding-dot';
+
+  // Clear selections
+  document.querySelectorAll('#ob-role-cards .ob-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('#ob-exp-cards .ob-card').forEach(c => c.classList.remove('selected'));
+
+  // Apply i18n to onboarding modal
+  applyOnboardingI18N(currentLang);
+
+  // Show
+  overlay.classList.remove('closing');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Focus first card
+  setTimeout(() => {
+    const firstCard = stepRole.querySelector('.ob-card');
+    if (firstCard) firstCard.focus();
+  }, 400);
+}
+
+function hideOnboarding() {
+  const overlay = document.getElementById('onboarding-overlay');
+  overlay.classList.add('closing');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    overlay.classList.remove('closing');
+  }, 400);
+}
+
+function selectRole(domain) {
+  onboardingSelectedRole = domain;
+
+  // Visual feedback
+  document.querySelectorAll('#ob-role-cards .ob-card').forEach(c => c.classList.remove('selected'));
+  const card = document.querySelector(`#ob-role-cards .ob-card[data-role="${domain}"]`);
+  if (card) card.classList.add('selected');
+
+  // Advance to step 2 after brief delay
+  setTimeout(() => {
+    document.getElementById('ob-step-role').style.display = 'none';
+    const stepExp = document.getElementById('ob-step-experience');
+    stepExp.style.display = '';
+    stepExp.style.animation = 'none';
+    stepExp.offsetHeight; // reflow
+    stepExp.style.animation = '';
+
+    // Update dots
+    document.getElementById('ob-dot-1').className = 'onboarding-dot completed';
+    document.getElementById('ob-dot-2').className = 'onboarding-dot active';
+
+    // Focus first experience card
+    setTimeout(() => {
+      const firstCard = stepExp.querySelector('.ob-card');
+      if (firstCard) firstCard.focus();
+    }, 100);
+  }, 250);
+}
+
+function onboardingBack() {
+  document.getElementById('ob-step-experience').style.display = 'none';
+  const stepRole = document.getElementById('ob-step-role');
+  stepRole.style.display = '';
+  stepRole.style.animation = 'none';
+  stepRole.offsetHeight;
+  stepRole.style.animation = '';
+
+  document.getElementById('ob-dot-1').className = 'onboarding-dot active';
+  document.getElementById('ob-dot-2').className = 'onboarding-dot';
+}
+
+function selectExperience(level) {
+  currentExperience = level;
+
+  // Visual feedback
+  document.querySelectorAll('#ob-exp-cards .ob-card').forEach(c => c.classList.remove('selected'));
+  const card = document.querySelector(`#ob-exp-cards .ob-card[data-exp="${level}"]`);
+  if (card) card.classList.add('selected');
+
+  // Complete onboarding after brief delay
+  setTimeout(() => {
+    // Apply the selected role
+    if (onboardingSelectedRole) {
+      setDomain(onboardingSelectedRole, false);
+    }
+
+    // Save state
+    try {
+      localStorage.setItem('ag-onboarded', 'true');
+      localStorage.setItem('ag-experience', level);
+    } catch(e) {}
+
+    // Apply experience level
+    applyExperienceLevel(level);
+
+    // Switch to compact domain bar
+    makeBarCompact();
+
+    // Update compact chip text
+    updateCompactChip();
+
+    // Close modal
+    hideOnboarding();
+  }, 300);
+}
+
+function applyExperienceLevel(level) {
+  currentExperience = level;
+  // Remove all experience classes
+  document.body.classList.remove('exp-beginner', 'exp-intermediate', 'exp-advanced', 'exp-expert');
+  // Add current
+  document.body.classList.add('exp-' + level);
+
+  // Auto-expand deep dives for advanced/expert, collapse for others
+  document.querySelectorAll('.deep-dive').forEach(dd => {
+    if (level === 'advanced' || level === 'expert') {
+      dd.classList.add('open');
+    } else {
+      dd.classList.remove('open');
+    }
+  });
+}
+
+function makeBarCompact() {
+  const bar = document.getElementById('domain-bar');
+  bar.classList.add('compact');
+  bar.classList.remove('expanded');
+}
+
+function makeBarFull() {
+  const bar = document.getElementById('domain-bar');
+  bar.classList.remove('compact');
+  bar.classList.remove('expanded');
+}
+
+function togglePillsExpand() {
+  const bar = document.getElementById('domain-bar');
+  if (bar.classList.contains('expanded')) {
+    bar.classList.remove('expanded');
+  } else {
+    bar.classList.add('expanded');
+  }
+}
+
+function updateCompactChip() {
+  const s = STATIC_I18N[currentLang];
+  const domainLabel = s.domainLabels[currentDomain] || currentDomain;
+  const expEmoji = s.obExpEmojis[currentExperience] || '🌿';
+  const expTitle = s.obExperience[currentExperience] ? s.obExperience[currentExperience].title : currentExperience;
+  const chipText = document.getElementById('compact-chip-text');
+  if (chipText) {
+    chipText.textContent = `${domainLabel} • ${expEmoji} ${expTitle}`;
+  }
+}
+
+function applyOnboardingI18N(lang) {
+  const s = STATIC_I18N[lang];
+  if (!s) return;
+
+  // Step 1 titles
+  const setT = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setT('onboarding-title', s.obRoleTitle);
+  setT('onboarding-subtitle', s.obRoleSubtitle);
+
+  // Step 2 titles
+  setT('onboarding-exp-title', s.obExpTitle);
+  setT('onboarding-exp-subtitle', s.obExpSubtitle);
+
+  // Back button
+  const backBtn = document.getElementById('ob-back-btn');
+  if (backBtn) backBtn.textContent = s.obBack;
+
+  // Role cards
+  Object.keys(s.obRoles).forEach(role => {
+    const titleEl = document.querySelector(`[data-ob="role-${role}-title"]`);
+    const descEl = document.querySelector(`[data-ob="role-${role}-desc"]`);
+    if (titleEl) titleEl.textContent = s.obRoles[role].title;
+    if (descEl) descEl.textContent = s.obRoles[role].desc;
+  });
+
+  // Experience cards
+  Object.keys(s.obExperience).forEach(exp => {
+    const titleEl = document.querySelector(`[data-ob="exp-${exp}-title"]`);
+    const descEl = document.querySelector(`[data-ob="exp-${exp}-desc"]`);
+    const badgeEl = document.querySelector(`[data-ob="exp-${exp}-badge"]`);
+    if (titleEl) titleEl.textContent = s.obExperience[exp].title;
+    if (descEl) descEl.textContent = s.obExperience[exp].desc;
+    if (badgeEl) badgeEl.textContent = s.obExperience[exp].badge;
+  });
+
+  // Settings button
+  const settingsBtn = document.getElementById('settings-btn');
+  if (settingsBtn) settingsBtn.setAttribute('title', s.settingsLabel);
+}
+
+// Close onboarding on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const overlay = document.getElementById('onboarding-overlay');
+    if (overlay.classList.contains('active')) {
+      hideOnboarding();
+    }
+  }
+});
+
+// Close onboarding on overlay click (not content)
+document.getElementById('onboarding-overlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) {
+    hideOnboarding();
+  }
+});
+
+// Deep dive toggle handler (event delegation)
+document.addEventListener('click', (e) => {
+  const toggle = e.target.closest('.deep-dive-toggle');
+  if (toggle) {
+    const dd = toggle.closest('.deep-dive');
+    if (dd) dd.classList.toggle('open');
+  }
+});
+
+// ══════════════════════════════════════════════════════════════
 // INITIALIZE — language + domain
 // ══════════════════════════════════════════════════════════════
 
@@ -4446,6 +5252,15 @@ window.addEventListener('resize', () => {
   let savedDomain = 'frontend';
   try { savedDomain = localStorage.getItem('ag-domain') || 'frontend'; } catch(e) {}
   if (!DOMAINS[savedDomain]) savedDomain = 'frontend';
+
+  // Restore experience level
+  let savedExp = 'intermediate';
+  try { savedExp = localStorage.getItem('ag-experience') || 'intermediate'; } catch(e) {}
+  currentExperience = savedExp;
+
+  // Check if onboarded
+  let isOnboarded = false;
+  try { isOnboarded = localStorage.getItem('ag-onboarded') === 'true'; } catch(e) {}
 
   // If English, apply before first render
   if (currentLang === 'en') {
@@ -4457,6 +5272,18 @@ window.addEventListener('resize', () => {
 
   // Render domain
   setDomain(savedDomain, true);
+
+  // Apply experience level
+  applyExperienceLevel(savedExp);
+
+  if (isOnboarded) {
+    // Show compact bar
+    makeBarCompact();
+    updateCompactChip();
+  } else {
+    // Show onboarding on first visit
+    setTimeout(() => showOnboarding(), 600);
+  }
 })();
 
       // ══════════════════════════════════════════════════════════════
