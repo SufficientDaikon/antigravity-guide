@@ -708,6 +708,7 @@
         padding: 2rem;
         position: relative;
         overflow: hidden;
+        cursor: pointer;
         transition:
           border-color 0.3s ease,
           transform 0.3s ease,
@@ -893,6 +894,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        cursor: pointer;
         transition:
           background 0.3s ease,
           transform 0.2s ease;
@@ -1078,6 +1080,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        cursor: pointer;
         transition:
           border-color 0.3s ease,
           transform 0.3s ease;
@@ -2102,6 +2105,285 @@
       }
 
       /* ══════════════════════════════════════════════════════════════
+         DETAIL MODAL
+         ══════════════════════════════════════════════════════════════ */
+
+      .detail-modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        background: rgba(10, 10, 26, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+        padding: 0;
+        overflow-y: auto;
+      }
+      .detail-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .detail-modal-overlay.active .detail-modal {
+        transform: translateY(0);
+      }
+      body.detail-modal-open {
+        overflow: hidden;
+      }
+
+      .detail-modal {
+        background: linear-gradient(165deg, var(--surface) 0%, var(--deep) 40%, var(--surface2) 100%);
+        border: 1px solid var(--border2);
+        border-radius: 24px 24px 0 0;
+        max-width: 900px;
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+        padding: 2.5rem;
+        position: relative;
+        box-shadow: 0 -10px 80px rgba(0, 229, 200, 0.12), 0 0 40px rgba(0, 0, 0, 0.5);
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        margin-top: auto;
+      }
+
+      .detail-modal-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 36px;
+        height: 36px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        color: var(--ice-dim);
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        z-index: 10;
+        line-height: 1;
+        padding: 0;
+      }
+      .detail-modal-close:hover {
+        background: var(--teal-dim);
+        border-color: var(--teal);
+        color: var(--teal);
+        transform: rotate(90deg);
+      }
+      [dir="rtl"] .detail-modal-close {
+        right: auto;
+        left: 1.5rem;
+      }
+
+      .detail-modal-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-right: 3rem;
+      }
+      [dir="rtl"] .detail-modal-header {
+        padding-right: 0;
+        padding-left: 3rem;
+      }
+
+      .detail-modal-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--teal-dim);
+        border: 2px solid var(--teal);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        flex-shrink: 0;
+        box-shadow: 0 0 20px var(--teal-glow);
+      }
+
+      .detail-modal-header-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .detail-modal-name {
+        font-family: var(--mono);
+        font-size: 1.4rem;
+        color: var(--ice);
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+        direction: ltr;
+        text-align: left;
+      }
+      [dir="rtl"] .detail-modal-name {
+        text-align: right;
+      }
+
+      .detail-modal-tagline {
+        font-family: var(--body);
+        font-size: 0.95rem;
+        color: var(--ice-dim);
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      .detail-modal-category {
+        background: var(--pink-dim);
+        border: 1px solid var(--pink);
+        color: var(--pink);
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .detail-modal-desc {
+        font-size: 1rem;
+        color: var(--ice-dim);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        font-weight: 400;
+      }
+
+      .detail-modal-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+      }
+
+      .detail-modal-feature-pill {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        border-radius: 20px;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        color: var(--ice-dim);
+        font-weight: 500;
+        transition: border-color 0.2s, background 0.2s, color 0.2s;
+      }
+      .detail-modal-feature-pill:hover {
+        border-color: var(--teal);
+        background: var(--teal-dim);
+        color: var(--teal);
+      }
+
+      .detail-modal-code,
+      .detail-modal-example {
+        background: var(--deep);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .detail-modal-code-label,
+      .detail-modal-example-label {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--teal);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+
+      .detail-modal-code pre,
+      .detail-modal-example pre {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        line-height: 1.7;
+        color: var(--ice);
+        overflow-x: auto;
+        direction: ltr;
+        text-align: left;
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin: 0;
+      }
+
+      .detail-modal-meta {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--ice-dimmer);
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        direction: ltr;
+        text-align: left;
+      }
+      [dir="rtl"] .detail-modal-meta {
+        text-align: right;
+      }
+
+      @media (min-width: 769px) {
+        .detail-modal-overlay {
+          align-items: center;
+          padding: 2rem;
+        }
+        .detail-modal {
+          border-radius: 24px;
+          max-height: 90vh;
+          margin: auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .detail-modal {
+          padding: 2rem 1.5rem;
+          max-height: 90vh;
+          border-radius: 20px 20px 0 0;
+        }
+        .detail-modal-header {
+          flex-direction: column;
+          gap: 1rem;
+          padding-right: 0;
+          padding-left: 0;
+        }
+        .detail-modal-icon {
+          width: 56px;
+          height: 56px;
+          font-size: 1.8rem;
+        }
+        .detail-modal-name {
+          font-size: 1.2rem;
+        }
+        .detail-modal-category {
+          align-self: flex-start;
+        }
+        .detail-modal-close {
+          top: 1rem;
+          right: 1rem;
+          width: 32px;
+          height: 32px;
+          font-size: 1.3rem;
+        }
+        [dir="rtl"] .detail-modal-close {
+          right: auto;
+          left: 1rem;
+        }
+        .detail-modal-code,
+        .detail-modal-example {
+          padding: 1rem;
+        }
+        .detail-modal-code pre,
+        .detail-modal-example pre {
+          font-size: 0.75rem;
+        }
+      }
+
+      /* ══════════════════════════════════════════════════════════════
          COMPACT DOMAIN BAR
          ══════════════════════════════════════════════════════════════ */
 
@@ -2452,6 +2734,29 @@
             </button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════
+     DETAIL MODAL
+     ══════════════════════════════════════════════════════════════ -->
+
+    <div class="detail-modal-overlay" id="detail-modal-overlay">
+      <div class="detail-modal" id="detail-modal" role="dialog" aria-modal="true">
+        <button class="detail-modal-close" id="detail-modal-close" aria-label="Close">&times;</button>
+        <div class="detail-modal-header">
+          <span class="detail-modal-icon" id="detail-modal-icon"></span>
+          <div class="detail-modal-header-text">
+            <h3 class="detail-modal-name" id="detail-modal-name"></h3>
+            <span class="detail-modal-tagline" id="detail-modal-tagline"></span>
+          </div>
+          <span class="detail-modal-category" id="detail-modal-category"></span>
+        </div>
+        <p class="detail-modal-desc" id="detail-modal-desc"></p>
+        <div class="detail-modal-features" id="detail-modal-features"></div>
+        <div class="detail-modal-code" id="detail-modal-code"></div>
+        <div class="detail-modal-example" id="detail-modal-example"></div>
+        <div class="detail-modal-meta" id="detail-modal-meta"></div>
       </div>
     </div>
 
@@ -3292,6 +3597,1034 @@ const user = await fetchUserById('123');
         const saved = localStorage.getItem('ag-lang');
         if (saved === 'en') currentLang = 'en';
       } catch(e) {}
+
+      // ══════════════════════════════════════════════════════════════
+      // DETAIL DATA — Skills, Agents, MCP Integrations
+      // ══════════════════════════════════════════════════════════════
+
+      const DETAIL_DATA = {
+        skills: {
+          'react-best-practices': {
+            icon: '⚛️',
+            ar: {
+              name: 'react-best-practices',
+              tagline: 'باترنز React الحديثة وأفضل الممارسات',
+              description: 'المهارة دي بتعلّم الـ AI بتاعك أحدث باترنز React — custom hooks، composition، performance optimization، و state management. هتخلي الكود بتاعك يبقى maintainable و scalable.',
+              features: ['Custom hooks patterns', 'React.memo optimization', 'useCallback/useMemo strategies', 'Component composition', 'State management patterns', 'Error boundary patterns'],
+              install: 'curl -sSL https://skills.sh/react-best-practices | sh',
+              usage: '// الـ agent هيعرف يكتب React صح\n"Build a search component with debouncing"\n"Optimize this component for re-renders"',
+              version: 'v2.1.0',
+              category: 'فريم ورك'
+            },
+            en: {
+              name: 'react-best-practices',
+              tagline: 'Modern React patterns and best practices',
+              description: 'This skill teaches your AI the latest React patterns — custom hooks, composition, performance optimization, and state management. Makes your code maintainable and scalable.',
+              features: ['Custom hooks patterns', 'React.memo optimization', 'useCallback/useMemo strategies', 'Component composition', 'State management patterns', 'Error boundary patterns'],
+              install: 'curl -sSL https://skills.sh/react-best-practices | sh',
+              usage: '// The agent will know proper React\n"Build a search component with debouncing"\n"Optimize this component for re-renders"',
+              version: 'v2.1.0',
+              category: 'Framework'
+            }
+          },
+          'vercel-react-best-practices': {
+            icon: '▲',
+            ar: {
+              name: 'vercel-react-best-practices',
+              tagline: 'Next.js App Router و Server Components',
+              description: 'باترنز Next.js الرسمية من Vercel Engineering — App Router، Server Components، streaming SSR، تحسين الـ bundle، و performance optimization. هيخلي تطبيقك سريع وفعّال.',
+              features: ['App Router patterns', 'Server Components', 'Streaming SSR', 'Bundle optimization', 'Image optimization', 'Font loading strategies'],
+              install: 'curl -sSL https://skills.sh/vercel-react-best-practices | sh',
+              usage: '// Next.js صح من غير trial & error\n"Create a server component that fetches data"\n"Optimize this page for Core Web Vitals"',
+              version: 'v3.0.1',
+              category: 'فريم ورك'
+            },
+            en: {
+              name: 'vercel-react-best-practices',
+              tagline: 'Next.js App Router and Server Components',
+              description: 'Official Next.js patterns from Vercel Engineering — App Router, Server Components, streaming SSR, bundle optimization, and performance. Makes your app fast and efficient.',
+              features: ['App Router patterns', 'Server Components', 'Streaming SSR', 'Bundle optimization', 'Image optimization', 'Font loading strategies'],
+              install: 'curl -sSL https://skills.sh/vercel-react-best-practices | sh',
+              usage: '// Proper Next.js without trial & error\n"Create a server component that fetches data"\n"Optimize this page for Core Web Vitals"',
+              version: 'v3.0.1',
+              category: 'Framework'
+            }
+          },
+          'frontend-design': {
+            icon: '🎨',
+            ar: {
+              name: 'frontend-design',
+              tagline: 'أنظمة تصميم و UI عالية الجودة',
+              description: 'بتعلّم الـ AI يبني واجهات مميزة وإنتاجية — design tokens، أنظمة Tailwind، responsive design، accessibility standards. مش generic AI UI، ده تصميم حقيقي.',
+              features: ['Design system patterns', 'Tailwind best practices', 'Responsive design', 'a11y compliance (WCAG)', 'Component libraries', 'CSS architecture'],
+              install: 'curl -sSL https://skills.sh/frontend-design | sh',
+              usage: '// UI عالية الجودة\n"Create a hero section with gradient effects"\n"Build an accessible modal dialog"',
+              version: 'v2.3.0',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'frontend-design',
+              tagline: 'Design systems and high-quality UI',
+              description: 'Teaches your AI to build distinctive production-grade interfaces — design tokens, Tailwind systems, responsive design, accessibility standards. Not generic AI UI, real design.',
+              features: ['Design system patterns', 'Tailwind best practices', 'Responsive design', 'a11y compliance (WCAG)', 'Component libraries', 'CSS architecture'],
+              install: 'curl -sSL https://skills.sh/frontend-design | sh',
+              usage: '// High-quality UI\n"Create a hero section with gradient effects"\n"Build an accessible modal dialog"',
+              version: 'v2.3.0',
+              category: 'Design'
+            }
+          },
+          'e2e-testing-patterns': {
+            icon: '🧪',
+            ar: {
+              name: 'e2e-testing-patterns',
+              tagline: 'اختبارات E2E بـ Playwright و Cypress',
+              description: 'Master E2E testing مع Playwright و Cypress — page object model، visual regression، flaky test detection، CI/CD integration. اختبارات موثوقة بتمسك الـ bugs قبل الإنتاج.',
+              features: ['Playwright patterns', 'Cypress best practices', 'Page Object Model', 'Visual regression', 'CI/CD integration', 'Flaky test prevention'],
+              install: 'curl -sSL https://skills.sh/e2e-testing-patterns | sh',
+              usage: '// اختبارات مظبوطة\n"Write E2E tests for the checkout flow"\n"Add visual regression tests for the homepage"',
+              version: 'v1.8.2',
+              category: 'اختبار'
+            },
+            en: {
+              name: 'e2e-testing-patterns',
+              tagline: 'E2E testing with Playwright and Cypress',
+              description: 'Master E2E testing with Playwright and Cypress — page object model, visual regression, flaky test detection, CI/CD integration. Reliable tests that catch bugs before production.',
+              features: ['Playwright patterns', 'Cypress best practices', 'Page Object Model', 'Visual regression', 'CI/CD integration', 'Flaky test prevention'],
+              install: 'curl -sSL https://skills.sh/e2e-testing-patterns | sh',
+              usage: '// Reliable tests\n"Write E2E tests for the checkout flow"\n"Add visual regression tests for the homepage"',
+              version: 'v1.8.2',
+              category: 'Testing'
+            }
+          },
+          'systematic-debugging': {
+            icon: '🔍',
+            ar: {
+              name: 'systematic-debugging',
+              tagline: 'منهجية debugging احترافية',
+              description: 'Framework من أربع مراحل لـ debugging — افترض، اختبر، اعزل، صلّح. بيضمن إنك تحل السبب الجذري، مش الأعراض. React DevTools، profiling، و debugging عميق.',
+              features: ['4-phase debugging framework', 'React DevTools mastery', 'Performance profiling', 'Memory leak detection', 'State debugging', 'Network debugging'],
+              install: 'curl -sSL https://skills.sh/systematic-debugging | sh',
+              usage: '// debugging منظم\n"Debug why this component re-renders"\n"Find the memory leak in this useEffect"',
+              version: 'v1.5.0',
+              category: 'تطوير'
+            },
+            en: {
+              name: 'systematic-debugging',
+              tagline: 'Professional debugging methodology',
+              description: 'Four-phase debugging framework — hypothesize, test, isolate, fix. Ensures you solve root cause, not symptoms. React DevTools, profiling, and deep debugging.',
+              features: ['4-phase debugging framework', 'React DevTools mastery', 'Performance profiling', 'Memory leak detection', 'State debugging', 'Network debugging'],
+              install: 'curl -sSL https://skills.sh/systematic-debugging | sh',
+              usage: '// Systematic debugging\n"Debug why this component re-renders"\n"Find the memory leak in this useEffect"',
+              version: 'v1.5.0',
+              category: 'Development'
+            }
+          },
+          'webapp-testing': {
+            icon: '🌐',
+            ar: {
+              name: 'webapp-testing',
+              tagline: 'أتمتة المتصفح و screenshot testing',
+              description: 'أدوات اختبار التطبيقات على المتصفح — Playwright browser automation، screenshot verification، console log capture، performance metrics. اختبر الـ UI الحقيقي.',
+              features: ['Browser automation', 'Screenshot verification', 'Console log capture', 'Performance metrics', 'Network interception', 'Multi-browser testing'],
+              install: 'curl -sSL https://skills.sh/webapp-testing | sh',
+              usage: '// اختبار المتصفح\n"Capture screenshots of all pages"\n"Test this feature across Chrome/Firefox/Safari"',
+              version: 'v1.4.3',
+              category: 'اختبار'
+            },
+            en: {
+              name: 'webapp-testing',
+              tagline: 'Browser automation and screenshot testing',
+              description: 'Web app testing tools — Playwright browser automation, screenshot verification, console log capture, performance metrics. Test the real UI.',
+              features: ['Browser automation', 'Screenshot verification', 'Console log capture', 'Performance metrics', 'Network interception', 'Multi-browser testing'],
+              install: 'curl -sSL https://skills.sh/webapp-testing | sh',
+              usage: '// Browser testing\n"Capture screenshots of all pages"\n"Test this feature across Chrome/Firefox/Safari"',
+              version: 'v1.4.3',
+              category: 'Testing'
+            }
+          },
+          'django-expert': {
+            icon: '🐍',
+            ar: {
+              name: 'django-expert',
+              tagline: 'Django development احترافي',
+              description: 'خبرة Django كاملة — ORM patterns، admin customization، authentication، signals، middleware، testing. لو بتبني backend بـ Python، المهارة دي أساسية.',
+              features: ['Django ORM mastery', 'Custom admin interfaces', 'Authentication systems', 'Signals and middleware', 'Test-driven development', 'Performance optimization'],
+              install: 'curl -sSL https://skills.sh/django-expert | sh',
+              usage: '// Django صح\n"Create a custom user model with permissions"\n"Optimize these queries for N+1 problems"',
+              version: 'v2.7.1',
+              category: 'باك إند'
+            },
+            en: {
+              name: 'django-expert',
+              tagline: 'Professional Django development',
+              description: 'Complete Django expertise — ORM patterns, admin customization, authentication, signals, middleware, testing. If you build backends with Python, this skill is essential.',
+              features: ['Django ORM mastery', 'Custom admin interfaces', 'Authentication systems', 'Signals and middleware', 'Test-driven development', 'Performance optimization'],
+              install: 'curl -sSL https://skills.sh/django-expert | sh',
+              usage: '// Proper Django\n"Create a custom user model with permissions"\n"Optimize these queries for N+1 problems"',
+              version: 'v2.7.1',
+              category: 'Backend'
+            }
+          },
+          'django-orm-patterns': {
+            icon: '🗄️',
+            ar: {
+              name: 'django-orm-patterns',
+              tagline: 'Django ORM باترنز و query optimization',
+              description: 'تعمّق في Django ORM — complex queries، prefetch/select_related، aggregations، annotations، transactions، raw SQL. اعمل queries سريعة وفعّالة.',
+              features: ['Complex querysets', 'Prefetch/select_related', 'Aggregations', 'Annotations', 'Transaction management', 'Query optimization'],
+              install: 'curl -sSL https://skills.sh/django-orm-patterns | sh',
+              usage: '// ORM مظبوط\n"Write a query with nested prefetch_related"\n"Optimize this queryset for performance"',
+              version: 'v1.9.0',
+              category: 'باك إند'
+            },
+            en: {
+              name: 'django-orm-patterns',
+              tagline: 'Django ORM patterns and query optimization',
+              description: 'Deep dive into Django ORM — complex queries, prefetch/select_related, aggregations, annotations, transactions, raw SQL. Write fast and efficient queries.',
+              features: ['Complex querysets', 'Prefetch/select_related', 'Aggregations', 'Annotations', 'Transaction management', 'Query optimization'],
+              install: 'curl -sSL https://skills.sh/django-orm-patterns | sh',
+              usage: '// Proper ORM\n"Write a query with nested prefetch_related"\n"Optimize this queryset for performance"',
+              version: 'v1.9.0',
+              category: 'Backend'
+            }
+          },
+          'django-rest-framework': {
+            icon: '🔌',
+            ar: {
+              name: 'django-rest-framework',
+              tagline: 'DRF لبناء APIs قوية',
+              description: 'Django REST Framework من الألف للياء — serializers، viewsets، authentication، permissions، filtering، pagination، versioning. اعمل REST APIs على مستوى إنتاجي.',
+              features: ['Serializer patterns', 'ViewSet architecture', 'Authentication methods', 'Permission systems', 'Filtering and pagination', 'API versioning'],
+              install: 'curl -sSL https://skills.sh/django-rest-framework | sh',
+              usage: '// APIs احترافية\n"Create a nested serializer with validation"\n"Add JWT authentication to this API"',
+              version: 'v2.2.5',
+              category: 'باك إند'
+            },
+            en: {
+              name: 'django-rest-framework',
+              tagline: 'DRF for powerful APIs',
+              description: 'Django REST Framework from A to Z — serializers, viewsets, authentication, permissions, filtering, pagination, versioning. Build production-level REST APIs.',
+              features: ['Serializer patterns', 'ViewSet architecture', 'Authentication methods', 'Permission systems', 'Filtering and pagination', 'API versioning'],
+              install: 'curl -sSL https://skills.sh/django-rest-framework | sh',
+              usage: '// Professional APIs\n"Create a nested serializer with validation"\n"Add JWT authentication to this API"',
+              version: 'v2.2.5',
+              category: 'Backend'
+            }
+          },
+          'backend-development': {
+            icon: '⚙️',
+            ar: {
+              name: 'backend-development',
+              tagline: 'Backend architecture و API design',
+              description: 'أساسيات الباك إند — API design، database schema، authentication/authorization، caching، rate limiting، monitoring. بناء backend scalable و secure.',
+              features: ['REST API design', 'Database architecture', 'Authentication patterns', 'Caching strategies', 'Rate limiting', 'Monitoring and logging'],
+              install: 'curl -sSL https://skills.sh/backend-development | sh',
+              usage: '// Backend قوي\n"Design a scalable API for a multi-tenant app"\n"Add Redis caching to this endpoint"',
+              version: 'v3.1.0',
+              category: 'باك إند'
+            },
+            en: {
+              name: 'backend-development',
+              tagline: 'Backend architecture and API design',
+              description: 'Backend fundamentals — API design, database schema, authentication/authorization, caching, rate limiting, monitoring. Build scalable and secure backends.',
+              features: ['REST API design', 'Database architecture', 'Authentication patterns', 'Caching strategies', 'Rate limiting', 'Monitoring and logging'],
+              install: 'curl -sSL https://skills.sh/backend-development | sh',
+              usage: '// Strong backend\n"Design a scalable API for a multi-tenant app"\n"Add Redis caching to this endpoint"',
+              version: 'v3.1.0',
+              category: 'Backend'
+            }
+          },
+          'spec-writer': {
+            icon: '📝',
+            ar: {
+              name: 'spec-writer (skill)',
+              tagline: 'كتابة مواصفات شاملة وواضحة',
+              description: 'المهارة دي بتعلّم الـ AI يكتب specs بدون أي لبس — user stories، acceptance criteria، technical requirements، edge cases. المواصفة الكويسة نص الشغل.',
+              features: ['User story writing', 'Acceptance criteria', 'Technical requirements', 'Edge case identification', 'API contracts', 'State diagrams'],
+              install: 'curl -sSL https://skills.sh/spec-writer | sh',
+              usage: '// Specs واضحة\n"Write a spec for user authentication"\n"Define acceptance criteria for this feature"',
+              version: 'v1.6.0',
+              category: 'إدارة'
+            },
+            en: {
+              name: 'spec-writer (skill)',
+              tagline: 'Comprehensive and clear specifications',
+              description: 'This skill teaches your AI to write unambiguous specs — user stories, acceptance criteria, technical requirements, edge cases. A good spec is half the work.',
+              features: ['User story writing', 'Acceptance criteria', 'Technical requirements', 'Edge case identification', 'API contracts', 'State diagrams'],
+              install: 'curl -sSL https://skills.sh/spec-writer | sh',
+              usage: '// Clear specs\n"Write a spec for user authentication"\n"Define acceptance criteria for this feature"',
+              version: 'v1.6.0',
+              category: 'Management'
+            }
+          },
+          'qa-test-planner': {
+            icon: '✅',
+            ar: {
+              name: 'qa-test-planner',
+              tagline: 'خطط اختبار شاملة وتقارير bugs',
+              description: 'خلّي الـ AI يعمل QA — test plans، manual test cases، regression suites، bug reports بصيغة احترافية. Quality assurance من الأول.',
+              features: ['Test plan generation', 'Manual test cases', 'Regression test suites', 'Bug report writing', 'Test coverage analysis', 'Priority/severity assessment'],
+              install: 'curl -sSL https://skills.sh/qa-test-planner | sh',
+              usage: '// QA محترف\n"Generate a test plan for the checkout flow"\n"Write a bug report for this UI issue"',
+              version: 'v1.3.2',
+              category: 'اختبار'
+            },
+            en: {
+              name: 'qa-test-planner',
+              tagline: 'Comprehensive test plans and bug reports',
+              description: 'Make your AI do QA — test plans, manual test cases, regression suites, professional bug reports. Quality assurance from the start.',
+              features: ['Test plan generation', 'Manual test cases', 'Regression test suites', 'Bug report writing', 'Test coverage analysis', 'Priority/severity assessment'],
+              install: 'curl -sSL https://skills.sh/qa-test-planner | sh',
+              usage: '// Professional QA\n"Generate a test plan for the checkout flow"\n"Write a bug report for this UI issue"',
+              version: 'v1.3.2',
+              category: 'Testing'
+            }
+          },
+          'writing-skills': {
+            icon: '✍️',
+            ar: {
+              name: 'writing-skills',
+              tagline: 'كتابة مهارات مخصصة للـ AI بتاعك',
+              description: 'Meta-skill بتعلّم الـ AI ازاي يكتب skills جديدة. لو محتاج domain knowledge خاص، المهارة دي هتساعدك تبنيه بنفسك.',
+              features: ['Skill structure patterns', 'Knowledge encoding', 'Context optimization', 'Prompt engineering', 'Validation techniques', 'Testing methodologies'],
+              install: 'curl -sSL https://skills.sh/writing-skills | sh',
+              usage: '// اعمل skills خاصة بيك\n"Create a skill for Flutter best practices"\n"Write a skill for GraphQL schema design"',
+              version: 'v1.2.0',
+              category: 'ميتا'
+            },
+            en: {
+              name: 'writing-skills',
+              tagline: 'Write custom skills for your AI',
+              description: 'Meta-skill that teaches your AI how to write new skills. If you need custom domain knowledge, this skill helps you build it yourself.',
+              features: ['Skill structure patterns', 'Knowledge encoding', 'Context optimization', 'Prompt engineering', 'Validation techniques', 'Testing methodologies'],
+              install: 'curl -sSL https://skills.sh/writing-skills | sh',
+              usage: '// Create your own skills\n"Create a skill for Flutter best practices"\n"Write a skill for GraphQL schema design"',
+              version: 'v1.2.0',
+              category: 'Meta'
+            }
+          },
+          'prompt-architect': {
+            icon: '🎯',
+            ar: {
+              name: 'prompt-architect',
+              tagline: 'Prompt engineering من 7 frameworks',
+              description: 'تحليل وتحسين الـ prompts باستخدام frameworks بحثية — CO-STAR، RISEN، RISE-IE، TIDD-EC، RTF، Chain of Thought. هتخلي الـ prompts بتاعك أقوى.',
+              features: ['7 research-backed frameworks', 'Prompt analysis', 'Structured optimization', 'Context engineering', 'Multi-turn conversations', 'Output formatting'],
+              install: 'curl -sSL https://skills.sh/prompt-architect | sh',
+              usage: '// Prompts قوية\n"Improve this prompt using CO-STAR"\n"Analyze this conversation for optimization"',
+              version: 'v2.0.1',
+              category: 'ميتا'
+            },
+            en: {
+              name: 'prompt-architect',
+              tagline: 'Prompt engineering with 7 frameworks',
+              description: 'Analyze and improve prompts using research-backed frameworks — CO-STAR, RISEN, RISE-IE, TIDD-EC, RTF, Chain of Thought. Make your prompts stronger.',
+              features: ['7 research-backed frameworks', 'Prompt analysis', 'Structured optimization', 'Context engineering', 'Multi-turn conversations', 'Output formatting'],
+              install: 'curl -sSL https://skills.sh/prompt-architect | sh',
+              usage: '// Strong prompts\n"Improve this prompt using CO-STAR"\n"Analyze this conversation for optimization"',
+              version: 'v2.0.1',
+              category: 'Meta'
+            }
+          },
+          'ui-visual-design': {
+            icon: '🎨',
+            ar: {
+              name: 'ui-visual-design',
+              tagline: 'تصميم visual احترافي و design tokens',
+              description: 'Visual design mastery — color theory، typography systems، visual hierarchy، hero sections، design tokens. اعمل تصميمات على مستوى إنتاجي مش generic AI aesthetics.',
+              features: ['Color theory', 'Typography systems', 'Visual hierarchy', 'Hero section patterns', 'Design tokens', 'Modern design trends'],
+              install: 'curl -sSL https://skills.sh/ui-visual-design | sh',
+              usage: '// تصميم على مستوى\n"Design a premium landing page hero"\n"Create a color system for a fintech app"',
+              version: 'v2.4.0',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'ui-visual-design',
+              tagline: 'Professional visual design and design tokens',
+              description: 'Visual design mastery — color theory, typography systems, visual hierarchy, hero sections, design tokens. Create production-level designs, not generic AI aesthetics.',
+              features: ['Color theory', 'Typography systems', 'Visual hierarchy', 'Hero section patterns', 'Design tokens', 'Modern design trends'],
+              install: 'curl -sSL https://skills.sh/ui-visual-design | sh',
+              usage: '// Next-level design\n"Design a premium landing page hero"\n"Create a color system for a fintech app"',
+              version: 'v2.4.0',
+              category: 'Design'
+            }
+          },
+          'wireframing': {
+            icon: '📐',
+            ar: {
+              name: 'wireframing',
+              tagline: 'Wireframes منخفضة الدقة و layout planning',
+              description: 'باترنز Wireframing — layout grids، content blocks، responsive breakpoints، page patterns للـ landing pages و dashboards و forms. خطّط الـ structure قبل التفاصيل.',
+              features: ['Layout grid systems', 'Content block patterns', 'Responsive breakpoints', 'Landing page layouts', 'Dashboard patterns', 'Form layouts'],
+              install: 'curl -sSL https://skills.sh/wireframing | sh',
+              usage: '// Wireframes سريعة\n"Create a wireframe for a SaaS dashboard"\n"Design a responsive layout grid system"',
+              version: 'v1.7.1',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'wireframing',
+              tagline: 'Low-fidelity wireframes and layout planning',
+              description: 'Wireframing patterns — layout grids, content blocks, responsive breakpoints, page patterns for landing pages, dashboards, and forms. Plan the structure before details.',
+              features: ['Layout grid systems', 'Content block patterns', 'Responsive breakpoints', 'Landing page layouts', 'Dashboard patterns', 'Form layouts'],
+              install: 'curl -sSL https://skills.sh/wireframing | sh',
+              usage: '// Fast wireframes\n"Create a wireframe for a SaaS dashboard"\n"Design a responsive layout grid system"',
+              version: 'v1.7.1',
+              category: 'Design'
+            }
+          },
+          'design-review': {
+            icon: '👁️',
+            ar: {
+              name: 'design-review',
+              tagline: 'مراجعة design بـ heuristic evaluation',
+              description: 'Design critique methodology — heuristic evaluation، consistency checking، accessibility compliance، visual quality assessment. راجع التصميمات بطريقة احترافية.',
+              features: ['Heuristic evaluation', 'Consistency checking', 'Accessibility (WCAG)', 'Visual quality assessment', 'Usability principles', 'Design system compliance'],
+              install: 'curl -sSL https://skills.sh/design-review | sh',
+              usage: '// مراجعة design\n"Review this interface for accessibility"\n"Check design system consistency"',
+              version: 'v1.4.0',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'design-review',
+              tagline: 'Design review with heuristic evaluation',
+              description: 'Design critique methodology — heuristic evaluation, consistency checking, accessibility compliance, visual quality assessment. Review designs professionally.',
+              features: ['Heuristic evaluation', 'Consistency checking', 'Accessibility (WCAG)', 'Visual quality assessment', 'Usability principles', 'Design system compliance'],
+              install: 'curl -sSL https://skills.sh/design-review | sh',
+              usage: '// Design review\n"Review this interface for accessibility"\n"Check design system consistency"',
+              version: 'v1.4.0',
+              category: 'Design'
+            }
+          },
+          'design-handoff': {
+            icon: '🤝',
+            ar: {
+              name: 'design-handoff',
+              tagline: 'Design handoff بين الـ agents',
+              description: 'Handoff protocols — artifact formats، lifecycle state management، inter-agent communication، quality gates. نسّق بين الـ design agents والـ dev agents بكفاءة.',
+              features: ['Artifact format standards', 'Lifecycle state tracking', 'Inter-agent communication', 'Quality gate procedures', 'Context summarization', 'Handoff validation'],
+              install: 'curl -sSL https://skills.sh/design-handoff | sh',
+              usage: '// Handoff سلس\n"Prepare design handoff for implementation"\n"Validate handoff artifact completeness"',
+              version: 'v1.1.3',
+              category: 'عمليات'
+            },
+            en: {
+              name: 'design-handoff',
+              tagline: 'Design handoff between agents',
+              description: 'Handoff protocols — artifact formats, lifecycle state management, inter-agent communication, quality gates. Coordinate between design agents and dev agents efficiently.',
+              features: ['Artifact format standards', 'Lifecycle state tracking', 'Inter-agent communication', 'Quality gate procedures', 'Context summarization', 'Handoff validation'],
+              install: 'curl -sSL https://skills.sh/design-handoff | sh',
+              usage: '// Smooth handoff\n"Prepare design handoff for implementation"\n"Validate handoff artifact completeness"',
+              version: 'v1.1.3',
+              category: 'Operations'
+            }
+          },
+          'web-design-guidelines': {
+            icon: '📋',
+            ar: {
+              name: 'web-design-guidelines',
+              tagline: 'Web Interface Guidelines للـ UI صح',
+              description: 'مراجعة الـ UI code للـ compliance — accessibility، responsive design، performance، SEO، browser compatibility. اتأكد إن الـ UI بتاعك يمشي على المعايير.',
+              features: ['Accessibility audit', 'Responsive design check', 'Performance guidelines', 'SEO best practices', 'Browser compatibility', 'UI pattern validation'],
+              install: 'curl -sSL https://skills.sh/web-design-guidelines | sh',
+              usage: '// UI compliance\n"Audit this page for accessibility"\n"Check responsive behavior for mobile"',
+              version: 'v1.5.2',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'web-design-guidelines',
+              tagline: 'Web Interface Guidelines for proper UI',
+              description: 'Review UI code for compliance — accessibility, responsive design, performance, SEO, browser compatibility. Ensure your UI meets standards.',
+              features: ['Accessibility audit', 'Responsive design check', 'Performance guidelines', 'SEO best practices', 'Browser compatibility', 'UI pattern validation'],
+              install: 'curl -sSL https://skills.sh/web-design-guidelines | sh',
+              usage: '// UI compliance\n"Audit this page for accessibility"\n"Check responsive behavior for mobile"',
+              version: 'v1.5.2',
+              category: 'Design'
+            }
+          },
+          'ux-research': {
+            icon: '🔬',
+            ar: {
+              name: 'ux-research (skill)',
+              tagline: 'UX research و persona creation',
+              description: 'Methodology للـ UX research — user interviews، persona creation، journey mapping، competitive analysis، research synthesis. اعرف المستخدمين بتوعك بعمق.',
+              features: ['User interview techniques', 'Persona creation', 'Journey mapping', 'Competitive analysis', 'Research synthesis', 'Insight extraction'],
+              install: 'curl -sSL https://skills.sh/ux-research | sh',
+              usage: '// Research عميق\n"Create user personas from interview data"\n"Map the user journey for onboarding"',
+              version: 'v1.8.0',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'ux-research (skill)',
+              tagline: 'UX research and persona creation',
+              description: 'UX research methodology — user interviews, persona creation, journey mapping, competitive analysis, research synthesis. Know your users deeply.',
+              features: ['User interview techniques', 'Persona creation', 'Journey mapping', 'Competitive analysis', 'Research synthesis', 'Insight extraction'],
+              install: 'curl -sSL https://skills.sh/ux-research | sh',
+              usage: '// Deep research\n"Create user personas from interview data"\n"Map the user journey for onboarding"',
+              version: 'v1.8.0',
+              category: 'Design'
+            }
+          },
+          'ux-interaction-design': {
+            icon: '✨',
+            ar: {
+              name: 'ux-interaction-design',
+              tagline: 'Interaction design و micro-interactions',
+              description: 'UX interaction patterns — micro-interactions، UI state machines، transition specs، form UX، animation principles، feedback patterns. اعمل interactions ممتعة.',
+              features: ['Micro-interactions', 'UI state machines', 'Transition specifications', 'Form UX patterns', 'Animation principles', 'Feedback patterns'],
+              install: 'curl -sSL https://skills.sh/ux-interaction-design | sh',
+              usage: '// Interactions جميلة\n"Design micro-interactions for button states"\n"Create a state machine for this form"',
+              version: 'v2.1.0',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'ux-interaction-design',
+              tagline: 'Interaction design and micro-interactions',
+              description: 'UX interaction patterns — micro-interactions, UI state machines, transition specs, form UX, animation principles, feedback patterns. Create delightful interactions.',
+              features: ['Micro-interactions', 'UI state machines', 'Transition specifications', 'Form UX patterns', 'Animation principles', 'Feedback patterns'],
+              install: 'curl -sSL https://skills.sh/ux-interaction-design | sh',
+              usage: '// Beautiful interactions\n"Design micro-interactions for button states"\n"Create a state machine for this form"',
+              version: 'v2.1.0',
+              category: 'Design'
+            }
+          },
+          'ux-test-suite': {
+            icon: '🧪',
+            ar: {
+              name: 'ux-test-suite',
+              tagline: 'UX testing و usability scoring',
+              description: 'UX testing patterns — task completion testing، error recovery، usability scoring، cognitive load heuristics، flow testing. اختبر الـ UX بتاعك بطريقة علمية.',
+              features: ['Task completion testing', 'Error recovery testing', 'Usability scoring (SUS)', 'Cognitive load heuristics', 'Flow testing', 'A/B test design'],
+              install: 'curl -sSL https://skills.sh/ux-test-suite | sh',
+              usage: '// UX testing\n"Design a usability test for checkout"\n"Calculate SUS score from survey data"',
+              version: 'v1.3.5',
+              category: 'اختبار'
+            },
+            en: {
+              name: 'ux-test-suite',
+              tagline: 'UX testing and usability scoring',
+              description: 'UX testing patterns — task completion testing, error recovery, usability scoring, cognitive load heuristics, flow testing. Test your UX scientifically.',
+              features: ['Task completion testing', 'Error recovery testing', 'Usability scoring (SUS)', 'Cognitive load heuristics', 'Flow testing', 'A/B test design'],
+              install: 'curl -sSL https://skills.sh/ux-test-suite | sh',
+              usage: '// UX testing\n"Design a usability test for checkout"\n"Calculate SUS score from survey data"',
+              version: 'v1.3.5',
+              category: 'Testing'
+            }
+          },
+          'info-architecture': {
+            icon: '🗺️',
+            ar: {
+              name: 'info-architecture',
+              tagline: 'Information architecture و sitemaps',
+              description: 'IA patterns — sitemaps، navigation design، content strategy، user flows، screen inventories. نظّم محتوى وتنقّل الـ site بتاعك بطريقة منطقية.',
+              features: ['Sitemap creation', 'Navigation design', 'Content strategy', 'User flow mapping', 'Screen inventory', 'IA validation'],
+              install: 'curl -sSL https://skills.sh/info-architecture | sh',
+              usage: '// IA محترف\n"Create a sitemap for an e-commerce site"\n"Design navigation for a SaaS dashboard"',
+              version: 'v1.6.2',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'info-architecture',
+              tagline: 'Information architecture and sitemaps',
+              description: 'IA patterns — sitemaps, navigation design, content strategy, user flows, screen inventories. Organize your site content and navigation logically.',
+              features: ['Sitemap creation', 'Navigation design', 'Content strategy', 'User flow mapping', 'Screen inventory', 'IA validation'],
+              install: 'curl -sSL https://skills.sh/info-architecture | sh',
+              usage: '// Professional IA\n"Create a sitemap for an e-commerce site"\n"Design navigation for a SaaS dashboard"',
+              version: 'v1.6.2',
+              category: 'Design'
+            }
+          },
+          'mobile-design': {
+            icon: '📱',
+            ar: {
+              name: 'mobile-design',
+              tagline: 'Mobile-first design لـ iOS و Android',
+              description: 'Mobile design doctrine — touch interaction، performance، platform conventions (iOS/Android)، offline behavior، mobile-specific constraints. صمم mobile صح من الأول.',
+              features: ['Touch interaction patterns', 'Platform conventions', 'Performance optimization', 'Offline behavior', 'Mobile gestures', 'Responsive mobile layouts'],
+              install: 'curl -sSL https://skills.sh/mobile-design | sh',
+              usage: '// Mobile محترف\n"Design a mobile-first checkout flow"\n"Create iOS and Android navigation patterns"',
+              version: 'v2.0.3',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'mobile-design',
+              tagline: 'Mobile-first design for iOS and Android',
+              description: 'Mobile design doctrine — touch interaction, performance, platform conventions (iOS/Android), offline behavior, mobile-specific constraints. Design mobile properly from the start.',
+              features: ['Touch interaction patterns', 'Platform conventions', 'Performance optimization', 'Offline behavior', 'Mobile gestures', 'Responsive mobile layouts'],
+              install: 'curl -sSL https://skills.sh/mobile-design | sh',
+              usage: '// Professional mobile\n"Design a mobile-first checkout flow"\n"Create iOS and Android navigation patterns"',
+              version: 'v2.0.3',
+              category: 'Design'
+            }
+          }
+        },
+        agents: {
+          'code-review': {
+            icon: '👁️',
+            ar: {
+              name: 'code-review',
+              tagline: 'مراجعة كود بجودة عالية — bugs فقط',
+              description: 'الوكيل ده متخصص في code review عميق — بيلاقي bugs حقيقية، security vulnerabilities، logic errors، وanti-patterns. مش بيضيع وقتك على style أو formatting. Signal عالي، noise صفر.',
+              capabilities: ['Bug detection', 'Security vulnerability scanning', 'Logic error identification', 'Performance anti-patterns', 'Dead code detection', 'Code smell analysis'],
+              trigger: 'antigravity invoke --agent code-review',
+              example: '// هيلاقي مشاكل زي:\n// - SQL injection vulnerabilities\n// - Unhandled promise rejections  \n// - Memory leaks in useEffect\n// - N+1 query problems\n// - Race conditions',
+              model: 'Claude Sonnet',
+              category: 'مراجعة'
+            },
+            en: {
+              name: 'code-review',
+              tagline: 'High-quality code review — bugs only',
+              description: 'This agent specializes in deep code review — finds real bugs, security vulnerabilities, logic errors, and anti-patterns. Won\'t waste your time on style or formatting. High signal, zero noise.',
+              capabilities: ['Bug detection', 'Security vulnerability scanning', 'Logic error identification', 'Performance anti-patterns', 'Dead code detection', 'Code smell analysis'],
+              trigger: 'antigravity invoke --agent code-review',
+              example: '// Will find issues like:\n// - SQL injection vulnerabilities\n// - Unhandled promise rejections\n// - Memory leaks in useEffect\n// - N+1 query problems\n// - Race conditions',
+              model: 'Claude Sonnet',
+              category: 'Review'
+            }
+          },
+          'spec-writer': {
+            icon: '📋',
+            ar: {
+              name: 'spec-writer',
+              tagline: 'مواصفات شاملة من أفكار غامضة',
+              description: 'بيحول الأفكار الغامضة لمواصفات مفصلة وواضحة ما فيهاش أي لبس — user stories، acceptance criteria، technical requirements، edge cases، API contracts. المواصفة الكويسة نص الشغل.',
+              capabilities: ['Requirements engineering', 'User story creation', 'Acceptance criteria definition', 'Technical spec writing', 'Edge case identification', 'API contract design'],
+              trigger: 'antigravity invoke --agent spec-writer --task "feature idea"',
+              example: '// مثال:\nInput: "نحتاج نظام مصادقة"\nOutput: \n- User stories مع personas\n- Technical architecture\n- API endpoints\n- Security requirements\n- Test scenarios',
+              model: 'Claude Sonnet',
+              category: 'تخطيط'
+            },
+            en: {
+              name: 'spec-writer',
+              tagline: 'Comprehensive specs from vague ideas',
+              description: 'Transforms vague ideas into detailed, unambiguous specifications — user stories, acceptance criteria, technical requirements, edge cases, API contracts. A good spec is half the work.',
+              capabilities: ['Requirements engineering', 'User story creation', 'Acceptance criteria definition', 'Technical spec writing', 'Edge case identification', 'API contract design'],
+              trigger: 'antigravity invoke --agent spec-writer --task "feature idea"',
+              example: '// Example:\nInput: "We need authentication"\nOutput:\n- User stories with personas\n- Technical architecture\n- API endpoints\n- Security requirements\n- Test scenarios',
+              model: 'Claude Sonnet',
+              category: 'Planning'
+            }
+          },
+          'implementer': {
+            icon: '⚙️',
+            ar: {
+              name: 'implementer',
+              tagline: 'تنفيذ من المواصفات — بالظبط',
+              description: 'بياخد spec شامل وبينفذه section by section — بيمشي على المواصفة بالظبط، بيكتب tests من الـ acceptance criteria، وبيتحقق كل section بيشتغل قبل ما يكمل. Spec-driven development بشكل صح.',
+              capabilities: ['Spec-driven implementation', 'Test-driven development', 'Section-by-section execution', 'Acceptance criteria validation', 'Progress tracking', 'Quality verification'],
+              trigger: 'antigravity invoke --agent implementer --spec path/to/spec.md',
+              example: '// Workflow:\n1. Read spec thoroughly\n2. Break into sections\n3. Implement + test each section\n4. Verify acceptance criteria\n5. Move to next section\n6. Final integration test',
+              model: 'Claude Sonnet',
+              category: 'تنفيذ'
+            },
+            en: {
+              name: 'implementer',
+              tagline: 'Implementation from specs — exactly',
+              description: 'Takes a comprehensive spec and implements it section by section — follows the spec exactly, writes tests from acceptance criteria, and verifies each section works before continuing. Proper spec-driven development.',
+              capabilities: ['Spec-driven implementation', 'Test-driven development', 'Section-by-section execution', 'Acceptance criteria validation', 'Progress tracking', 'Quality verification'],
+              trigger: 'antigravity invoke --agent implementer --spec path/to/spec.md',
+              example: '// Workflow:\n1. Read spec thoroughly\n2. Break into sections\n3. Implement + test each section\n4. Verify acceptance criteria\n5. Move to next section\n6. Final integration test',
+              model: 'Claude Sonnet',
+              category: 'Implementation'
+            }
+          },
+          'frontend-impl': {
+            icon: '⚛️',
+            ar: {
+              name: 'frontend-impl',
+              tagline: 'تحويل التصميمات لمكونات React',
+              description: 'متخصص في تحويل التصميمات المعتمدة لكود React production-ready — كل الصفحات، المكونات، الinteractions، والـ responsive behavior. مع accessibility compliance كامل (WCAG).',
+              capabilities: ['Design-to-code conversion', 'React component implementation', 'Responsive behavior', 'Accessibility (WCAG)', 'Animation & interactions', 'Design system integration'],
+              trigger: 'antigravity invoke --agent frontend-impl --design path/to/design',
+              example: '// هينفذ:\n- Component hierarchy\n- Responsive breakpoints\n- Interactive states\n- Keyboard navigation\n- Screen reader support\n- Performance optimization',
+              model: 'Claude Sonnet',
+              category: 'تنفيذ'
+            },
+            en: {
+              name: 'frontend-impl',
+              tagline: 'Convert designs to React components',
+              description: 'Specializes in converting approved designs to production-ready React code — all pages, components, interactions, and responsive behavior. With full accessibility compliance (WCAG).',
+              capabilities: ['Design-to-code conversion', 'React component implementation', 'Responsive behavior', 'Accessibility (WCAG)', 'Animation & interactions', 'Design system integration'],
+              trigger: 'antigravity invoke --agent frontend-impl --design path/to/design',
+              example: '// Will implement:\n- Component hierarchy\n- Responsive breakpoints\n- Interactive states\n- Keyboard navigation\n- Screen reader support\n- Performance optimization',
+              model: 'Claude Sonnet',
+              category: 'Implementation'
+            }
+          },
+          'ux-research': {
+            icon: '🔬',
+            ar: {
+              name: 'ux-research',
+              tagline: 'UX research شامل و persona creation',
+              description: 'بيعمل user research احترافي — personas، journey maps، competitive analysis، research synthesis. بيطلع insights عميقة عن المستخدمين وبيحولها لـ actionable recommendations.',
+              capabilities: ['User persona creation', 'Journey mapping', 'Competitive analysis', 'User interview synthesis', 'Pain point identification', 'Opportunity discovery'],
+              trigger: 'antigravity invoke --agent ux-research',
+              example: '// Output:\n- 3-5 detailed user personas\n- Complete journey maps\n- Competitor analysis report\n- Research findings document\n- Design recommendations\n- Priority matrix',
+              model: 'Claude Sonnet',
+              category: 'بحث'
+            },
+            en: {
+              name: 'ux-research',
+              tagline: 'Comprehensive UX research and personas',
+              description: 'Conducts professional user research — personas, journey maps, competitive analysis, research synthesis. Extracts deep user insights and converts them to actionable recommendations.',
+              capabilities: ['User persona creation', 'Journey mapping', 'Competitive analysis', 'User interview synthesis', 'Pain point identification', 'Opportunity discovery'],
+              trigger: 'antigravity invoke --agent ux-research',
+              example: '// Output:\n- 3-5 detailed user personas\n- Complete journey maps\n- Competitor analysis report\n- Research findings document\n- Design recommendations\n- Priority matrix',
+              model: 'Claude Sonnet',
+              category: 'Research'
+            }
+          },
+          'ui-lifecycle-master': {
+            icon: '🎯',
+            ar: {
+              name: 'ui-lifecycle-master',
+              tagline: 'Orchestrator لخط إنتاج UI/UX كامل',
+              description: 'بينسق الـ UI/UX pipeline الكامل من الفكرة للإنتاج — بيشغّل 7 وكلاء متخصصين (research، info arch، wireframe، UX، UI، impl، testing) مع quality gates أوتوماتيكية. كل حاجة منسقة.',
+              capabilities: ['Pipeline orchestration', '7 specialized sub-agents', 'Automatic quality gates', 'Context handoff management', 'Progress tracking', 'Failure recovery'],
+              trigger: 'antigravity invoke --agent ui-lifecycle-master --project "app name"',
+              example: '// Pipeline:\nResearch → IA → Wireframe → UX → UI → Implementation → Testing\n\n// كل مرحلة:\n- Quality gate review\n- Context handoff\n- Artifact validation\n- Automatic retry on failure',
+              model: 'Claude Opus',
+              category: 'تنسيق'
+            },
+            en: {
+              name: 'ui-lifecycle-master',
+              tagline: 'Orchestrator for full UI/UX pipeline',
+              description: 'Coordinates the complete UI/UX pipeline from idea to production — runs 7 specialized agents (research, info arch, wireframe, UX, UI, impl, testing) with automatic quality gates. Everything coordinated.',
+              capabilities: ['Pipeline orchestration', '7 specialized sub-agents', 'Automatic quality gates', 'Context handoff management', 'Progress tracking', 'Failure recovery'],
+              trigger: 'antigravity invoke --agent ui-lifecycle-master --project "app name"',
+              example: '// Pipeline:\nResearch → IA → Wireframe → UX → UI → Implementation → Testing\n\n// Each phase:\n- Quality gate review\n- Context handoff\n- Artifact validation\n- Automatic retry on failure',
+              model: 'Claude Opus',
+              category: 'Orchestration'
+            }
+          }
+        },
+        integrations: {
+          'GitHub': {
+            icon: '🐙',
+            ar: {
+              name: 'GitHub',
+              tagline: 'إدارة كاملة لـ GitHub من الـ AI',
+              description: 'سيرفر MCP بيتصل بـ GitHub API — اعمل PRs، علّق على issues، شغّل workflows، استعلم عن إحصائيات الريبو، أدر branches كل ده من جوه الوكلاء بتوعك. Integration كامل.',
+              capabilities: ['Create/review PRs', 'Comment on issues', 'Trigger workflows', 'Query repo stats', 'Manage branches', 'Code search'],
+              config: '// في mcp.json أو .copilotrc:\n{\n  "mcpServers": {\n    "github": {\n      "command": "mcp-server-github",\n      "env": {\n        "GITHUB_TOKEN": "${GITHUB_TOKEN}"\n      }\n    }\n  }\n}',
+              category: 'تطوير'
+            },
+            en: {
+              name: 'GitHub',
+              tagline: 'Complete GitHub management from AI',
+              description: 'MCP server connects to GitHub API — create PRs, comment on issues, trigger workflows, query repo stats, manage branches all from within your agents. Full integration.',
+              capabilities: ['Create/review PRs', 'Comment on issues', 'Trigger workflows', 'Query repo stats', 'Manage branches', 'Code search'],
+              config: '// In mcp.json or .copilotrc:\n{\n  "mcpServers": {\n    "github": {\n      "command": "mcp-server-github",\n      "env": {\n        "GITHUB_TOKEN": "${GITHUB_TOKEN}"\n      }\n    }\n  }\n}',
+              category: 'Development'
+            }
+          },
+          'PostgreSQL': {
+            icon: '🐘',
+            ar: {
+              name: 'PostgreSQL',
+              tagline: 'استعلم من قاعدة البيانات بذكاء',
+              description: 'MCP server للـ PostgreSQL — استعلم عن schemas، حلل بيانات، اعمل migrations، حسّن queries، اعرض جداول. الـ AI بتاعك يقدر يشتغل مع الداتا مباشرة.',
+              capabilities: ['Query execution', 'Schema inspection', 'Data analysis', 'Query optimization', 'Migration generation', 'Explain plans'],
+              config: '// PostgreSQL MCP config:\n{\n  "mcpServers": {\n    "postgres": {\n      "command": "mcp-server-postgres",\n      "env": {\n        "DATABASE_URL": "${DATABASE_URL}"\n      }\n    }\n  }\n}',
+              category: 'داتا'
+            },
+            en: {
+              name: 'PostgreSQL',
+              tagline: 'Query database intelligently',
+              description: 'MCP server for PostgreSQL — query schemas, analyze data, create migrations, optimize queries, inspect tables. Your AI can work with data directly.',
+              capabilities: ['Query execution', 'Schema inspection', 'Data analysis', 'Query optimization', 'Migration generation', 'Explain plans'],
+              config: '// PostgreSQL MCP config:\n{\n  "mcpServers": {\n    "postgres": {\n      "command": "mcp-server-postgres",\n      "env": {\n        "DATABASE_URL": "${DATABASE_URL}"\n      }\n    }\n  }\n}',
+              category: 'Data'
+            }
+          },
+          'Slack': {
+            icon: '💬',
+            ar: {
+              name: 'Slack',
+              tagline: 'تنبيهات و إشعارات أوتوماتيكية',
+              description: 'MCP server لـ Slack — ابعت تنبيهات، انشر تحديثات، اقرا القنوات، أدر conversations. الوكلاء بتوعك تقدر تبلّغ الفريق أوتوماتيكي.',
+              capabilities: ['Send notifications', 'Post updates', 'Read channels', 'Manage threads', 'File uploads', 'User mentions'],
+              config: '// Slack MCP config:\n{\n  "mcpServers": {\n    "slack": {\n      "command": "mcp-server-slack",\n      "env": {\n        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}"\n      }\n    }\n  }\n}',
+              category: 'تواصل'
+            },
+            en: {
+              name: 'Slack',
+              tagline: 'Automatic alerts and notifications',
+              description: 'MCP server for Slack — send alerts, post updates, read channels, manage conversations. Your agents can notify the team automatically.',
+              capabilities: ['Send notifications', 'Post updates', 'Read channels', 'Manage threads', 'File uploads', 'User mentions'],
+              config: '// Slack MCP config:\n{\n  "mcpServers": {\n    "slack": {\n      "command": "mcp-server-slack",\n      "env": {\n        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}"\n      }\n    }\n  }\n}',
+              category: 'Communication'
+            }
+          },
+          'Linear': {
+            icon: '📊',
+            ar: {
+              name: 'Linear',
+              tagline: 'إدارة المهام و التيكتات',
+              description: 'MCP server لـ Linear — اعمل issues، حدّث الحالة، اربط بـ PRs، تابع السرعة، أدر sprints. الوكلاء تقدر تدير المشروع بنفسها.',
+              capabilities: ['Create issues', 'Update status', 'Link to PRs', 'Track velocity', 'Sprint management', 'Label automation'],
+              config: '// Linear MCP config:\n{\n  "mcpServers": {\n    "linear": {\n      "command": "mcp-server-linear",\n      "env": {\n        "LINEAR_API_KEY": "${LINEAR_API_KEY}"\n      }\n    }\n  }\n}',
+              category: 'إدارة'
+            },
+            en: {
+              name: 'Linear',
+              tagline: 'Task and ticket management',
+              description: 'MCP server for Linear — create issues, update status, link to PRs, track velocity, manage sprints. Agents can manage projects themselves.',
+              capabilities: ['Create issues', 'Update status', 'Link to PRs', 'Track velocity', 'Sprint management', 'Label automation'],
+              config: '// Linear MCP config:\n{\n  "mcpServers": {\n    "linear": {\n      "command": "mcp-server-linear",\n      "env": {\n        "LINEAR_API_KEY": "${LINEAR_API_KEY}"\n      }\n    }\n  }\n}',
+              category: 'Management'
+            }
+          },
+          'Redis': {
+            icon: '⚡',
+            ar: {
+              name: 'Redis',
+              tagline: 'Caching و session management',
+              description: 'MCP server لـ Redis — أدر cache، sessions، pub/sub، queues. حسّن performance التطبيق بتاعك مع caching strategies ذكية.',
+              capabilities: ['Cache management', 'Session storage', 'Pub/sub messaging', 'Queue management', 'Key inspection', 'TTL management'],
+              config: '// Redis MCP config:\n{\n  "mcpServers": {\n    "redis": {\n      "command": "mcp-server-redis",\n      "env": {\n        "REDIS_URL": "${REDIS_URL}"\n      }\n    }\n  }\n}',
+              category: 'داتا'
+            },
+            en: {
+              name: 'Redis',
+              tagline: 'Caching and session management',
+              description: 'MCP server for Redis — manage cache, sessions, pub/sub, queues. Optimize your app performance with intelligent caching strategies.',
+              capabilities: ['Cache management', 'Session storage', 'Pub/sub messaging', 'Queue management', 'Key inspection', 'TTL management'],
+              config: '// Redis MCP config:\n{\n  "mcpServers": {\n    "redis": {\n      "command": "mcp-server-redis",\n      "env": {\n        "REDIS_URL": "${REDIS_URL}"\n      }\n    }\n  }\n}',
+              category: 'Data'
+            }
+          },
+          'Docker': {
+            icon: '🐳',
+            ar: {
+              name: 'Docker',
+              tagline: 'إدارة Containers و Images',
+              description: 'MCP server لـ Docker — أدر containers، images، networks، volumes. الوكلاء تقدر تشغّل وتوقف services، تعمل build، وتنسّق environments.',
+              capabilities: ['Container management', 'Image operations', 'Network configuration', 'Volume management', 'Docker Compose', 'Health checks'],
+              config: '// Docker MCP config:\n{\n  "mcpServers": {\n    "docker": {\n      "command": "mcp-server-docker",\n      "args": ["--socket", "/var/run/docker.sock"]\n    }\n  }\n}',
+              category: 'بنية تحتية'
+            },
+            en: {
+              name: 'Docker',
+              tagline: 'Container and image management',
+              description: 'MCP server for Docker — manage containers, images, networks, volumes. Agents can start/stop services, build, and orchestrate environments.',
+              capabilities: ['Container management', 'Image operations', 'Network configuration', 'Volume management', 'Docker Compose', 'Health checks'],
+              config: '// Docker MCP config:\n{\n  "mcpServers": {\n    "docker": {\n      "command": "mcp-server-docker",\n      "args": ["--socket", "/var/run/docker.sock"]\n    }\n  }\n}',
+              category: 'Infrastructure'
+            }
+          },
+          'Notion': {
+            icon: '📝',
+            ar: {
+              name: 'Notion',
+              tagline: 'توثيق و knowledge management',
+              description: 'MCP server لـ Notion — اعمل pages، حدّث databases، أدر workspaces. الوكلاء تقدر توثّق الشغل أوتوماتيكي في Notion.',
+              capabilities: ['Page creation', 'Database updates', 'Block manipulation', 'Workspace management', 'Search', 'Property updates'],
+              config: '// Notion MCP config:\n{\n  "mcpServers": {\n    "notion": {\n      "command": "mcp-server-notion",\n      "env": {\n        "NOTION_TOKEN": "${NOTION_TOKEN}"\n      }\n    }\n  }\n}',
+              category: 'توثيق'
+            },
+            en: {
+              name: 'Notion',
+              tagline: 'Documentation and knowledge management',
+              description: 'MCP server for Notion — create pages, update databases, manage workspaces. Agents can document work automatically in Notion.',
+              capabilities: ['Page creation', 'Database updates', 'Block manipulation', 'Workspace management', 'Search', 'Property updates'],
+              config: '// Notion MCP config:\n{\n  "mcpServers": {\n    "notion": {\n      "command": "mcp-server-notion",\n      "env": {\n        "NOTION_TOKEN": "${NOTION_TOKEN}"\n      }\n    }\n  }\n}',
+              category: 'Documentation'
+            }
+          },
+          'Figma': {
+            icon: '🎨',
+            ar: {
+              name: 'Figma',
+              tagline: 'قراءة التصميمات و استخراج specs',
+              description: 'MCP server لـ Figma — اقرا designs، استخرج specs، احصل على assets، اطلع على styles. الوكلاء تقدر تفهم التصميمات وتحولها لكود.',
+              capabilities: ['Read designs', 'Extract design tokens', 'Export assets', 'Inspect styles', 'Component documentation', 'Version tracking'],
+              config: '// Figma MCP config:\n{\n  "mcpServers": {\n    "figma": {\n      "command": "mcp-server-figma",\n      "env": {\n        "FIGMA_TOKEN": "${FIGMA_TOKEN}"\n      }\n    }\n  }\n}',
+              category: 'تصميم'
+            },
+            en: {
+              name: 'Figma',
+              tagline: 'Read designs and extract specs',
+              description: 'MCP server for Figma — read designs, extract specs, get assets, inspect styles. Agents can understand designs and convert them to code.',
+              capabilities: ['Read designs', 'Extract design tokens', 'Export assets', 'Inspect styles', 'Component documentation', 'Version tracking'],
+              config: '// Figma MCP config:\n{\n  "mcpServers": {\n    "figma": {\n      "command": "mcp-server-figma",\n      "env": {\n        "FIGMA_TOKEN": "${FIGMA_TOKEN}"\n      }\n    }\n  }\n}',
+              category: 'Design'
+            }
+          },
+          'Storybook': {
+            icon: '📚',
+            ar: {
+              name: 'Storybook',
+              tagline: 'Component library و documentation',
+              description: 'MCP server لـ Storybook — اعمل stories، حدّث docs، أدر component variants. الوكلاء تقدر توثّق الـ components بتاعتك أوتوماتيكي.',
+              capabilities: ['Story generation', 'Props documentation', 'Variant management', 'MDX docs', 'Accessibility testing', 'Visual regression'],
+              config: '// Storybook MCP config:\n{\n  "mcpServers": {\n    "storybook": {\n      "command": "mcp-server-storybook",\n      "args": ["--port", "6006"]\n    }\n  }\n}',
+              category: 'تطوير'
+            },
+            en: {
+              name: 'Storybook',
+              tagline: 'Component library and documentation',
+              description: 'MCP server for Storybook — create stories, update docs, manage component variants. Agents can document your components automatically.',
+              capabilities: ['Story generation', 'Props documentation', 'Variant management', 'MDX docs', 'Accessibility testing', 'Visual regression'],
+              config: '// Storybook MCP config:\n{\n  "mcpServers": {\n    "storybook": {\n      "command": "mcp-server-storybook",\n      "args": ["--port", "6006"]\n    }\n  }\n}',
+              category: 'Development'
+            }
+          },
+          'Hotjar': {
+            icon: '🔥',
+            ar: {
+              name: 'Hotjar',
+              tagline: 'User behavior analytics',
+              description: 'MCP server لـ Hotjar — اطلع على heatmaps، session recordings، surveys، feedback. اعرف المستخدمين بيتفاعلوا ازاي مع الـ product بتاعك.',
+              capabilities: ['Heatmap analysis', 'Session replay', 'Survey data', 'Feedback collection', 'Funnel analysis', 'Behavior insights'],
+              config: '// Hotjar MCP config:\n{\n  "mcpServers": {\n    "hotjar": {\n      "command": "mcp-server-hotjar",\n      "env": {\n        "HOTJAR_API_KEY": "${HOTJAR_API_KEY}"\n      }\n    }\n  }\n}',
+              category: 'تحليلات'
+            },
+            en: {
+              name: 'Hotjar',
+              tagline: 'User behavior analytics',
+              description: 'MCP server for Hotjar — view heatmaps, session recordings, surveys, feedback. Know how users interact with your product.',
+              capabilities: ['Heatmap analysis', 'Session replay', 'Survey data', 'Feedback collection', 'Funnel analysis', 'Behavior insights'],
+              config: '// Hotjar MCP config:\n{\n  "mcpServers": {\n    "hotjar": {\n      "command": "mcp-server-hotjar",\n      "env": {\n        "HOTJAR_API_KEY": "${HOTJAR_API_KEY}"\n      }\n    }\n  }\n}',
+              category: 'Analytics'
+            }
+          }
+        }
+      };
+
+      // ══════════════════════════════════════════════════════════════
+      // DETAIL MODAL — Open/Close Functions
+      // ══════════════════════════════════════════════════════════════
+
+      function openDetail(type, key) {
+        const data = DETAIL_DATA[type]?.[key];
+        if (!data) return;
+        
+        const d = data[currentLang] || data.ar;
+        if (!d) return;
+
+        // Populate modal
+        document.getElementById('detail-modal-icon').textContent = data.icon;
+        document.getElementById('detail-modal-name').textContent = d.name;
+        document.getElementById('detail-modal-tagline').textContent = d.tagline;
+        document.getElementById('detail-modal-category').textContent = d.category;
+        document.getElementById('detail-modal-desc').textContent = d.description;
+
+        // Features or capabilities
+        const featuresEl = document.getElementById('detail-modal-features');
+        const featureList = d.features || d.capabilities || [];
+        if (featureList.length > 0) {
+          featuresEl.innerHTML = featureList.map(f => 
+            `<span class="detail-modal-feature-pill">${f}</span>`
+          ).join('');
+          featuresEl.style.display = 'flex';
+        } else {
+          featuresEl.style.display = 'none';
+        }
+
+        // Install/trigger command
+        const codeEl = document.getElementById('detail-modal-code');
+        const installCmd = d.install || d.trigger || d.config;
+        if (installCmd) {
+          const label = d.install ? (currentLang === 'ar' ? 'تثبيت' : 'Install') : 
+                        d.trigger ? (currentLang === 'ar' ? 'تشغيل' : 'Trigger') :
+                        (currentLang === 'ar' ? 'إعداد' : 'Configuration');
+          codeEl.innerHTML = `
+            <span class="detail-modal-code-label">${label}</span>
+            <pre>${escapeHtml(installCmd)}</pre>
+          `;
+          codeEl.style.display = 'block';
+        } else {
+          codeEl.style.display = 'none';
+        }
+
+        // Usage/example
+        const exampleEl = document.getElementById('detail-modal-example');
+        const usageText = d.usage || d.example;
+        if (usageText) {
+          const label = currentLang === 'ar' ? 'مثال' : 'Example';
+          exampleEl.innerHTML = `
+            <span class="detail-modal-example-label">${label}</span>
+            <pre>${escapeHtml(usageText)}</pre>
+          `;
+          exampleEl.style.display = 'block';
+        } else {
+          exampleEl.style.display = 'none';
+        }
+
+        // Meta (version, model)
+        const metaEl = document.getElementById('detail-modal-meta');
+        const metaInfo = [];
+        if (d.version) metaInfo.push(`Version: ${d.version}`);
+        if (d.model) metaInfo.push(`Model: ${d.model}`);
+        if (metaInfo.length > 0) {
+          metaEl.textContent = metaInfo.join('  •  ');
+          metaEl.style.display = 'block';
+        } else {
+          metaEl.style.display = 'none';
+        }
+
+        // Show modal
+        const overlay = document.getElementById('detail-modal-overlay');
+        overlay.classList.add('active');
+        document.body.classList.add('detail-modal-open');
+      }
+
+      function closeDetail() {
+        const overlay = document.getElementById('detail-modal-overlay');
+        overlay.classList.remove('active');
+        document.body.classList.remove('detail-modal-open');
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Close modal listeners
+      document.getElementById('detail-modal-close').addEventListener('click', closeDetail);
+      document.getElementById('detail-modal-overlay').addEventListener('click', (e) => {
+        if (e.target.id === 'detail-modal-overlay') closeDetail();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.getElementById('detail-modal-overlay').classList.contains('active')) {
+          closeDetail();
+        }
+      });
+
+      // ══════════════════════════════════════════════════════════════
+      // EVENT DELEGATION — Make cards clickable
+      // ══════════════════════════════════════════════════════════════
+
+      // Skills grid
+      document.getElementById('skills-grid').addEventListener('click', (e) => {
+        const card = e.target.closest('.skill-card');
+        if (!card) return;
+        const name = card.querySelector('.skill-name')?.textContent?.trim();
+        if (name && DETAIL_DATA.skills[name]) {
+          openDetail('skills', name);
+        }
+      });
+
+      // Agents grid
+      document.getElementById('agent-ecosystem').addEventListener('click', (e) => {
+        const tile = e.target.closest('.agent-tile');
+        if (!tile) return;
+        const name = tile.querySelector('.agent-name')?.textContent?.trim();
+        if (name && DETAIL_DATA.agents[name]) {
+          openDetail('agents', name);
+        }
+      });
+
+      // Integration grid
+      document.getElementById('integration-grid').addEventListener('click', (e) => {
+        const card = e.target.closest('.integration-card');
+        if (!card) return;
+        const name = card.querySelector('.integration-name')?.textContent?.trim();
+        if (name && DETAIL_DATA.integrations[name]) {
+          openDetail('integrations', name);
+        }
+      });
 
       // ══════════════════════════════════════════════════════════════
       // NAVIGATION SCROLL
