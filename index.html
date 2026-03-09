@@ -1373,10 +1373,38 @@
       @media (max-width: 1024px) {
         nav {
           padding: 1rem 2rem;
-          flex-wrap: wrap;
         }
         .nav-tagline {
           display: none;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .nav-links.mobile-open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(10, 10, 26, 0.97);
+          backdrop-filter: blur(24px);
+          -webkit-backdrop-filter: blur(24px);
+          border-bottom: 1px solid var(--border);
+          padding: 1rem 2rem;
+          gap: 0.5rem;
+          z-index: 100;
+        }
+        .nav-links.mobile-open a {
+          padding: 0.75rem 0;
+          font-size: 1rem;
+          border-bottom: 1px solid var(--border);
+        }
+        .nav-links.mobile-open a:last-child {
+          border-bottom: none;
         }
         .hero {
           grid-template-columns: 1fr;
@@ -1421,31 +1449,8 @@
         nav {
           padding: 1rem;
         }
-        .nav-links {
-          display: none;
-        }
-        .nav-links.mobile-open {
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: rgba(10, 10, 26, 0.97);
-          backdrop-filter: blur(24px);
-          -webkit-backdrop-filter: blur(24px);
-          border-bottom: 1px solid var(--border);
-          padding: 1rem 2rem;
-          gap: 0.5rem;
-          z-index: 100;
-        }
-        .nav-links.mobile-open a {
-          padding: 0.75rem 0;
-          font-size: 1rem;
-          border-bottom: 1px solid var(--border);
-        }
-        .nav-links.mobile-open a:last-child {
-          border-bottom: none;
+        .domain-bar {
+          top: 56px;
         }
         .hero-h1 {
           font-size: 2.8rem;
@@ -1594,12 +1599,13 @@
       @media (max-width: 1024px) {
         .domain-bar {
           padding: 0.5rem 1.5rem;
+          top: 66px;
         }
       }
 
       @media (max-width: 767px) {
         .domain-bar {
-          top: 58px;
+          top: 64px;
           padding: 0.45rem 0.75rem;
           gap: 0.35rem;
           flex-wrap: nowrap;
@@ -1802,7 +1808,7 @@
         transform: translateY(-7px) rotate(-45deg);
       }
 
-      @media (max-width: 767px) {
+      @media (max-width: 1024px) {
         .hamburger {
           display: flex;
         }
@@ -4451,13 +4457,6 @@ window.addEventListener('resize', () => {
 
   // Render domain
   setDomain(savedDomain, true);
-
-  // Start terminal animation
-  const domainData = DOMAINS[savedDomain];
-  const langData = domainData[currentLang] || domainData['ar'];
-  if (langData && langData.terminalLines) {
-    animateTerminalLines(langData.terminalLines);
-  }
 })();
 
       // ══════════════════════════════════════════════════════════════
