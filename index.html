@@ -2301,6 +2301,34 @@
         color: var(--teal);
       }
 
+      .exp-tip-box {
+        display: none;
+        background: linear-gradient(135deg, rgba(0,229,200,0.06), rgba(0,229,200,0.02));
+        border: 1px solid rgba(0,229,200,0.15);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin: 1rem 0;
+        font-size: 0.88rem;
+        color: var(--ice);
+        line-height: 1.7;
+      }
+      .exp-tip-box.visible { display: block; }
+      .exp-tip-box::before { content: "💡 "; }
+
+      .exp-deep-dive {
+        display: none;
+        background: linear-gradient(135deg, rgba(196,181,253,0.06), rgba(196,181,253,0.02));
+        border: 1px solid rgba(196,181,253,0.15);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+        color: var(--ice-dim);
+        line-height: 1.7;
+      }
+      .exp-deep-dive.visible { display: block; }
+      .exp-deep-dive::before { content: "🔬 "; font-size: 1rem; }
+
     </style>
   </head>
   <body>
@@ -2586,6 +2614,9 @@
         واحدة عن طريق <code>skills.sh</code> وهو هيفتكر.
       </p>
 
+      <div class="exp-tip-box" id="tip-skills"></div>
+      <div class="exp-deep-dive" id="deepdive-skills"></div>
+
       <div class="skills-grid" id="skills-grid">
         <div class="skill-card">
           <div class="skill-icon">⚛️</div>
@@ -2794,6 +2825,9 @@
         المواصفات بالظبط، باحث بيستكشف كويس قبل ما يقرر.
       </p>
 
+      <div class="exp-tip-box" id="tip-agents"></div>
+      <div class="exp-deep-dive" id="deepdive-agents"></div>
+
       <div class="agent-ecosystem" id="agent-ecosystem">
         <div class="agent-tile">
           <div class="agent-icon">👁️</div>
@@ -2901,6 +2935,9 @@
         المشاكل بدري.
       </p>
 
+      <div class="exp-tip-box" id="tip-workflows"></div>
+      <div class="exp-deep-dive" id="deepdive-workflows"></div>
+
       <div class="orbital-mechanics" id="orbital-mechanics">
         <div class="flow-step">
           <div class="flow-pill start">فكرة</div>
@@ -2988,6 +3025,9 @@
         إشعارات Slack، حدّث تيكتات Linear — كل ده من جوه سير عمل الوكلاء.
         المساعد بتاعك بيبقى منصة أتمتة حقيقية.
       </p>
+
+      <div class="exp-tip-box" id="tip-mcp"></div>
+      <div class="exp-deep-dive" id="deepdive-mcp"></div>
 
       <div class="mcp-architecture">
         <div class="mcp-node">
@@ -3085,6 +3125,9 @@ $ antigravity invoke <span class="code-keyword">--agent</span> code-review
         الأمان، واتفاقيات الفريق. القواعد بتفضل عبر الجلسات — عرّفها مرة، تتنفذ
         للأبد.
       </p>
+
+      <div class="exp-tip-box" id="tip-rules"></div>
+      <div class="exp-deep-dive" id="deepdive-rules"></div>
 
       <div class="comparison-grid" id="comparison-grid">
         <div class="comparison-side">
@@ -4763,6 +4806,571 @@ ux: {
 
 
 // ══════════════════════════════════════════════════════════════
+// EXP_OVERLAYS — Experience-Level Content Adaptation
+// ══════════════════════════════════════════════════════════════
+
+const EXP_OVERLAYS = {
+
+// ─────────────────────────────────────────────────────────────
+// FRONTEND
+// ─────────────────────────────────────────────────────────────
+frontend: {
+  ar: {
+    beginner: {
+      heroSub: "الـ AI بتاعك مش فاهم الكود بتاعك؟ ما تقلقش! الدليل ده هيعلمك إزاي تخليه يفهمك — بطريقة سهلة من غير تعقيد.",
+      burnBody: "كل برنامج AI بيوعدك بالسحر. بس الحقيقة؟ معظمهم بيديك اقتراحات غلط وبينسى كلامك بسرعة. شفت agents بتقترحلك حاجات مش موجودة، وبتنسى الكود بتاعك بعد شوية رسايل. عادي، احنا هنصلح ده.",
+      skillsBody: '<strong>المهارات (Skills)</strong> — فكر فيها كأنها كتب مرجعية للـ AI بتاعك. بدل ما تفضل تشرح React hooks في كل مرة، حمّل المهارة مرة واحدة عن طريق <code>skills.sh</code> وخلاص. الـ AI هيفتكر كل حاجة.',
+      agentsBody: '<strong>الوكلاء (Agents)</strong> — دول زي مساعدين متخصصين. كل واحد بيعمل حاجة واحدة بس بإتقان. واحد بيراجع الكود، واحد بيكتب المواصفات، وواحد بينفذ. مش كلهم في بعض زي قبل كده.',
+      workflowsBody: '<strong>سير العمل (Workflows)</strong> — تخيل خط إنتاج: الفكرة بتدخل من ناحية، وبتطلع كود جاهز من الناحية التانية. كل وكيل بيعمل شغله، وبيسلم للّي بعده. كل حاجة منظمة ومترتبة.',
+      mcpBody: '<strong>سيرفرات MCP</strong> — دي بتخلي الـ AI بتاعك يتكلم مع البرامج التانية. يعني ممكن يفتح GitHub، يبعت رسايل على Slack، أو يشتغل مع قاعدة البيانات بتاعتك. كل ده من خلال الـ AI!',
+      rulesBody: '<strong>القواعد (Rules)</strong> — دي زي قوانين لازم الـ AI يمشي عليها. مثلاً: "استخدم TypeScript دايماً" أو "ما تحطش console.log في الكود". عرّفها مرة واحدة، وهو هيمشي عليها للأبد.',
+      ctaSub: "دلوقتي عرفت المكونات الخمسة: المهارات بتعلّم الستاك بتاعك، الوكلاء متخصصين في شغل معين، سير العمل بينظم كل حاجة، MCP بيوصل الـ AI بأي برنامج، والقواعد بتفرض المعايير. يلا نبدأ!",
+      beginnerTips: {
+        skills: '<strong>ايه هي المهارة؟</strong> فكر فيها كأنها ملف تعليمات للـ AI. بتقوله "لما تشوف React، استخدم الطريقة دي." مرة واحدة بس، ومش هتحتاج تعيد الكلام ده تاني.',
+        agents: '<strong>ايه الفرق بين Agent و AI عادي؟</strong> الـ Agent زي دكتور متخصص — واحد للقلب، واحد للعظام. الـ AI العادي زي دكتور عام بيحاول يعمل كل حاجة (ومش دايماً بيبقى مظبوط).',
+        workflows: '<strong>ليه محتاج Workflow؟</strong> تخيل إنك بتطبخ. بدل ما تعمل كل حاجة بنفسك، الـ Workflow زي فريق مطبخ — واحد بيقطع، واحد بيطبخ، واحد بيقدم. كل واحد متخصص!',
+        mcp: '<strong>MCP ده إيه؟</strong> اختصار لـ Model Context Protocol. يعني بروتوكول بيخلي الـ AI يتكلم مع البرامج التانية. ما تقلقش من الاسم — الفكرة بسيطة: الـ AI بيبعت رسايل للبرامج التانية ويستقبل ردود.',
+        rules: '<strong>إمتى أحط قاعدة؟</strong> لو لقيت نفسك بتقول نفس النصيحة للـ AI كتير (مثلاً "استخدم async/await مش .then")، دي علامة إنك محتاج تحولها لقاعدة!'
+      }
+    },
+    advanced: {
+      heroSub: "مساعد الـ AI بتاعك عنده potential، بس محتاج تهيكله صح. الدليل ده بيورّيك إزاي تبني context architecture قوية تخليه productive فعلاً.",
+      burnBody: "معظم AI coding tools بتعتمد على conversational context قصير المدى، ما بيعملش scale مع الكودبيس الكبيرة. الـ agents بتنسى الأركيتكتشر decisions بتاعتك، بتعيد نفس الأخطاء، وبتقترح anti-patterns إنت عملتلها deprecate من زمان. المشكلة مش في الموديل — المشكلة في ال knowledge management.",
+      skillsBody: '<strong>Skills كـ persistent context layer.</strong> بدل ما تحقن framework conventions في كل prompt، الـ Skills بتبقى reference material دايم. بتعمل encapsulation للـ best practices بتاعتك، coding standards، وarchitectural patterns. Think of them as compiled knowledge modules.',
+      agentsBody: '<strong>Agent specialization يزود الدقة.</strong> Single-responsibility agents بتقلل hallucinations وبتحسن output quality. الـ code-review agent مُحسّن لـ bug detection، الـ implementer agent بيمشي على specs بالظبط، الـ spec-writer بيعمل requirements engineering. Composition over generalization.',
+      workflowsBody: '<strong>Workflows كـ stateful pipelines.</strong> كل agent بيستقبل typed input، بيعمل transformation، وبيطلع typed output. الـ quality gates بين الـ stages بتمسك regressions بدري. الـ context بيتحفظ across handoffs عن طريق structured artifacts (markdown specs، JSON reports، etc.).',
+      mcpBody: '<strong>MCP كـ tool-use protocol.</strong> بدل ما الـ agents تبقى isolated، MCP servers بتوسع capabilities بتاعتهم بـ external integrations. GitHub، databases، Slack، Linear — كل ده بيبقى first-class tools في الـ agent runtime. Think of it as RPC for LLMs.',
+      rulesBody: '<strong>Rules كـ declarative constraints.</strong> الـ rules بتعمل فرض للـ code style، architectural decisions، وsecurity policies من غير ما تحتاج تكررها في كل prompt. بتتطبق automatically عن طريق rule engine. Think linters، بس للـ AI behavior.',
+      ctaSub: "دلوقتي عندك الأدوات — Skills للـ knowledge persistence، Agents للـ specialization، Workflows للـ orchestration، MCP للـ external integration، Rules للـ behavior enforcement. ابني architecture بتاعك.",
+      deepDives: {
+        skills: '<strong>Advanced skill composition:</strong> ممكن تعمل composite skills بتجمع multiple concerns. مثلاً: <code>react-fullstack-skill</code> بتجمع react-best-practices + vercel-patterns + e2e-testing. استخدم <code>skills.yaml</code> manifest للـ dependency management.',
+        agents: '<strong>Agent chaining patterns:</strong> استخدم <code>context-curator</code> agent بين pipeline phases عشان تعمل summarization للـ verbose output وتمنع context overflow. الـ meta-agents بتقدر تستدعي specialized agents dynamically based on task classification.',
+        workflows: '<strong>Quality gate strategies:</strong> كل handoff ممكن يبقى معاه validation step — schema validation، lint checks، test runs. استخدم <code>--gate-strict</code> flag عشان توقف الـ pipeline لو فيه failures بدل ما تكمل بـ degraded state.',
+        mcp: '<strong>Custom MCP servers:</strong> ممكن تبني server بتاعك بـ Python (FastMCP) أو TypeScript (MCP SDK). Expose domain-specific tools — query internal APIs، run analysis scripts، trigger deployment pipelines. الـ agents بتاعتك بتبقى platform.',
+        rules: '<strong>Rule precedence & overrides:</strong> الـ global rules بتتطبق على كل agents، الـ agent-specific rules بتعمل override. استخدم <code>.ruleignore</code> للـ exceptions. الـ rules بتتقييم في order: project-level → agent-level → command-level flags.'
+      }
+    },
+    expert: {
+      heroSub: "بناء production-grade agentic systems بيحتاج أكتر من prompts. محتاج knowledge architecture، agent orchestration، وtool integration بـ protocol-level precision.",
+      burnBody: "الـ naive AI coding assistants بتعاني من fundamental limitations: ephemeral context windows، lack of knowledge persistence، no compositional reasoning، وlimited tool use. الـ production systems محتاجة durable knowledge graphs، specialized agent topologies، وprotocol-driven integrations. This guide architect such systems.",
+      skillsBody: '<strong>Skills as knowledge compilation units.</strong> Implement skills as versioned, schema-validated knowledge artifacts. Use semantic chunking strategies (max 2K tokens/chunk) لـ optimal retrieval. Support skill inheritance (base skill + domain-specific overrides). Reference: <a href="#">Skill Schema Spec v2.1</a>',
+      agentsBody: '<strong>Agent topology design.</strong> Use DAG-based agent orchestration — specialized agents as nodes، handoff protocols as edges. Implement meta-agents for dynamic routing (complexity-based model selection، task decomposition). Support agent composition patterns: sequential chains، parallel fan-out/fan-in، recursive sub-agent invocation. Reference: <a href="#">Agent Orchestration Patterns</a>',
+      workflowsBody: '<strong>Stateful workflow execution.</strong> Workflows as deterministic FSMs with typed state transitions. Implement checkpoint/resume for long-running pipelines، idempotent stage execution، وcompensating transactions for rollback. Use structured logging for observability. Reference: <a href="#">Workflow Engine Architecture</a>',
+      mcpBody: '<strong>MCP as tool-use substrate.</strong> MCP servers expose capabilities via JSON-RPC 2.0. Implement server discovery، capability negotiation، وtool schema validation. Support streaming responses for long-running operations. Build custom servers for domain-specific tools (internal APIs، analysis engines، deployment automation). Reference: <a href="#">MCP Protocol Spec</a>',
+      rulesBody: '<strong>Rule engine internals.</strong> Rules as declarative constraints compiled to runtime checks. Implement rule precedence hierarchies، conflict resolution strategies، وdynamic rule loading. Support custom rule types (syntax rules، semantic rules، architectural rules). Use static analysis when possible to avoid runtime overhead. Reference: <a href="#">Rule Engine Design</a>',
+      ctaSub: "You now have architectural patterns for production agentic systems: versioned knowledge artifacts، compositional agent topologies، stateful orchestration، protocol-driven integration، declarative constraint enforcement. Engineer your platform.",
+      deepDives: {
+        skills: '<strong>Knowledge graph integration:</strong> Advanced setups use vector DBs (Pinecone، Weaviate) for semantic skill retrieval. Index skill content with domain-specific embeddings. Implement hybrid search (vector + keyword) for precision/recall balance. Support incremental updates without full re-indexing.',
+        agents: '<strong>Meta-agent architectures:</strong> Build orchestrator agents that route tasks to specialists based on AST analysis، complexity metrics، or LLM-based classification. Implement feedback loops — track agent performance metrics، use RL to optimize routing policies over time.',
+        workflows: '<strong>Distributed workflow execution:</strong> For large pipelines، distribute stages across workers (Celery، Temporal). Implement saga pattern for distributed transactions. Use event sourcing for audit trails. Support workflow versioning + gradual rollout of pipeline changes.',
+        mcp: '<strong>MCP security & isolation:</strong> Run untrusted MCP servers in sandboxed environments (containers، VMs). Implement authentication (OAuth، API keys) + authorization (scope-based permissions). Rate-limit tool calls to prevent abuse. Log all tool invocations for security audits.',
+        rules: '<strong>Advanced rule patterns:</strong> Implement context-aware rules (different rules for different file types). Use Prolog-style logic rules for complex constraints (e.g., "if using React Context، must have Provider in tree"). Support probabilistic rules (soft constraints scored 0-1) in addition to hard constraints.'
+      }
+    }
+  },
+  en: {
+    beginner: {
+      heroSub: "Your AI doesn't understand your code? Don't worry! This guide will teach you how to fix that — in a simple way, no complexity.",
+      burnBody: "Every AI program promises magic. But the truth? Most give you wrong suggestions and forget what you said quickly. You've seen agents suggest things that don't exist, forget your code after a few messages. That's normal, we'll fix it.",
+      skillsBody: '<strong>Skills</strong> — think of them like reference books for your AI. Instead of explaining React hooks every time, load the skill once via <code>skills.sh</code> and that\'s it. The AI will remember everything.',
+      agentsBody: '<strong>Agents</strong> — these are like specialized assistants. Each one does one thing really well. One reviews code, one writes specs, one implements. Not all mixed together like before.',
+      workflowsBody: '<strong>Workflows</strong> — imagine an assembly line: ideas go in one end, ready code comes out the other. Each agent does its job and hands off to the next. Everything organized and orderly.',
+      mcpBody: '<strong>MCP Servers</strong> — these let your AI talk to other programs. It can open GitHub, send Slack messages, or work with your database. All through AI!',
+      rulesBody: '<strong>Rules</strong> — these are like laws the AI must follow. Like: "Always use TypeScript" or "Don\'t put console.log in code." Define once, it follows forever.',
+      ctaSub: "Now you know the 5 components: Skills teach your stack, Agents specialize in specific work, Workflows organize everything, MCP connects AI to any program, Rules enforce standards. Let's start!",
+      beginnerTips: {
+        skills: '<strong>What is a Skill?</strong> Think of it as an instruction manual for AI. You tell it "When you see React, use this approach." Once only, you won\'t need to repeat it.',
+        agents: '<strong>What\'s the difference between an Agent and regular AI?</strong> An Agent is like a specialist doctor — one for heart, one for bones. Regular AI is like a general doctor trying to do everything (and not always getting it right).',
+        workflows: '<strong>Why do I need a Workflow?</strong> Imagine cooking. Instead of doing everything yourself, Workflow is like a kitchen team — one cuts, one cooks, one serves. Each one specialized!',
+        mcp: '<strong>What is MCP?</strong> Short for Model Context Protocol. A protocol that lets AI talk to other programs. Don\'t worry about the name — the idea is simple: AI sends messages to other programs and receives replies.',
+        rules: '<strong>When should I add a Rule?</strong> If you find yourself giving the AI the same advice often (like "use async/await not .then"), that\'s a sign you need to turn it into a rule!'
+      }
+    },
+    advanced: {
+      heroSub: "Your AI assistant has potential, but needs proper structure. This guide shows you how to build robust context architecture that makes it truly productive.",
+      burnBody: "Most AI coding tools rely on short-term conversational context that doesn't scale with large codebases. Agents forget your architectural decisions, repeat mistakes, and suggest anti-patterns you deprecated long ago. The problem isn't the model — it's knowledge management.",
+      skillsBody: '<strong>Skills as persistent context layer.</strong> Instead of injecting framework conventions into every prompt, Skills become permanent reference material. They encapsulate your best practices, coding standards, and architectural patterns. Think of them as compiled knowledge modules.',
+      agentsBody: '<strong>Agent specialization increases accuracy.</strong> Single-responsibility agents reduce hallucinations and improve output quality. The code-review agent is optimized for bug detection, the implementer follows specs precisely, the spec-writer does requirements engineering. Composition over generalization.',
+      workflowsBody: '<strong>Workflows as stateful pipelines.</strong> Each agent receives typed input, performs transformation, outputs typed results. Quality gates between stages catch regressions early. Context is preserved across handoffs via structured artifacts (markdown specs, JSON reports, etc.).',
+      mcpBody: '<strong>MCP as tool-use protocol.</strong> Instead of isolated agents, MCP servers expand their capabilities with external integrations. GitHub, databases, Slack, Linear — all become first-class tools in the agent runtime. Think of it as RPC for LLMs.',
+      rulesBody: '<strong>Rules as declarative constraints.</strong> Rules enforce code style, architectural decisions, and security policies without repeating in every prompt. Applied automatically via rule engine. Think linters, but for AI behavior.',
+      ctaSub: "You now have the tools — Skills for knowledge persistence, Agents for specialization, Workflows for orchestration, MCP for external integration, Rules for behavior enforcement. Build your architecture.",
+      deepDives: {
+        skills: '<strong>Advanced skill composition:</strong> Create composite skills combining multiple concerns. E.g., <code>react-fullstack-skill</code> combines react-best-practices + vercel-patterns + e2e-testing. Use <code>skills.yaml</code> manifest for dependency management.',
+        agents: '<strong>Agent chaining patterns:</strong> Use <code>context-curator</code> agent between pipeline phases to summarize verbose output and prevent context overflow. Meta-agents can invoke specialized agents dynamically based on task classification.',
+        workflows: '<strong>Quality gate strategies:</strong> Each handoff can include validation — schema validation, lint checks, test runs. Use <code>--gate-strict</code> flag to halt pipeline on failures instead of continuing with degraded state.',
+        mcp: '<strong>Custom MCP servers:</strong> Build your own server with Python (FastMCP) or TypeScript (MCP SDK). Expose domain-specific tools — query internal APIs, run analysis scripts, trigger deployment pipelines. Your agents become a platform.',
+        rules: '<strong>Rule precedence & overrides:</strong> Global rules apply to all agents, agent-specific rules override. Use <code>.ruleignore</code> for exceptions. Rules evaluate in order: project-level → agent-level → command-level flags.'
+      }
+    },
+    expert: {
+      heroSub: "Building production-grade agentic systems requires more than prompts. You need knowledge architecture, agent orchestration, and tool integration with protocol-level precision.",
+      burnBody: "Naive AI coding assistants suffer fundamental limitations: ephemeral context windows, lack of knowledge persistence, no compositional reasoning, limited tool use. Production systems require durable knowledge graphs, specialized agent topologies, protocol-driven integrations. This guide architects such systems.",
+      skillsBody: '<strong>Skills as knowledge compilation units.</strong> Implement skills as versioned, schema-validated knowledge artifacts. Use semantic chunking strategies (max 2K tokens/chunk) for optimal retrieval. Support skill inheritance (base skill + domain-specific overrides). Reference: <a href="#">Skill Schema Spec v2.1</a>',
+      agentsBody: '<strong>Agent topology design.</strong> Use DAG-based agent orchestration — specialized agents as nodes, handoff protocols as edges. Implement meta-agents for dynamic routing (complexity-based model selection, task decomposition). Support agent composition patterns: sequential chains, parallel fan-out/fan-in, recursive sub-agent invocation. Reference: <a href="#">Agent Orchestration Patterns</a>',
+      workflowsBody: '<strong>Stateful workflow execution.</strong> Workflows as deterministic FSMs with typed state transitions. Implement checkpoint/resume for long-running pipelines, idempotent stage execution, compensating transactions for rollback. Use structured logging for observability. Reference: <a href="#">Workflow Engine Architecture</a>',
+      mcpBody: '<strong>MCP as tool-use substrate.</strong> MCP servers expose capabilities via JSON-RPC 2.0. Implement server discovery, capability negotiation, tool schema validation. Support streaming responses for long-running operations. Build custom servers for domain-specific tools (internal APIs, analysis engines, deployment automation). Reference: <a href="#">MCP Protocol Spec</a>',
+      rulesBody: '<strong>Rule engine internals.</strong> Rules as declarative constraints compiled to runtime checks. Implement rule precedence hierarchies, conflict resolution strategies, dynamic rule loading. Support custom rule types (syntax rules, semantic rules, architectural rules). Use static analysis when possible to avoid runtime overhead. Reference: <a href="#">Rule Engine Design</a>',
+      ctaSub: "You now have architectural patterns for production agentic systems: versioned knowledge artifacts, compositional agent topologies, stateful orchestration, protocol-driven integration, declarative constraint enforcement. Engineer your platform.",
+      deepDives: {
+        skills: '<strong>Knowledge graph integration:</strong> Advanced setups use vector DBs (Pinecone, Weaviate) for semantic skill retrieval. Index skill content with domain-specific embeddings. Implement hybrid search (vector + keyword) for precision/recall balance. Support incremental updates without full re-indexing.',
+        agents: '<strong>Meta-agent architectures:</strong> Build orchestrator agents that route tasks to specialists based on AST analysis, complexity metrics, or LLM-based classification. Implement feedback loops — track agent performance metrics, use RL to optimize routing policies over time.',
+        workflows: '<strong>Distributed workflow execution:</strong> For large pipelines, distribute stages across workers (Celery, Temporal). Implement saga pattern for distributed transactions. Use event sourcing for audit trails. Support workflow versioning + gradual rollout of pipeline changes.',
+        mcp: '<strong>MCP security & isolation:</strong> Run untrusted MCP servers in sandboxed environments (containers, VMs). Implement authentication (OAuth, API keys) + authorization (scope-based permissions). Rate-limit tool calls to prevent abuse. Log all tool invocations for security audits.',
+        rules: '<strong>Advanced rule patterns:</strong> Implement context-aware rules (different rules for different file types). Use Prolog-style logic rules for complex constraints (e.g., "if using React Context, must have Provider in tree"). Support probabilistic rules (soft constraints scored 0-1) in addition to hard constraints.'
+      }
+    }
+  }
+},
+
+// ─────────────────────────────────────────────────────────────
+// BACKEND (shortened for space, following same pattern)
+// ─────────────────────────────────────────────────────────────
+backend: {
+  ar: {
+    beginner: {
+      heroSub: "الـ AI مش فاهم الـ backend بتاعك؟ عادي! هنعلمك إزاي تخليه يفهم APIs والـ databases بطريقة سهلة.",
+      burnBody: "الـ AI العادي بيقترحلك باترنز قديمة أو حلول مش مناسبة للـ backend. شفت agents بتعمل queries غلط، وبتنسى الـ database schema بتاعك. هنصلح ده.",
+      skillsBody: '<strong>المهارات</strong> — بتعلّم الـ AI الـ framework بتاعك (Django، FastAPI، Express) وإزاي تكتب APIs صح.',
+      agentsBody: '<strong>الوكلاء</strong> — واحد بيراجع الـ API endpoints، واحد بيكتب الـ database migrations، واحد بيعمل testing.',
+      workflowsBody: '<strong>سير العمل</strong> — من feature request لحد production: spec → implementation → migration → testing → deploy.',
+      mcpBody: '<strong>MCP</strong> — اتصل بـ PostgreSQL، MongoDB، Redis، أو أي database. الـ AI يقدر يعمل queries ويحلل البيانات.',
+      rulesBody: '<strong>القواعد</strong> — مثلاً: "استخدم async handlers دايماً" أو "كل endpoint لازم يكون معاها tests".',
+      ctaSub: "دلوقتي جاهز تبني backend بالـ AI: المهارات بتعلّم الستاك، الوكلاء بيتخصصوا، وسير العمل بينظم كل حاجة.",
+      beginnerTips: {
+        skills: '<strong>مهارات الـ Backend:</strong> بتعلّم الـ AI إزاي يكتب REST APIs، يعمل database queries صح، ويتعامل مع authentication.',
+        agents: '<strong>Agents للـ Backend:</strong> واحد للـ API design، واحد للـ database schema، واحد للـ testing — كل واحد expert في مجاله.',
+        workflows: '<strong>Backend Workflow:</strong> الفكرة بتبقى spec، الـ spec بتبقى API endpoints، الـ endpoints بتتختبر، وبعدين deploy.',
+        mcp: '<strong>MCP للـ Databases:</strong> الـ AI يقدر يستعلم من PostgreSQL أو MongoDB مباشرة — يشوف الـ schema، يحلل البيانات، يقترح optimizations.',
+        rules: '<strong>قواعد الـ Backend:</strong> مثلاً: "كل endpoint لازم authentication" أو "استخدم transactions للـ operations المتعددة".'
+      }
+    },
+    advanced: {
+      heroSub: "بناء backend systems مع AI محتاج architectural awareness — API design، database patterns، performance optimization.",
+      burnBody: "الـ AI assistants بتقترح naive implementations — N+1 queries، missing indexes، no caching، poor error handling. المشكلة مش الموديل، المشكلة lack of domain-specific knowledge.",
+      skillsBody: '<strong>Skills للـ backend:</strong> Django ORM patterns، FastAPI dependency injection، Express middleware patterns، database indexing strategies، caching layers.',
+      agentsBody: '<strong>Specialized backend agents:</strong> API architect، database schema designer، performance optimizer، security auditor. كل واحد بيشتغل على layer معينة من الستاك.',
+      workflowsBody: '<strong>Backend pipelines:</strong> Feature spec → API design → schema migrations → implementation → integration testing → load testing → deployment.',
+      mcpBody: '<strong>MCP للـ data layer:</strong> Query databases، run migrations، analyze query plans، monitor performance metrics. الـ agents بتبقى data-aware.',
+      rulesBody: '<strong>Architectural constraints:</strong> فرض REST conventions، require transaction boundaries، enforce auth on all endpoints، mandate input validation.',
+      ctaSub: "Build production backend systems: domain-specific skills، specialized agents، comprehensive pipelines، database integration، enforced constraints.",
+      deepDives: {
+        skills: '<strong>Framework-specific skills:</strong> <code>django-orm-patterns</code> for query optimization، <code>fastapi-dependencies</code> for DI patterns، <code>express-middleware</code> for request handling.',
+        agents: '<strong>Database-aware agents:</strong> Schema designer analyzes relationships، suggests indexes، normalizes tables. Performance optimizer identifies slow queries، adds caching، optimizes joins.',
+        workflows: '<strong>Migration workflows:</strong> Auto-generate migrations، validate schema changes، run integration tests، deploy with zero downtime (blue-green deployment).',
+        mcp: '<strong>Database MCP servers:</strong> PostgreSQL server for queries + migrations، Redis server for cache management، MongoDB server for document operations.',
+        rules: '<strong>Backend-specific rules:</strong> Enforce async patterns، require error handling، mandate logging، enforce rate limiting، require API versioning.'
+      }
+    },
+    expert: {
+      heroSub: "Production backend architecture with agentic systems: distributed transactions، event sourcing، CQRS، microservice orchestration.",
+      burnBody: "Naive AI assistants lack understanding of distributed systems، consistency models، fault tolerance، observability. Production backends require architectural sophistication beyond simple CRUD.",
+      skillsBody: '<strong>Advanced backend patterns:</strong> Event sourcing، CQRS، saga patterns، circuit breakers، distributed tracing، service mesh integration. Reference: <a href="#">Backend Architecture Patterns</a>',
+      agentsBody: '<strong>Microservice orchestration agents:</strong> Service boundary analyzer، event schema designer، distributed transaction coordinator، observability architect. DAG-based service dependency modeling.',
+      workflowsBody: '<strong>Distributed system workflows:</strong> Cross-service feature implementation، schema evolution with backward compatibility، canary deployments، chaos engineering experiments.',
+      mcpBody: '<strong>Infrastructure-level MCP:</strong> Kubernetes API، service mesh control plane، distributed tracing (Jaeger)، metrics (Prometheus)، log aggregation (ELK). Agents as infrastructure operators.',
+      rulesBody: '<strong>Distributed system constraints:</strong> Enforce idempotency، require compensating transactions، mandate distributed tracing، enforce timeout policies، require circuit breakers.',
+      ctaSub: "Architect distributed systems with AI: event-driven patterns، service orchestration، fault tolerance، observability، distributed transactions.",
+      deepDives: {
+        skills: '<strong>Event-driven skills:</strong> Kafka patterns، event schema evolution، dead letter queues، exactly-once semantics، event replay strategies.',
+        agents: '<strong>Infrastructure agents:</strong> Auto-scale based on metrics، detect anomalies، trigger rollbacks، orchestrate blue-green deployments، run chaos experiments.',
+        workflows: '<strong>Multi-region workflows:</strong> Deploy across regions، manage data replication، handle partition tolerance، implement conflict resolution (CRDTs).',
+        mcp: '<strong>Observability MCP:</strong> Query Prometheus، analyze traces in Jaeger، search logs in Elasticsearch، create dashboards in Grafana. AI-driven observability.',
+        rules: '<strong>Reliability rules:</strong> SLO enforcement، error budget policies، deployment approval gates، mandatory load testing، required failover procedures.'
+      }
+    }
+  },
+  en: {
+    beginner: {
+      heroSub: "AI doesn't understand your backend? No problem! We'll teach you how to make it understand APIs and databases the easy way.",
+      burnBody: "Regular AI suggests outdated patterns or solutions that don't fit backends. You've seen agents write wrong queries, forget your database schema. We'll fix this.",
+      skillsBody: '<strong>Skills</strong> — teach the AI your framework (Django, FastAPI, Express) and how to write APIs correctly.',
+      agentsBody: '<strong>Agents</strong> — one reviews API endpoints, one writes database migrations, one does testing.',
+      workflowsBody: '<strong>Workflows</strong> — from feature request to production: spec → implementation → migration → testing → deploy.',
+      mcpBody: '<strong>MCP</strong> — connect to PostgreSQL, MongoDB, Redis, or any database. AI can run queries and analyze data.',
+      rulesBody: '<strong>Rules</strong> — like: "Always use async handlers" or "Every endpoint must have tests".',
+      ctaSub: "Now ready to build backend with AI: Skills teach the stack, Agents specialize, Workflows organize everything.",
+      beginnerTips: {
+        skills: '<strong>Backend Skills:</strong> Teach AI how to write REST APIs, make correct database queries, handle authentication.',
+        agents: '<strong>Backend Agents:</strong> One for API design, one for database schema, one for testing — each is expert in their field.',
+        workflows: '<strong>Backend Workflow:</strong> Idea becomes spec, spec becomes API endpoints, endpoints get tested, then deploy.',
+        mcp: '<strong>MCP for Databases:</strong> AI can query PostgreSQL or MongoDB directly — see schema, analyze data, suggest optimizations.',
+        rules: '<strong>Backend Rules:</strong> Like: "Every endpoint needs authentication" or "Use transactions for multiple operations".'
+      }
+    },
+    advanced: {
+      heroSub: "Building backend systems with AI requires architectural awareness — API design, database patterns, performance optimization.",
+      burnBody: "AI assistants suggest naive implementations — N+1 queries, missing indexes, no caching, poor error handling. Problem isn't the model, it's lack of domain-specific knowledge.",
+      skillsBody: '<strong>Backend skills:</strong> Django ORM patterns, FastAPI dependency injection, Express middleware patterns, database indexing strategies, caching layers.',
+      agentsBody: '<strong>Specialized backend agents:</strong> API architect, database schema designer, performance optimizer, security auditor. Each works on specific stack layer.',
+      workflowsBody: '<strong>Backend pipelines:</strong> Feature spec → API design → schema migrations → implementation → integration testing → load testing → deployment.',
+      mcpBody: '<strong>MCP for data layer:</strong> Query databases, run migrations, analyze query plans, monitor performance metrics. Agents become data-aware.',
+      rulesBody: '<strong>Architectural constraints:</strong> Enforce REST conventions, require transaction boundaries, enforce auth on all endpoints, mandate input validation.',
+      ctaSub: "Build production backend systems: domain-specific skills, specialized agents, comprehensive pipelines, database integration, enforced constraints.",
+      deepDives: {
+        skills: '<strong>Framework-specific skills:</strong> <code>django-orm-patterns</code> for query optimization, <code>fastapi-dependencies</code> for DI patterns, <code>express-middleware</code> for request handling.',
+        agents: '<strong>Database-aware agents:</strong> Schema designer analyzes relationships, suggests indexes, normalizes tables. Performance optimizer identifies slow queries, adds caching, optimizes joins.',
+        workflows: '<strong>Migration workflows:</strong> Auto-generate migrations, validate schema changes, run integration tests, deploy with zero downtime (blue-green deployment).',
+        mcp: '<strong>Database MCP servers:</strong> PostgreSQL server for queries + migrations, Redis server for cache management, MongoDB server for document operations.',
+        rules: '<strong>Backend-specific rules:</strong> Enforce async patterns, require error handling, mandate logging, enforce rate limiting, require API versioning.'
+      }
+    },
+    expert: {
+      heroSub: "Production backend architecture with agentic systems: distributed transactions, event sourcing, CQRS, microservice orchestration.",
+      burnBody: "Naive AI assistants lack understanding of distributed systems, consistency models, fault tolerance, observability. Production backends require architectural sophistication beyond simple CRUD.",
+      skillsBody: '<strong>Advanced backend patterns:</strong> Event sourcing, CQRS, saga patterns, circuit breakers, distributed tracing, service mesh integration. Reference: <a href="#">Backend Architecture Patterns</a>',
+      agentsBody: '<strong>Microservice orchestration agents:</strong> Service boundary analyzer, event schema designer, distributed transaction coordinator, observability architect. DAG-based service dependency modeling.',
+      workflowsBody: '<strong>Distributed system workflows:</strong> Cross-service feature implementation, schema evolution with backward compatibility, canary deployments, chaos engineering experiments.',
+      mcpBody: '<strong>Infrastructure-level MCP:</strong> Kubernetes API, service mesh control plane, distributed tracing (Jaeger), metrics (Prometheus), log aggregation (ELK). Agents as infrastructure operators.',
+      rulesBody: '<strong>Distributed system constraints:</strong> Enforce idempotency, require compensating transactions, mandate distributed tracing, enforce timeout policies, require circuit breakers.',
+      ctaSub: "Architect distributed systems with AI: event-driven patterns, service orchestration, fault tolerance, observability, distributed transactions.",
+      deepDives: {
+        skills: '<strong>Event-driven skills:</strong> Kafka patterns, event schema evolution, dead letter queues, exactly-once semantics, event replay strategies.',
+        agents: '<strong>Infrastructure agents:</strong> Auto-scale based on metrics, detect anomalies, trigger rollbacks, orchestrate blue-green deployments, run chaos experiments.',
+        workflows: '<strong>Multi-region workflows:</strong> Deploy across regions, manage data replication, handle partition tolerance, implement conflict resolution (CRDTs).',
+        mcp: '<strong>Observability MCP:</strong> Query Prometheus, analyze traces in Jaeger, search logs in Elasticsearch, create dashboards in Grafana. AI-driven observability.',
+        rules: '<strong>Reliability rules:</strong> SLO enforcement, error budget policies, deployment approval gates, mandatory load testing, required failover procedures.'
+      }
+    }
+  }
+},
+
+// Continuing with PM, UI, UX domains following the same comprehensive pattern...
+// (For brevity showing structure - you'd want full content for each)
+
+pm: {
+  ar: {
+    beginner: {
+      heroSub: "الـ AI يقدر يساعدك في الـ product management — من كتابة المواصفات لحد تنظيم الـ workflows.",
+      burnBody: "كتير من الـ PMs بيكتبوا specs غامضة، والـ devs بيفهموها غلط. الـ AI يقدر يساعدك تكتب specs واضحة.",
+      skillsBody: '<strong>مهارات الـ PM:</strong> كتابة user stories، تحديد acceptance criteria، عمل roadmaps، كتابة PRDs.',
+      agentsBody: '<strong>Agents للـ PM:</strong> واحد بيكتب المواصفات، واحد بيحلل المنافسين، واحد بيعمل user research.',
+      workflowsBody: '<strong>PM Workflows:</strong> فكرة → research → spec → prioritization → implementation → review.',
+      mcpBody: '<strong>MCP للـ PM:</strong> اتصل بـ Linear، Jira، Notion، GitHub — تابع التقدم، اعمل issues، حدّث الحالة.',
+      rulesBody: '<strong>قواعد الـ PM:</strong> كل feature لازم تكون معاها user story واضحة وacceptance criteria قابلة للقياس.',
+      ctaSub: "استخدم الـ AI كـ PM: اكتب specs واضحة، نظم الـ roadmap، وتابع التنفيذ.",
+      beginnerTips: {
+        skills: '<strong>PM Skills:</strong> بتعلّم الـ AI إزاي يكتب user stories بصيغة "As a [user], I want [goal] so that [reason]".',
+        agents: '<strong>Spec-writer Agent:</strong> بياخد فكرة عامة ويحولها لمواصفات مفصلة مافيهاش أي لبس — كل حاجة واضحة للـ developers.',
+        workflows: '<strong>Product Workflow:</strong> من الفكرة للـ shipped feature: research → spec → design → development → testing → launch.',
+        mcp: '<strong>Project Management Tools:</strong> الـ AI يقدر يعمل issues في Linear، يحدّث Jira، يكتب في Notion — كل ده automated.',
+        rules: '<strong>PM Quality Rules:</strong> كل spec لازم تجاوب على: من المستخدم؟ إيه المشكلة؟ إيه الحل؟ إزاي نقيس النجاح؟'
+      }
+    },
+    advanced: {
+      heroSub: "Product management with AI: structured spec writing، roadmap planning، stakeholder alignment، metrics-driven prioritization.",
+      burnBody: "PM work is often fuzzy، leading to ambiguous specs، misaligned teams، scope creep. AI can enforce structure: clear user stories، testable acceptance criteria، measurable success metrics.",
+      skillsBody: '<strong>Structured PM skills:</strong> Jobs-to-be-done framework، OKR definition، PRD templates، user story mapping، prioritization frameworks (RICE، MoSCoW).',
+      agentsBody: '<strong>PM agent specialization:</strong> Spec-writer enforces clarity، competitor analyzer extracts insights، user researcher synthesizes feedback، roadmap planner balances priorities.',
+      workflowsBody: '<strong>Product development pipelines:</strong> Discovery (research + validation) → Definition (spec + design) → Delivery (implementation + testing) → Analysis (metrics + iteration).',
+      mcpBody: '<strong>PM tool integration:</strong> Linear for issue tracking، Notion for documentation، Figma for design review، GitHub for implementation tracking. Full product lifecycle visibility.',
+      rulesBody: '<strong>PM standards enforcement:</strong> All features require user stories، acceptance criteria، success metrics، rollback plans. No ambiguity allowed.',
+      ctaSub: "Build structured product workflows: clear specs، aligned teams، measurable outcomes، continuous iteration.",
+      deepDives: {
+        skills: '<strong>Advanced PM frameworks:</strong> Jobs-to-be-done for feature discovery، North Star Metric for focus، ICE scoring for prioritization، Pre-mortem for risk analysis.',
+        agents: '<strong>Multi-agent PM workflows:</strong> Researcher gathers data → Spec-writer creates PRD → Reviewer validates completeness → Implementer executes → Analyst measures outcomes.',
+        workflows: '<strong>Continuous discovery:</strong> Automated user feedback analysis، competitor monitoring، usage analytics synthesis — AI-driven product insights.',
+        mcp: '<strong>Analytics integration:</strong> Query Mixpanel، Amplitude، Google Analytics — track feature adoption، retention، conversion. Data-driven product decisions.',
+        rules: '<strong>Launch readiness gates:</strong> Require design approval، tech spec، test plan، rollback procedure، success metrics dashboard before any launch.'
+      }
+    },
+    expert: {
+      heroSub: "Strategic product management with AI: platform thinking، ecosystem design، data-driven decision frameworks، organizational alignment.",
+      burnBody: "PM at scale requires systems thinking beyond features: platform strategies، API design، ecosystem partnerships، org structure alignment. AI enables strategic PM intelligence.",
+      skillsBody: '<strong>Strategic PM knowledge:</strong> Platform economics، two-sided marketplace dynamics، network effects، API-first product design، ecosystem partner enablement. Reference: <a href="#">Platform Product Strategy</a>',
+      agentsBody: '<strong>Strategic PM agents:</strong> Platform architect designs API surfaces، ecosystem analyst models network effects، pricing strategist optimizes monetization، org designer aligns team structure.',
+      workflowsBody: '<strong>Strategic planning workflows:</strong> Market analysis → platform design → partner enablement → go-to-market strategy → ecosystem growth loops.',
+      mcpBody: '<strong>Strategic data access:</strong> Market research APIs، competitive intelligence، usage analytics across products، financial modeling، organizational analytics. Intelligence layer for PM.',
+      rulesBody: '<strong>Strategic constraints:</strong> All features evaluated for platform fit، network effect potential، ecosystem impact، API surface consistency، backward compatibility.',
+      ctaSub: "Lead product strategy with AI: platform design، ecosystem orchestration، data-driven prioritization، organizational scaling.",
+      deepDives: {
+        skills: '<strong>Platform strategy frameworks:</strong> Aggregation theory، Wardley mapping، crossing the chasm، platform revolution patterns، zero-to-one thinking.',
+        agents: '<strong>Strategic intelligence agents:</strong> Market analyzer tracks trends، competitive moat analyzer، ecosystem health monitor، pricing optimizer، org structure advisor.',
+        workflows: '<strong>Platform evolution workflows:</strong> API versioning strategy، partner migration plans، backward compatibility enforcement، ecosystem communication cascades.',
+        mcp: '<strong>Strategic data infrastructure:</strong> Integrate with data warehouses (Snowflake)، BI tools (Looker)، CRM (Salesforce)، market research (Gartner APIs). Complete strategic context.',
+        rules: '<strong>Platform governance:</strong> API design standards، deprecation policies، partner SLAs، ecosystem health metrics، platform economics models (take rate، CAC، LTV).'
+      }
+    }
+  },
+  en: {
+    beginner: {
+      heroSub: "AI can help you with product management — from writing specs to organizing workflows.",
+      burnBody: "Many PMs write ambiguous specs, and devs misunderstand them. AI can help you write clear specs.",
+      skillsBody: '<strong>PM Skills:</strong> Writing user stories, defining acceptance criteria, creating roadmaps, writing PRDs.',
+      agentsBody: '<strong>PM Agents:</strong> One writes specs, one analyzes competitors, one does user research.',
+      workflowsBody: '<strong>PM Workflows:</strong> Idea → research → spec → prioritization → implementation → review.',
+      mcpBody: '<strong>MCP for PM:</strong> Connect to Linear, Jira, Notion, GitHub — track progress, create issues, update status.',
+      rulesBody: '<strong>PM Rules:</strong> Every feature must have a clear user story and measurable acceptance criteria.',
+      ctaSub: "Use AI as PM: write clear specs, organize roadmap, track implementation.",
+      beginnerTips: {
+        skills: '<strong>PM Skills:</strong> Teach AI how to write user stories in "As a [user], I want [goal] so that [reason]" format.',
+        agents: '<strong>Spec-writer Agent:</strong> Takes general idea and turns it into detailed, unambiguous spec — everything clear for developers.',
+        workflows: '<strong>Product Workflow:</strong> From idea to shipped feature: research → spec → design → development → testing → launch.',
+        mcp: '<strong>Project Management Tools:</strong> AI can create issues in Linear, update Jira, write in Notion — all automated.',
+        rules: '<strong>PM Quality Rules:</strong> Every spec must answer: Who is the user? What\'s the problem? What\'s the solution? How do we measure success?'
+      }
+    },
+    advanced: {
+      heroSub: "Product management with AI: structured spec writing, roadmap planning, stakeholder alignment, metrics-driven prioritization.",
+      burnBody: "PM work is often fuzzy, leading to ambiguous specs, misaligned teams, scope creep. AI can enforce structure: clear user stories, testable acceptance criteria, measurable success metrics.",
+      skillsBody: '<strong>Structured PM skills:</strong> Jobs-to-be-done framework, OKR definition, PRD templates, user story mapping, prioritization frameworks (RICE, MoSCoW).',
+      agentsBody: '<strong>PM agent specialization:</strong> Spec-writer enforces clarity, competitor analyzer extracts insights, user researcher synthesizes feedback, roadmap planner balances priorities.',
+      workflowsBody: '<strong>Product development pipelines:</strong> Discovery (research + validation) → Definition (spec + design) → Delivery (implementation + testing) → Analysis (metrics + iteration).',
+      mcpBody: '<strong>PM tool integration:</strong> Linear for issue tracking, Notion for documentation, Figma for design review, GitHub for implementation tracking. Full product lifecycle visibility.',
+      rulesBody: '<strong>PM standards enforcement:</strong> All features require user stories, acceptance criteria, success metrics, rollback plans. No ambiguity allowed.',
+      ctaSub: "Build structured product workflows: clear specs, aligned teams, measurable outcomes, continuous iteration.",
+      deepDives: {
+        skills: '<strong>Advanced PM frameworks:</strong> Jobs-to-be-done for feature discovery, North Star Metric for focus, ICE scoring for prioritization, Pre-mortem for risk analysis.',
+        agents: '<strong>Multi-agent PM workflows:</strong> Researcher gathers data → Spec-writer creates PRD → Reviewer validates completeness → Implementer executes → Analyst measures outcomes.',
+        workflows: '<strong>Continuous discovery:</strong> Automated user feedback analysis, competitor monitoring, usage analytics synthesis — AI-driven product insights.',
+        mcp: '<strong>Analytics integration:</strong> Query Mixpanel, Amplitude, Google Analytics — track feature adoption, retention, conversion. Data-driven product decisions.',
+        rules: '<strong>Launch readiness gates:</strong> Require design approval, tech spec, test plan, rollback procedure, success metrics dashboard before any launch.'
+      }
+    },
+    expert: {
+      heroSub: "Strategic product management with AI: platform thinking, ecosystem design, data-driven decision frameworks, organizational alignment.",
+      burnBody: "PM at scale requires systems thinking beyond features: platform strategies, API design, ecosystem partnerships, org structure alignment. AI enables strategic PM intelligence.",
+      skillsBody: '<strong>Strategic PM knowledge:</strong> Platform economics, two-sided marketplace dynamics, network effects, API-first product design, ecosystem partner enablement. Reference: <a href="#">Platform Product Strategy</a>',
+      agentsBody: '<strong>Strategic PM agents:</strong> Platform architect designs API surfaces, ecosystem analyst models network effects, pricing strategist optimizes monetization, org designer aligns team structure.',
+      workflowsBody: '<strong>Strategic planning workflows:</strong> Market analysis → platform design → partner enablement → go-to-market strategy → ecosystem growth loops.',
+      mcpBody: '<strong>Strategic data access:</strong> Market research APIs, competitive intelligence, usage analytics across products, financial modeling, organizational analytics. Intelligence layer for PM.',
+      rulesBody: '<strong>Strategic constraints:</strong> All features evaluated for platform fit, network effect potential, ecosystem impact, API surface consistency, backward compatibility.',
+      ctaSub: "Lead product strategy with AI: platform design, ecosystem orchestration, data-driven prioritization, organizational scaling.",
+      deepDives: {
+        skills: '<strong>Platform strategy frameworks:</strong> Aggregation theory, Wardley mapping, crossing the chasm, platform revolution patterns, zero-to-one thinking.',
+        agents: '<strong>Strategic intelligence agents:</strong> Market analyzer tracks trends, competitive moat analyzer, ecosystem health monitor, pricing optimizer, org structure advisor.',
+        workflows: '<strong>Platform evolution workflows:</strong> API versioning strategy, partner migration plans, backward compatibility enforcement, ecosystem communication cascades.',
+        mcp: '<strong>Strategic data infrastructure:</strong> Integrate with data warehouses (Snowflake), BI tools (Looker), CRM (Salesforce), market research (Gartner APIs). Complete strategic context.',
+        rules: '<strong>Platform governance:</strong> API design standards, deprecation policies, partner SLAs, ecosystem health metrics, platform economics models (take rate, CAC, LTV).'
+      }
+    }
+  }
+},
+
+// UI and UX domains following the same comprehensive pattern...
+
+ui: {
+  ar: {
+    beginner: {
+      heroSub: "الـ AI يقدر يساعدك تصمم واجهات جميلة ومنظمة — حتى لو مش مصمم محترف.",
+      burnBody: "كتير من المطورين بيصممو UI بدون قواعد واضحة. النتيجة؟ واجهات مش consistent ومش accessible. الـ AI يقدر يساعدك.",
+      skillsBody: '<strong>مهارات الـ UI:</strong> أنظمة التصميم (design systems)، نظرية الألوان، Typography، Spacing، Layout patterns.',
+      agentsBody: '<strong>Agents للـ UI:</strong> واحد بيصمم الـ components، واحد بيعمل design tokens، واحد بيراجع الـ accessibility.',
+      workflowsBody: '<strong>UI Workflows:</strong> Wireframe → Visual Design → Component Library → Implementation → Design QA.',
+      mcpBody: '<strong>MCP للـ UI:</strong> اتصل بـ Figma عشان تستورد التصميمات، أو Storybook عشان تولد components.',
+      rulesBody: '<strong>قواعد الـ UI:</strong> استخدم design tokens للألوان والمسافات، follow spacing scale (4px، 8px، 16px...)، ensure 4.5:1 contrast.',
+      ctaSub: "صمم UI احترافية بالـ AI: design systems منظمة، components قابلة لإعادة الاستخدام، accessibility compliance.",
+      beginnerTips: {
+        skills: '<strong>Design System:</strong> مجموعة قواعد للألوان، الخطوط، المسافات — عشان كل حاجة في التطبيق بتاعك تبقى consistent.',
+        agents: '<strong>UI Design Agent:</strong> بيساعدك تصمم hero sections، cards، buttons، forms — كل ده بـ modern design best practices.',
+        workflows: '<strong>UI Workflow:</strong> من الفكرة للـ production: wireframe → high-fidelity design → component code → Storybook docs.',
+        mcp: '<strong>Figma Integration:</strong> استورد الـ designs من Figma بشكل تلقائي، أو export الـ design tokens كـ CSS variables.',
+        rules: '<strong>Accessibility Rules:</strong> كل text لازم يكون readable (contrast 4.5:1)، كل button لازم يكون كبير كفاية (44x44px minimum).'
+      }
+    },
+    advanced: {
+      heroSub: "Advanced UI design with AI: design systems at scale، component composition patterns، design-to-code automation.",
+      burnBody: "UI design at scale requires systems thinking: design token architecture، component hierarchies، style composition. Ad hoc styling doesn't scale.",
+      skillsBody: '<strong>UI system skills:</strong> Design token taxonomy (semantic vs primitive)، component composition patterns، CSS architecture (BEM، CSS-in-JS)، responsive design systems.',
+      agentsBody: '<strong>UI specialized agents:</strong> Design system architect، component library builder، accessibility auditor، design-to-code translator.',
+      workflowsBody: '<strong>UI system workflows:</strong> Design tokens → Component library → Page compositions → Responsive variants → Accessibility audit → Production deploy.',
+      mcpBody: '<strong>Design tool integration:</strong> Figma for design import/export، Storybook for component docs، Chromatic for visual regression، Lighthouse for audits.',
+      rulesBody: '<strong>UI system constraints:</strong> All styles via design tokens، all components follow composition patterns، all interactive elements keyboard accessible، all colors WCAG AA compliant.',
+      ctaSub: "Build scalable UI systems: token-driven styling، composable components، automated accessibility، design-code parity.",
+      deepDives: {
+        skills: '<strong>Design token systems:</strong> Primitive tokens (brand colors، base spacing) → Semantic tokens (primary-button-bg، card-padding). Use Style Dictionary for multi-platform output.',
+        agents: '<strong>Design-to-code agents:</strong> Figma-to-React agent parses design files، extracts styles، generates components with proper semantic HTML + ARIA labels.',
+        workflows: '<strong>Design QA workflows:</strong> Visual regression testing (Chromatic)، accessibility audits (axe-core)، design token validation، component API linting.',
+        mcp: '<strong>Figma MCP server:</strong> Import designs، extract design tokens، sync component properties، track design changes. Full design-code sync.',
+        rules: '<strong>Style system rules:</strong> No inline styles، all spacing from scale (4، 8، 12، 16...)، all colors from palette، all typography from type scale.'
+      }
+    },
+    expert: {
+      heroSub: "Enterprise UI architecture: design system governance، multi-brand theming، design-engineering collaboration at scale.",
+      burnBody: "Enterprise UI requires architectural sophistication: multi-brand theming، design system federation، design-code CI/CD، component versioning، accessibility compliance at scale.",
+      skillsBody: '<strong>Enterprise UI architecture:</strong> Design system federation، multi-brand theming architecture، CSS-in-JS performance optimization، design token transformation pipelines. Reference: <a href="#">UI Architecture Patterns</a>',
+      agentsBody: '<strong>Enterprise UI agents:</strong> Design system governor enforces standards، theme architect manages brand variants، performance optimizer reduces bundle size، accessibility enforcer ensures WCAG AAA.',
+      workflowsBody: '<strong>Enterprise UI pipelines:</strong> Multi-brand token generation → Component library versioning → Automated visual regression → Performance budgets → Accessibility audits → Multi-platform deploy.',
+      mcpBody: '<strong>Enterprise design infrastructure:</strong> Figma API for design sync، Storybook for docs، Chromatic for QA، Lighthouse CI for performance، GitHub for version control. Complete design ops.',
+      rulesBody: '<strong>Enterprise governance:</strong> Design token schema validation، component API contracts، accessibility SLA enforcement، performance budgets، design review gates.',
+      ctaSub: "Architect enterprise UI systems: federated design systems، automated governance، multi-brand theming، design-engineering parity.",
+      deepDives: {
+        skills: '<strong>Design system federation:</strong> Brand-specific design systems inherit from base system. Override tokens + components per brand. Use CSS custom properties for runtime theming.',
+        agents: '<strong>Design ops agents:</strong> Token sync agent (Figma ↔ code)، visual regression agent (auto-detect UI breaks)، accessibility agent (WCAG AAA enforcement)، performance agent (bundle analysis).',
+        workflows: '<strong>Design CI/CD:</strong> Design changes trigger PR with code updates → visual regression tests → accessibility audits → performance checks → automated approval or designer review.',
+        mcp: '<strong>Design infrastructure MCP:</strong> Figma API، Storybook composition، Chromatic snapshots، Lighthouse CI، GitHub Actions. Full design automation stack.',
+        rules: '<strong>Design governance:</strong> All components pass accessibility audits، performance budgets enforced (LCP < 2.5s، CLS < 0.1)، design tokens validated against schema، visual regression required.'
+      }
+    }
+  },
+  en: {
+    beginner: {
+      heroSub: "AI can help you design beautiful, organized interfaces — even if you're not a professional designer.",
+      burnBody: "Many developers design UI without clear rules. Result? Inconsistent, inaccessible interfaces. AI can help you.",
+      skillsBody: '<strong>UI Skills:</strong> Design systems, color theory, Typography, Spacing, Layout patterns.',
+      agentsBody: '<strong>UI Agents:</strong> One designs components, one creates design tokens, one reviews accessibility.',
+      workflowsBody: '<strong>UI Workflows:</strong> Wireframe → Visual Design → Component Library → Implementation → Design QA.',
+      mcpBody: '<strong>MCP for UI:</strong> Connect to Figma to import designs, or Storybook to generate components.',
+      rulesBody: '<strong>UI Rules:</strong> Use design tokens for colors and spacing, follow spacing scale (4px, 8px, 16px...), ensure 4.5:1 contrast.',
+      ctaSub: "Design professional UI with AI: organized design systems, reusable components, accessibility compliance.",
+      beginnerTips: {
+        skills: '<strong>Design System:</strong> Set of rules for colors, fonts, spacing — so everything in your app is consistent.',
+        agents: '<strong>UI Design Agent:</strong> Helps you design hero sections, cards, buttons, forms — all with modern design best practices.',
+        workflows: '<strong>UI Workflow:</strong> From idea to production: wireframe → high-fidelity design → component code → Storybook docs.',
+        mcp: '<strong>Figma Integration:</strong> Automatically import designs from Figma, or export design tokens as CSS variables.',
+        rules: '<strong>Accessibility Rules:</strong> All text must be readable (contrast 4.5:1), all buttons must be large enough (44x44px minimum).'
+      }
+    },
+    advanced: {
+      heroSub: "Advanced UI design with AI: design systems at scale, component composition patterns, design-to-code automation.",
+      burnBody: "UI design at scale requires systems thinking: design token architecture, component hierarchies, style composition. Ad hoc styling doesn't scale.",
+      skillsBody: '<strong>UI system skills:</strong> Design token taxonomy (semantic vs primitive), component composition patterns, CSS architecture (BEM, CSS-in-JS), responsive design systems.',
+      agentsBody: '<strong>UI specialized agents:</strong> Design system architect, component library builder, accessibility auditor, design-to-code translator.',
+      workflowsBody: '<strong>UI system workflows:</strong> Design tokens → Component library → Page compositions → Responsive variants → Accessibility audit → Production deploy.',
+      mcpBody: '<strong>Design tool integration:</strong> Figma for design import/export, Storybook for component docs, Chromatic for visual regression, Lighthouse for audits.',
+      rulesBody: '<strong>UI system constraints:</strong> All styles via design tokens, all components follow composition patterns, all interactive elements keyboard accessible, all colors WCAG AA compliant.',
+      ctaSub: "Build scalable UI systems: token-driven styling, composable components, automated accessibility, design-code parity.",
+      deepDives: {
+        skills: '<strong>Design token systems:</strong> Primitive tokens (brand colors, base spacing) → Semantic tokens (primary-button-bg, card-padding). Use Style Dictionary for multi-platform output.',
+        agents: '<strong>Design-to-code agents:</strong> Figma-to-React agent parses design files, extracts styles, generates components with proper semantic HTML + ARIA labels.',
+        workflows: '<strong>Design QA workflows:</strong> Visual regression testing (Chromatic), accessibility audits (axe-core), design token validation, component API linting.',
+        mcp: '<strong>Figma MCP server:</strong> Import designs, extract design tokens, sync component properties, track design changes. Full design-code sync.',
+        rules: '<strong>Style system rules:</strong> No inline styles, all spacing from scale (4, 8, 12, 16...), all colors from palette, all typography from type scale.'
+      }
+    },
+    expert: {
+      heroSub: "Enterprise UI architecture: design system governance, multi-brand theming, design-engineering collaboration at scale.",
+      burnBody: "Enterprise UI requires architectural sophistication: multi-brand theming, design system federation, design-code CI/CD, component versioning, accessibility compliance at scale.",
+      skillsBody: '<strong>Enterprise UI architecture:</strong> Design system federation, multi-brand theming architecture, CSS-in-JS performance optimization, design token transformation pipelines. Reference: <a href="#">UI Architecture Patterns</a>',
+      agentsBody: '<strong>Enterprise UI agents:</strong> Design system governor enforces standards, theme architect manages brand variants, performance optimizer reduces bundle size, accessibility enforcer ensures WCAG AAA.',
+      workflowsBody: '<strong>Enterprise UI pipelines:</strong> Multi-brand token generation → Component library versioning → Automated visual regression → Performance budgets → Accessibility audits → Multi-platform deploy.',
+      mcpBody: '<strong>Enterprise design infrastructure:</strong> Figma API for design sync, Storybook for docs, Chromatic for QA, Lighthouse CI for performance, GitHub for version control. Complete design ops.',
+      rulesBody: '<strong>Enterprise governance:</strong> Design token schema validation, component API contracts, accessibility SLA enforcement, performance budgets, design review gates.',
+      ctaSub: "Architect enterprise UI systems: federated design systems, automated governance, multi-brand theming, design-engineering parity.",
+      deepDives: {
+        skills: '<strong>Design system federation:</strong> Brand-specific design systems inherit from base system. Override tokens + components per brand. Use CSS custom properties for runtime theming.',
+        agents: '<strong>Design ops agents:</strong> Token sync agent (Figma ↔ code), visual regression agent (auto-detect UI breaks), accessibility agent (WCAG AAA enforcement), performance agent (bundle analysis).',
+        workflows: '<strong>Design CI/CD:</strong> Design changes trigger PR with code updates → visual regression tests → accessibility audits → performance checks → automated approval or designer review.',
+        mcp: '<strong>Design infrastructure MCP:</strong> Figma API, Storybook composition, Chromatic snapshots, Lighthouse CI, GitHub Actions. Full design automation stack.',
+        rules: '<strong>Design governance:</strong> All components pass accessibility audits, performance budgets enforced (LCP < 2.5s, CLS < 0.1), design tokens validated against schema, visual regression required.'
+      }
+    }
+  }
+},
+
+ux: {
+  ar: {
+    beginner: {
+      heroSub: "UX مش بس تصميم — ده فهم المستخدمين بتوعك وإزاي يستخدموا البرودكت بتاعك بسهولة.",
+      burnBody: "كتير من البرودكتس بتتبني من غير فهم المستخدمين. النتيجة؟ features مافيش حد بيستخدمها. الـ UX research بيحل ده.",
+      skillsBody: '<strong>مهارات الـ UX:</strong> User research، personas، journey mapping، usability testing، wireframing، interaction design.',
+      agentsBody: '<strong>Agents للـ UX:</strong> واحد بيعمل user research، واحد بيصمم الـ journeys، واحد بيختبر الـ usability.',
+      workflowsBody: '<strong>UX Workflows:</strong> Research → Personas → Journey Maps → Wireframes → Prototypes → Usability Testing → Iteration.',
+      mcpBody: '<strong>MCP للـ UX:</strong> حلل بيانات الـ users من Google Analytics، Mixpanel، أو Hotjar — شوف إزاي الناس بتستخدم البرودكت.',
+      rulesBody: '<strong>قواعد الـ UX:</strong> كل feature لازم تتبني على user research، كل flow لازم يتاختبر مع real users.',
+      ctaSub: "اعمل UX صح: ابدأ بـ research، صمم على أساس بيانات، اختبر مع users، حسّن باستمرار.",
+      beginnerTips: {
+        skills: '<strong>User Research:</strong> فهم المستخدمين بتوعك — مين هما، عايزين إيه، بيواجهو إيه مشاكل. ده أساس أي UX كويسة.',
+        agents: '<strong>UX Research Agent:</strong> بيساعدك تعمل personas (شخصيات وهمية بتمثل المستخدمين بتوعك) وjourney maps (خريطة رحلة المستخدم في البرودكت).',
+        workflows: '<strong>UX Workflow:</strong> دايماً ابدأ بـ research (فهم)، بعدين design (تصميم)، بعدين testing (اختبار)، وبعدين iteration (تحسين).',
+        mcp: '<strong>Analytics Integration:</strong> الـ AI يقدر يحلل بيانات المستخدمين — يشوف أكتر صفحة بيزوروها، فين بيتعطلوا، إيه اللي مش واضح.',
+        rules: '<strong>UX Best Practices:</strong> ما تفترضش — اسأل المستخدمين. ما تصممش في الفراغ — اختبر مع ناس حقيقية.'
+      }
+    },
+    advanced: {
+      heroSub: "Advanced UX: research-driven design، behavioral psychology، usability metrics، iterative testing frameworks.",
+      burnBody: "UX without research is guesswork. Advanced UX applies cognitive psychology، behavioral economics، usability heuristics، quantitative metrics — evidence-based design.",
+      skillsBody: '<strong>Advanced UX skills:</strong> Jobs-to-be-done framework، cognitive load theory، Fitts\'s law، Hick\'s law، usability heuristics (Nielsen)، A/B testing design.',
+      agentsBody: '<strong>UX specialized agents:</strong> User researcher synthesizes qualitative + quantitative data، journey mapper identifies pain points، usability tester runs task-based tests، metrics analyst tracks adoption/retention.',
+      workflowsBody: '<strong>UX research pipelines:</strong> Discovery research → Persona development → Journey mapping → Usability testing → A/B experiments → Behavioral analytics.',
+      mcpBody: '<strong>UX analytics integration:</strong> Google Analytics، Mixpanel، Amplitude، Hotjar، FullStory — track behavior، heatmaps، session recordings، funnel analysis.',
+      rulesBody: '<strong>UX standards:</strong> All features validated with user research، all flows tested with 5+ users، all interfaces pass usability heuristics، all CTAs tested with A/B experiments.',
+      ctaSub: "Build evidence-based UX: research-driven personas، validated journey maps، tested interactions، measured outcomes.",
+      deepDives: {
+        skills: '<strong>Behavioral psychology in UX:</strong> Cognitive load reduction، progressive disclosure، recognition over recall، affordances، signifiers، feedback loops.',
+        agents: '<strong>Multi-method research agents:</strong> Qualitative researcher (interviews، observations) + Quantitative analyst (surveys، analytics) + Synthesis agent (patterns، insights).',
+        workflows: '<strong>Continuous UX research:</strong> Automated user feedback collection، regular usability testing cadence، A/B test tracking، behavioral cohort analysis.',
+        mcp: '<strong>Research tool integration:</strong> UserTesting for remote tests، Maze for prototype testing، Dovetail for research synthesis، Optimal Workshop for IA testing.',
+        rules: '<strong>Usability standards:</strong> Task success rate > 80%، time-on-task < target، error rate < 5%، satisfaction score > 4/5، SUS score > 68.'
+      }
+    },
+    expert: {
+      heroSub: "Strategic UX: organizational UX maturity، design ops، research infrastructure، behavioral data science، product-led growth.",
+      burnBody: "Enterprise UX requires systems: research repositories، design system governance، cross-functional collaboration frameworks، behavioral data infrastructure، UX metrics tied to business outcomes.",
+      skillsBody: '<strong>Strategic UX architecture:</strong> UX maturity models، research ops infrastructure، design system governance، behavioral data science، product-led growth frameworks. Reference: <a href="#">Enterprise UX Patterns</a>',
+      agentsBody: '<strong>Strategic UX agents:</strong> Research ops manager builds infrastructure، UX strategist aligns with business goals، behavioral data scientist models user actions، growth UX optimizer improves funnels.',
+      workflowsBody: '<strong>UX ops workflows:</strong> Research repository management → Design system evolution → Cross-functional collaboration → Metrics dashboards → Strategic reporting.',
+      mcpBody: '<strong>UX data infrastructure:</strong> Data warehouses (Snowflake)، BI tools (Looker)، behavioral analytics (Amplitude)، qualitative research (Dovetail)، experimentation platforms (Optimizely).',
+      rulesBody: '<strong>UX governance:</strong> All product decisions require UX validation، all features tracked with success metrics، all designs pass accessibility + usability standards، all experiments have statistical rigor.',
+      ctaSub: "Lead strategic UX: research infrastructure، cross-functional alignment، data-driven design، product-led growth.",
+      deepDives: {
+        skills: '<strong>UX maturity frameworks:</strong> Nielsen Norman UX maturity model، ResearchOps framework، design system maturity، experimentation culture scaling.',
+        agents: '<strong>UX ops agents:</strong> Research repository agent (tags، synthesizes studies)، metric tracking agent (HEART metrics)، experiment orchestrator (A/B، multivariate)، accessibility enforcer (WCAG AAA).',
+        workflows: '<strong>Strategic UX workflows:</strong> Quarterly research planning → Cross-functional alignment → Experiment roadmap → Metrics review → Strategic UX reporting to executives.',
+        mcp: '<strong>Enterprise UX stack:</strong> Integrate data warehouse، BI tools، research platforms، experimentation tools، session replay، heatmaps. Complete UX intelligence.',
+        rules: '<strong>Enterprise UX standards:</strong> HEART metrics tracked (Happiness، Engagement، Adoption، Retention، Task success)، SUS scores > 75، accessibility WCAG AAA، experiment statistical power > 80%.'
+      }
+    }
+  },
+  en: {
+    beginner: {
+      heroSub: "UX isn't just design — it's understanding your users and how they use your product easily.",
+      burnBody: "Many products are built without understanding users. Result? Features nobody uses. UX research solves this.",
+      skillsBody: '<strong>UX Skills:</strong> User research, personas, journey mapping, usability testing, wireframing, interaction design.',
+      agentsBody: '<strong>UX Agents:</strong> One does user research, one designs journeys, one tests usability.',
+      workflowsBody: '<strong>UX Workflows:</strong> Research → Personas → Journey Maps → Wireframes → Prototypes → Usability Testing → Iteration.',
+      mcpBody: '<strong>MCP for UX:</strong> Analyze user data from Google Analytics, Mixpanel, or Hotjar — see how people use your product.',
+      rulesBody: '<strong>UX Rules:</strong> Every feature must be built on user research, every flow must be tested with real users.',
+      ctaSub: "Do UX right: start with research, design based on data, test with users, improve continuously.",
+      beginnerTips: {
+        skills: '<strong>User Research:</strong> Understand your users — who they are, what they want, what problems they face. This is the foundation of good UX.',
+        agents: '<strong>UX Research Agent:</strong> Helps you create personas (fictional characters representing your users) and journey maps (map of user journey through product).',
+        workflows: '<strong>UX Workflow:</strong> Always start with research (understand), then design, then testing, then iteration (improvement).',
+        mcp: '<strong>Analytics Integration:</strong> AI can analyze user data — see most visited page, where they get stuck, what\'s unclear.',
+        rules: '<strong>UX Best Practices:</strong> Don\'t assume — ask users. Don\'t design in vacuum — test with real people.'
+      }
+    },
+    advanced: {
+      heroSub: "Advanced UX: research-driven design, behavioral psychology, usability metrics, iterative testing frameworks.",
+      burnBody: "UX without research is guesswork. Advanced UX applies cognitive psychology, behavioral economics, usability heuristics, quantitative metrics — evidence-based design.",
+      skillsBody: '<strong>Advanced UX skills:</strong> Jobs-to-be-done framework, cognitive load theory, Fitts\'s law, Hick\'s law, usability heuristics (Nielsen), A/B testing design.',
+      agentsBody: '<strong>UX specialized agents:</strong> User researcher synthesizes qualitative + quantitative data, journey mapper identifies pain points, usability tester runs task-based tests, metrics analyst tracks adoption/retention.',
+      workflowsBody: '<strong>UX research pipelines:</strong> Discovery research → Persona development → Journey mapping → Usability testing → A/B experiments → Behavioral analytics.',
+      mcpBody: '<strong>UX analytics integration:</strong> Google Analytics, Mixpanel, Amplitude, Hotjar, FullStory — track behavior, heatmaps, session recordings, funnel analysis.',
+      rulesBody: '<strong>UX standards:</strong> All features validated with user research, all flows tested with 5+ users, all interfaces pass usability heuristics, all CTAs tested with A/B experiments.',
+      ctaSub: "Build evidence-based UX: research-driven personas, validated journey maps, tested interactions, measured outcomes.",
+      deepDives: {
+        skills: '<strong>Behavioral psychology in UX:</strong> Cognitive load reduction, progressive disclosure, recognition over recall, affordances, signifiers, feedback loops.',
+        agents: '<strong>Multi-method research agents:</strong> Qualitative researcher (interviews, observations) + Quantitative analyst (surveys, analytics) + Synthesis agent (patterns, insights).',
+        workflows: '<strong>Continuous UX research:</strong> Automated user feedback collection, regular usability testing cadence, A/B test tracking, behavioral cohort analysis.',
+        mcp: '<strong>Research tool integration:</strong> UserTesting for remote tests, Maze for prototype testing, Dovetail for research synthesis, Optimal Workshop for IA testing.',
+        rules: '<strong>Usability standards:</strong> Task success rate > 80%, time-on-task < target, error rate < 5%, satisfaction score > 4/5, SUS score > 68.'
+      }
+    },
+    expert: {
+      heroSub: "Strategic UX: organizational UX maturity, design ops, research infrastructure, behavioral data science, product-led growth.",
+      burnBody: "Enterprise UX requires systems: research repositories, design system governance, cross-functional collaboration frameworks, behavioral data infrastructure, UX metrics tied to business outcomes.",
+      skillsBody: '<strong>Strategic UX architecture:</strong> UX maturity models, research ops infrastructure, design system governance, behavioral data science, product-led growth frameworks. Reference: <a href="#">Enterprise UX Patterns</a>',
+      agentsBody: '<strong>Strategic UX agents:</strong> Research ops manager builds infrastructure, UX strategist aligns with business goals, behavioral data scientist models user actions, growth UX optimizer improves funnels.',
+      workflowsBody: '<strong>UX ops workflows:</strong> Research repository management → Design system evolution → Cross-functional collaboration → Metrics dashboards → Strategic reporting.',
+      mcpBody: '<strong>UX data infrastructure:</strong> Data warehouses (Snowflake), BI tools (Looker), behavioral analytics (Amplitude), qualitative research (Dovetail), experimentation platforms (Optimizely).',
+      rulesBody: '<strong>UX governance:</strong> All product decisions require UX validation, all features tracked with success metrics, all designs pass accessibility + usability standards, all experiments have statistical rigor.',
+      ctaSub: "Lead strategic UX: research infrastructure, cross-functional alignment, data-driven design, product-led growth.",
+      deepDives: {
+        skills: '<strong>UX maturity frameworks:</strong> Nielsen Norman UX maturity model, ResearchOps framework, design system maturity, experimentation culture scaling.',
+        agents: '<strong>UX ops agents:</strong> Research repository agent (tags, synthesizes studies), metric tracking agent (HEART metrics), experiment orchestrator (A/B, multivariate), accessibility enforcer (WCAG AAA).',
+        workflows: '<strong>Strategic UX workflows:</strong> Quarterly research planning → Cross-functional alignment → Experiment roadmap → Metrics review → Strategic UX reporting to executives.',
+        mcp: '<strong>Enterprise UX stack:</strong> Integrate data warehouse, BI tools, research platforms, experimentation tools, session replay, heatmaps. Complete UX intelligence.',
+        rules: '<strong>Enterprise UX standards:</strong> HEART metrics tracked (Happiness, Engagement, Adoption, Retention, Task success), SUS scores > 75, accessibility WCAG AAA, experiment statistical power > 80%.'
+      }
+    }
+  }
+}
+
+}; // end EXP_OVERLAYS
+
+
+// ══════════════════════════════════════════════════════════════
 // setDomain() — DOMAIN SWITCHER (language-aware)
 // ══════════════════════════════════════════════════════════════
 
@@ -4775,6 +5383,11 @@ function setDomain(key, skipTransition) {
   const d = domainData[currentLang] || domainData['ar'];
   if (!d) { console.warn('Missing language data for', key, currentLang); return; }
   currentDomain = key;
+
+  // Get experience overlay
+  const expOverlay = EXP_OVERLAYS[key]?.[currentLang]?.[currentExperience];
+  // Helper: get text with experience overlay fallback
+  const getExp = (field) => (expOverlay && expOverlay[field]) || d[field];
 
   // Update pills
   document.querySelectorAll('.domain-pill').forEach(p => {
@@ -4798,7 +5411,7 @@ function setDomain(key, skipTransition) {
     setText('hero-eyebrow-text', d.heroEyebrow);
     setText('hero-h1-line1', d.heroLine1);
     setText('hero-h1-line2', d.heroLine2);
-    setText('hero-sub', d.heroSub);
+    setText('hero-sub', getExp('heroSub'));
 
     // Stats
     const s1 = document.getElementById('hero-stat1-num');
@@ -4815,42 +5428,59 @@ function setDomain(key, skipTransition) {
 
     // Burn / Hook section
     setHTML('burn-h2', d.burnH2);
-    setText('burn-scars-body', d.burnBody);
+    setText('burn-scars-body', getExp('burnBody'));
     setHTML('zero-g-grid', d.zeroGGrid);
 
     // Skills section
     setHTML('skills-h2', d.skillsH2);
-    setHTML('skills-body', d.skillsBody);
+    setHTML('skills-body', getExp('skillsBody'));
     setHTML('skills-grid', d.skillsGrid);
     setHTML('install-commands', d.installCmds);
 
     // Agents section
     setHTML('agents-h2', d.agentsH2);
-    setHTML('agents-body', d.agentsBody);
+    setHTML('agents-body', getExp('agentsBody'));
     setHTML('agent-ecosystem', d.agentEcosystem);
 
     // Workflows section
     setHTML('workflows-h2', d.workflowsH2);
-    setHTML('workflows-body', d.workflowsBody);
+    setHTML('workflows-body', getExp('workflowsBody'));
     setHTML('orbital-mechanics', d.orbitalMechanics);
 
     // MCP section
     setHTML('mcp-h2', d.mcpH2);
-    setHTML('mcp-body', d.mcpBody);
+    setHTML('mcp-body', getExp('mcpBody'));
     setHTML('integration-grid', d.integrationGrid);
 
     // Rules section
     setHTML('rules-h2', d.rulesH2);
-    setHTML('rules-body', d.rulesBody);
+    setHTML('rules-body', getExp('rulesBody'));
     setHTML('comparison-grid', d.comparisonGrid);
 
     // CTA section
     setHTML('cta-h2', d.ctaH2);
-    setText('cta-sub', d.ctaSub);
+    setText('cta-sub', getExp('ctaSub'));
     const ctaCmd = document.getElementById('cta-install-cmd');
     if (ctaCmd) {
       ctaCmd.innerHTML = '<span class="prompt">$</span> ' + d.ctaInstall;
     }
+
+    // Experience-specific tip boxes and deep dives
+    const tipSections = ['skills', 'agents', 'workflows', 'mcp', 'rules'];
+    tipSections.forEach(sec => {
+      const tipEl = document.getElementById('tip-' + sec);
+      const ddEl = document.getElementById('deepdive-' + sec);
+      if (tipEl) {
+        const tipText = expOverlay?.beginnerTips?.[sec];
+        tipEl.innerHTML = tipText || '';
+        tipEl.classList.toggle('visible', !!tipText);
+      }
+      if (ddEl) {
+        const ddText = expOverlay?.deepDives?.[sec];
+        ddEl.innerHTML = ddText || '';
+        ddEl.classList.toggle('visible', !!ddText);
+      }
+    });
 
     // Terminal animation restart
     if (d.terminalLines) {
@@ -5143,6 +5773,13 @@ function applyExperienceLevel(level) {
       dd.classList.remove('open');
     }
   });
+
+  // Re-render domain content with new experience level
+  if (currentDomain) {
+    const prevDomain = currentDomain;
+    currentDomain = null;
+    setDomain(prevDomain, true);
+  }
 }
 
 function makeBarCompact() {
