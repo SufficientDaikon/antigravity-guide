@@ -713,6 +713,8 @@
           border-color 0.3s ease,
           transform 0.3s ease,
           box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
       }
 
       .skill-card::before {
@@ -784,6 +786,20 @@
       .skill-install:hover {
         color: var(--teal);
         border-color: var(--teal);
+      }
+      .skill-tag {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--pink);
+        background: rgba(255, 107, 157, 0.1);
+        border: 1px solid rgba(255, 107, 157, 0.2);
+        border-radius: 6px;
+        padding: 0.2rem 0.6rem;
+        margin-top: auto;
+        align-self: flex-start;
       }
 
       /* ══════════════════════════════════════════════════════════════
@@ -890,6 +906,8 @@
       .agent-tile {
         background: var(--surface);
         padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid var(--border);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -897,12 +915,31 @@
         cursor: pointer;
         transition:
           background 0.3s ease,
-          transform 0.2s ease;
+          transform 0.2s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
         position: relative;
+        overflow: hidden;
+      }
+      .agent-tile::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--teal), #7c3aed);
+        opacity: 0;
+        transition: opacity 0.3s ease;
       }
       .agent-tile:hover {
         background: var(--surface2);
-        transform: scale(1.02);
+        transform: translateY(-4px);
+        border-color: var(--teal);
+        box-shadow: 0 8px 25px rgba(0, 229, 200, 0.12);
+      }
+      .agent-tile:hover::before {
+        opacity: 1;
       }
 
       .agent-tile.orchestrator {
@@ -1029,6 +1066,22 @@
         direction: ltr;
       }
 
+      .workflow-note {
+        display: block;
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        background: rgba(124, 58, 237, 0.08);
+        border-left: 3px solid #7c3aed;
+        border-radius: 0 8px 8px 0;
+        font-size: 0.85rem;
+        color: var(--ice-dim);
+        font-style: italic;
+      }
+      [dir="ltr"] .workflow-note {
+        border-left: 3px solid #7c3aed;
+        border-right: none;
+      }
+
       .mcp-node {
         display: flex;
         flex-direction: column;
@@ -1074,20 +1127,34 @@
       .integration-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        border-radius: 16px;
+        padding: 1.5rem;
         cursor: pointer;
         transition:
           border-color 0.3s ease,
-          transform 0.3s ease;
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .integration-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #7c3aed, var(--pink));
+        opacity: 0;
+        transition: opacity 0.3s ease;
       }
       .integration-card:hover {
         border-color: var(--pink);
         transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(255, 107, 157, 0.12);
+      }
+      .integration-card:hover::before {
+        opacity: 1;
       }
 
       .integration-icon {
@@ -4155,6 +4222,29 @@ const user = await fetchUserById('123');
               version: 'v2.0.3',
               category: 'Design'
             }
+          },
+          'mcp-builder': {
+            icon: '🏗️',
+            ar: {
+              name: 'mcp-builder',
+              tagline: 'بناء MCP servers احترافية',
+              description: 'دليل شامل لبناء MCP servers عالية الجودة اللي بتخلي الـ LLMs تتفاعل مع الخدمات الخارجية. بيغطي Python (FastMCP) و Node/TypeScript (MCP SDK) مع best practices للـ tool design.',
+              features: ['FastMCP Python patterns', 'TypeScript MCP SDK', 'Tool design best practices', 'Error handling strategies', 'Authentication patterns', 'Testing MCP servers'],
+              install: 'curl -sSL https://skills.sh/mcp-builder | sh',
+              usage: '// الـ agent هيعرف يبني MCP servers\n"Build an MCP server for my REST API"\n"Create a FastMCP tool for database queries"',
+              version: 'v1.2.0',
+              category: 'بنية تحتية'
+            },
+            en: {
+              name: 'mcp-builder',
+              tagline: 'Build professional MCP servers',
+              description: 'Comprehensive guide for building high-quality MCP servers that enable LLMs to interact with external services. Covers Python (FastMCP) and Node/TypeScript (MCP SDK) with best practices for tool design.',
+              features: ['FastMCP Python patterns', 'TypeScript MCP SDK', 'Tool design best practices', 'Error handling strategies', 'Authentication patterns', 'Testing MCP servers'],
+              install: 'curl -sSL https://skills.sh/mcp-builder | sh',
+              usage: '// Agent will know how to build MCP servers\n"Build an MCP server for my REST API"\n"Create a FastMCP tool for database queries"',
+              version: 'v1.2.0',
+              category: 'Infrastructure'
+            }
           }
         },
         agents: {
@@ -4294,6 +4384,98 @@ const user = await fetchUserById('123');
               example: '// Pipeline:\nResearch → IA → Wireframe → UX → UI → Implementation → Testing\n\n// Each phase:\n- Quality gate review\n- Context handoff\n- Artifact validation\n- Automatic retry on failure',
               model: 'Claude Opus',
               category: 'Orchestration'
+            }
+          },
+          'ade-researcher': {
+            icon: '🔬',
+            ar: {
+              name: 'ade-researcher',
+              tagline: 'بحث تقني عميق وتحليل شامل',
+              description: 'وكيل بحث تقني متقدم متخصص في Agentic Development Environment. بيعمل بحث شامل عبر لغات البرمجة والبروتوكولات والأدوات الـ AI-native وأنظمة الوكلاء. بيطلع findings مهيكلة مع citations — بحث فقط، مش بيقترح إيه اللي تبنيه.',
+              capabilities: ['بحث عبر لغات البرمجة', 'تحليل بروتوكولات', 'مقارنة architecture decisions', 'performance benchmarks', 'تحليل AI tooling', 'citation-heavy findings'],
+              trigger: 'antigravity invoke --agent ade-researcher --topic "research question"',
+              example: '// مثال:\nInput: "Compare FastAPI vs Django REST for microservices"\nOutput:\n- Architecture comparison table\n- Performance benchmarks\n- Scaling patterns\n- Community & ecosystem analysis\n- Recommendation matrix with citations',
+              model: 'Claude Sonnet',
+              category: 'بحث'
+            },
+            en: {
+              name: 'ade-researcher',
+              tagline: 'Deep technical research and analysis',
+              description: 'Senior technical research analyst for Agentic Development Environment topics. Conducts exhaustive, citation-heavy research across programming languages, protocols, AI-native tooling, agent systems, and developer infrastructure. Research-only — never suggests what to build.',
+              capabilities: ['Cross-language research', 'Protocol analysis', 'Architecture decision comparison', 'Performance benchmarks', 'AI tooling analysis', 'Citation-heavy findings'],
+              trigger: 'antigravity invoke --agent ade-researcher --topic "research question"',
+              example: '// Example:\nInput: "Compare FastAPI vs Django REST for microservices"\nOutput:\n- Architecture comparison table\n- Performance benchmarks\n- Scaling patterns\n- Community & ecosystem analysis\n- Recommendation matrix with citations',
+              model: 'Claude Sonnet',
+              category: 'Research'
+            }
+          },
+          'reviewer': {
+            icon: '✅',
+            ar: {
+              name: 'reviewer',
+              tagline: 'مراجعة التنفيذ ضد المواصفات',
+              description: 'وكيل متخصص في مقارنة التنفيذ بالمواصفات الأصلية. بيطلع تقرير compliance شامل بـ HTML/CSS — بيحدد الفجوات والانحرافات ومشاكل الجودة. الخطوة الأخيرة في أي SDD pipeline.',
+              capabilities: ['Spec compliance check', 'Gap identification', 'Deviation detection', 'Quality scoring', 'HTML report generation', 'Section-by-section review'],
+              trigger: 'antigravity invoke --agent reviewer --spec spec.md --code src/',
+              example: '// Output:\n- Overall compliance: 91%\n- 24/28 requirements passed\n- 3 critical gaps identified\n- Detailed HTML/CSS report\n- Fix recommendations\n- Priority matrix',
+              model: 'Claude Sonnet',
+              category: 'مراجعة'
+            },
+            en: {
+              name: 'reviewer',
+              tagline: 'Review implementation against specs',
+              description: 'Specialist in comparing implementation output against the original specification. Produces comprehensive HTML/CSS compliance report — identifies gaps, deviations, and quality issues. The final step in any SDD pipeline.',
+              capabilities: ['Spec compliance check', 'Gap identification', 'Deviation detection', 'Quality scoring', 'HTML report generation', 'Section-by-section review'],
+              trigger: 'antigravity invoke --agent reviewer --spec spec.md --code src/',
+              example: '// Output:\n- Overall compliance: 91%\n- 24/28 requirements passed\n- 3 critical gaps identified\n- Detailed HTML/CSS report\n- Fix recommendations\n- Priority matrix',
+              model: 'Claude Sonnet',
+              category: 'Review'
+            }
+          },
+          'info-arch': {
+            icon: '🏛️',
+            ar: {
+              name: 'info-arch',
+              tagline: 'هندسة معلومات وتنظيم المحتوى',
+              description: 'بيبني هيكل الموقع الكامل — sitemaps، navigation design، content strategy، user flows، screen inventories. بيحول الفوضى لتنظيم منطقي يخلي المستخدم يلاقي أي حاجة بسهولة.',
+              capabilities: ['Sitemap creation', 'Navigation design', 'Content strategy', 'User flow mapping', 'Screen inventory', 'Taxonomy design'],
+              trigger: 'antigravity invoke --agent info-arch --project "app name"',
+              example: '// Output:\n- Complete sitemap (tree structure)\n- Navigation hierarchy\n- Content model\n- User flows (happy + edge)\n- Screen inventory with annotations\n- Priority matrix',
+              model: 'Claude Sonnet',
+              category: 'تخطيط'
+            },
+            en: {
+              name: 'info-arch',
+              tagline: 'Information architecture and content organization',
+              description: 'Builds the complete site structure — sitemaps, navigation design, content strategy, user flows, screen inventories. Turns chaos into logical organization that lets users find anything easily.',
+              capabilities: ['Sitemap creation', 'Navigation design', 'Content strategy', 'User flow mapping', 'Screen inventory', 'Taxonomy design'],
+              trigger: 'antigravity invoke --agent info-arch --project "app name"',
+              example: '// Output:\n- Complete sitemap (tree structure)\n- Navigation hierarchy\n- Content model\n- User flows (happy + edge)\n- Screen inventory with annotations\n- Priority matrix',
+              model: 'Claude Sonnet',
+              category: 'Planning'
+            }
+          },
+          'qa-test-planner': {
+            icon: '🧪',
+            ar: {
+              name: 'qa-test-planner',
+              tagline: 'خطط اختبار شاملة من المواصفات',
+              description: 'بيولد خطط اختبار شاملة وmanual test cases وregression test suites وbug reports. بيغطي كل edge case من المواصفات ويعمل coverage matrix كاملة.',
+              capabilities: ['Test plan generation', 'Manual test cases', 'Regression suite design', 'Bug report templates', 'Coverage matrix', 'Edge case identification'],
+              trigger: 'antigravity invoke --agent qa-test-planner --spec spec.md',
+              example: '// Output:\n- Test plan with 150+ scenarios\n- Priority: P0/P1/P2 classification\n- Regression suite\n- Edge case coverage matrix\n- Bug report templates\n- Acceptance test checklist',
+              model: 'Claude Sonnet',
+              category: 'اختبار'
+            },
+            en: {
+              name: 'qa-test-planner',
+              tagline: 'Comprehensive test plans from specs',
+              description: 'Generates comprehensive test plans, manual test cases, regression test suites, and bug reports. Covers every edge case from specifications and produces a full coverage matrix.',
+              capabilities: ['Test plan generation', 'Manual test cases', 'Regression suite design', 'Bug report templates', 'Coverage matrix', 'Edge case identification'],
+              trigger: 'antigravity invoke --agent qa-test-planner --spec spec.md',
+              example: '// Output:\n- Test plan with 150+ scenarios\n- Priority: P0/P1/P2 classification\n- Regression suite\n- Edge case coverage matrix\n- Bug report templates\n- Acceptance test checklist',
+              model: 'Claude Sonnet',
+              category: 'Testing'
             }
           }
         },
@@ -5025,7 +5207,8 @@ frontend: {
       <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">frontend-design</div><p class="skill-desc">أنظمة تصميم، باترنز Tailwind، تصميم responsive، إمكانية الوصول (a11y).</p><code class="skill-install">curl -sSL https://skills.sh/frontend-design | sh</code></div>
       <div class="skill-card"><div class="skill-icon">🧪</div><div class="skill-name">e2e-testing-patterns</div><p class="skill-desc">اختبارات Playwright و Cypress، page objects، visual regression testing.</p><code class="skill-install">curl -sSL https://skills.sh/e2e-testing-patterns | sh</code></div>
       <div class="skill-card"><div class="skill-icon">🔍</div><div class="skill-name">systematic-debugging</div><p class="skill-desc">React DevTools، profiling، منهجية debugging للـ state: افترض، اختبر، اعزل، صلّح.</p><code class="skill-install">curl -sSL https://skills.sh/systematic-debugging | sh</code></div>
-      <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">webapp-testing</div><p class="skill-desc">أتمتة المتصفح، التحقق من screenshots، capture لـ console logs.</p><code class="skill-install">curl -sSL https://skills.sh/webapp-testing | sh</code></div>`,
+      <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">webapp-testing</div><p class="skill-desc">أتمتة المتصفح، التحقق من screenshots، capture لـ console logs.</p><code class="skill-install">curl -sSL https://skills.sh/webapp-testing | sh</code></div>
+      <div class="skill-card"><div class="skill-icon">🏗️</div><div class="skill-name">mcp-builder</div><p class="skill-desc">بناء MCP servers بـ FastMCP و TypeScript SDK للربط بين الـ LLMs والخدمات الخارجية.</p><code class="skill-install">curl -sSL https://skills.sh/mcp-builder | sh</code></div>`,
     installCmds: `
       <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت مهارة واحدة</span><span class="cmd-text">curl -sSL https://skills.sh/react-best-practices | sh</span></div>
       <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">تثبيت حزمة كاملة</span><span class="cmd-text">curl -sSL https://skills.sh/bundle/react-fullstack | sh</span></div>
@@ -5039,9 +5222,11 @@ frontend: {
       <div class="agent-tile"><div class="agent-icon">⚙️</div><div class="agent-name">implementer</div><p class="agent-role">بيمشي على المواصفات بالظبط. بيختبر كل acceptance criterion.</p></div>
       <div class="agent-tile"><div class="agent-icon">⚛️</div><div class="agent-name">frontend-impl</div><p class="agent-role">بيحول التصميمات لمكونات React مظبوطة وقابلة للوصول.</p></div>
       <div class="agent-tile"><div class="agent-icon">🔬</div><div class="agent-name">ux-research</div><p class="agent-role">بيعمل personas، journey maps، وتحليل تنافسي.</p></div>
+      <div class="agent-tile"><div class="agent-icon">🔬</div><div class="agent-name">ade-researcher</div><p class="agent-role">بيعمل بحث تقني عميق: مقارنة بين فريم وركات، best practices، وperformance benchmarks.</p></div>
+      <div class="agent-tile"><div class="agent-icon">✅</div><div class="agent-name">reviewer</div><p class="agent-role">بيراجع التنفيذ ضد المواصفات ويطلع compliance report مفصل بـ HTML.</p></div>
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">بينسق خط إنتاج UI/UX الكامل: بحث ← هندسة معلومات ← واير فريم ← UX ← UI ← تنفيذ ← اختبار. بينسق ٧ وكلاء متخصصين مع بوابات جودة تلقائية بين كل مرحلة والتانية.</p></div></div>`,
     workflowsH2: 'نسّق <em>فريق الوكلاء</em> بتاعك',
-    workflowsBody: '<strong>سير العمل (Workflows)</strong> بيربط الوكلاء مع بعض في خطوط أنابيب آلية. فكرة المستخدم بتبقى مواصفات (عن طريق <code>spec-writer</code>)، المواصفات بتبقى تنفيذ (عن طريق <code>implementer</code>)، والتنفيذ بيتراجع (عن طريق <code>reviewer</code>). كل وكيل بيسلم للّي بعده، مع بوابات جودة بتمسك المشاكل بدري.',
+    workflowsBody: '<strong>سير العمل (Workflows)</strong> بيربط الوكلاء مع بعض في خطوط أنابيب آلية. المثال اللي تحت هو <em>SDD Pipeline</em> (Spec-Driven Development) — واحد من أشهر الـ workflows: الفكرة بتبقى مواصفات ← المواصفات بتبقى تنفيذ ← التنفيذ بيتراجع. <span class="workflow-note">💡 ده مثال واحد بس — فيه آلاف الـ workflows الممكنة. اعمل واحد يناسب طريقة شغلك.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">فكرة</div><div class="flow-label">مدخل</div></div>
       <div class="flow-arrow">→</div>
@@ -5136,7 +5321,8 @@ const user = await fetchUserById('123');
       <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">frontend-design</div><p class="skill-desc">Design systems, Tailwind patterns, responsive design, accessibility (a11y).</p><code class="skill-install">curl -sSL https://skills.sh/frontend-design | sh</code></div>
       <div class="skill-card"><div class="skill-icon">🧪</div><div class="skill-name">e2e-testing-patterns</div><p class="skill-desc">Playwright & Cypress tests, page objects, visual regression testing.</p><code class="skill-install">curl -sSL https://skills.sh/e2e-testing-patterns | sh</code></div>
       <div class="skill-card"><div class="skill-icon">🔍</div><div class="skill-name">systematic-debugging</div><p class="skill-desc">React DevTools, profiling, systematic state debugging: hypothesize, test, isolate, fix.</p><code class="skill-install">curl -sSL https://skills.sh/systematic-debugging | sh</code></div>
-      <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">webapp-testing</div><p class="skill-desc">Browser automation, screenshot verification, console log capture.</p><code class="skill-install">curl -sSL https://skills.sh/webapp-testing | sh</code></div>`,
+      <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">webapp-testing</div><p class="skill-desc">Browser automation, screenshot verification, console log capture.</p><code class="skill-install">curl -sSL https://skills.sh/webapp-testing | sh</code></div>
+      <div class="skill-card"><div class="skill-icon">🏗️</div><div class="skill-name">mcp-builder</div><p class="skill-desc">Build MCP servers with FastMCP and TypeScript SDK to connect LLMs with external services.</p><code class="skill-install">curl -sSL https://skills.sh/mcp-builder | sh</code></div>`,
     installCmds: `
       <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">Install one skill</span><span class="cmd-text">curl -sSL https://skills.sh/react-best-practices | sh</span></div>
       <div class="install-cmd" onclick="copyCmd(this)"><span class="cmd-label">Install full bundle</span><span class="cmd-text">curl -sSL https://skills.sh/bundle/react-fullstack | sh</span></div>
@@ -5150,9 +5336,11 @@ const user = await fetchUserById('123');
       <div class="agent-tile"><div class="agent-icon">⚙️</div><div class="agent-name">implementer</div><p class="agent-role">Follows specs exactly. Tests every acceptance criterion.</p></div>
       <div class="agent-tile"><div class="agent-icon">⚛️</div><div class="agent-name">frontend-impl</div><p class="agent-role">Turns designs into pixel-perfect, accessible React components.</p></div>
       <div class="agent-tile"><div class="agent-icon">🔬</div><div class="agent-name">ux-research</div><p class="agent-role">Creates personas, journey maps, and competitive analysis.</p></div>
+      <div class="agent-tile"><div class="agent-icon">🔬</div><div class="agent-name">ade-researcher</div><p class="agent-role">Deep technical research: framework comparisons, best practices, and performance benchmarks.</p></div>
+      <div class="agent-tile"><div class="agent-icon">✅</div><div class="agent-name">reviewer</div><p class="agent-role">Reviews implementation against specs and produces detailed HTML compliance report.</p></div>
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">Orchestrates the full UI/UX pipeline: research → IA → wireframe → UX → UI → implementation → testing. Coordinates 7 specialized agents with automatic quality gates between every phase.</p></div></div>`,
     workflowsH2: 'Orchestrate your <em>agent team</em>',
-    workflowsBody: '<strong>Workflows</strong> chain agents together in automated pipelines. A user idea becomes a spec (via <code>spec-writer</code>), the spec becomes implementation (via <code>implementer</code>), and the implementation gets reviewed (via <code>reviewer</code>). Each agent hands off to the next, with quality gates catching issues early.',
+    workflowsBody: '<strong>Workflows</strong> chain agents together in automated pipelines. The example below is the <em>SDD Pipeline</em> (Spec-Driven Development) — one of the most popular workflows: idea becomes spec → spec becomes implementation → implementation gets reviewed. <span class="workflow-note">💡 This is just one example — there are thousands of possible workflows. Build one that fits your process.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">Idea</div><div class="flow-label">Input</div></div>
       <div class="flow-arrow">→</div>
@@ -5270,7 +5458,7 @@ backend: {
       <div class="agent-tile"><div class="agent-icon">🏗️</div><div class="agent-name">mcp-builder</div><p class="agent-role">بيبني MCP servers بـ FastMCP للربط بين الوكلاء وقواعد البيانات والـ APIs الخارجية.</p></div>
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">reviewer</div><p class="agent-role">بيراجع التنفيذ ضد المواصفات: compliance check كامل مع تقرير HTML مفصل. بيكتشف أي deviation من الـ spec.</p></div></div>`,
     workflowsH2: 'نسّق <em>خط أنابيب</em> الباك إند',
-    workflowsBody: '<strong>سير العمل (Workflows)</strong> بيربط الوكلاء في pipeline واحد: من تصميم الـ API لحد الـ deployment. <code>spec-writer</code> بيعرّف الـ endpoints، <code>implementer</code> بيكتب الكود والتيستات، <code>code-review</code> بيراجع الأمان والأداء.',
+    workflowsBody: '<strong>سير العمل (Workflows)</strong> بيربط الوكلاء في pipeline واحد: من تصميم الـ API لحد الـ deployment. المثال اللي تحت هو <em>SDD Pipeline</em> — واحد من أشهر الـ workflows. <code>spec-writer</code> بيعرّف الـ endpoints، <code>implementer</code> بيكتب الكود والتيستات، <code>code-review</code> بيراجع الأمان والأداء. <span class="workflow-note">💡 ده مثال واحد بس — فيه آلاف الـ workflows الممكنة. اعمل واحد يناسب طريقة شغلك.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">API فكرة</div><div class="flow-label">مدخل</div></div>
       <div class="flow-arrow">→</div>
@@ -5379,7 +5567,7 @@ def get_orders(request: HttpRequest) -> JsonResponse:
       <div class="agent-tile"><div class="agent-icon">🏗️</div><div class="agent-name">mcp-builder</div><p class="agent-role">Builds MCP servers with FastMCP to connect agents with databases and external APIs.</p></div>
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">reviewer</div><p class="agent-role">Reviews implementation against specs: full compliance check with detailed HTML report. Catches any deviation from the spec.</p></div></div>`,
     workflowsH2: 'Orchestrate your <em>Backend pipeline</em>',
-    workflowsBody: '<strong>Workflows</strong> chain agents in a single pipeline: from API design to deployment. <code>spec-writer</code> defines endpoints, <code>implementer</code> writes code and tests, <code>code-review</code> reviews security and performance.',
+    workflowsBody: '<strong>Workflows</strong> chain agents in a single pipeline: from API design to deployment. The example below is the <em>SDD Pipeline</em> — one of the most popular workflows. <code>spec-writer</code> defines endpoints, <code>implementer</code> writes code and tests, <code>code-review</code> reviews security and performance. <span class="workflow-note">💡 This is just one example — there are thousands of possible workflows. Build one that fits your process.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">API Idea</div><div class="flow-label">Input</div></div>
       <div class="flow-arrow">→</div>
@@ -5499,7 +5687,7 @@ pm: {
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">بينسق خط الإنتاج الكامل: بحث ← IA ← واير فريم ← UX ← UI ← تنفيذ ← اختبار. أوتوماتيك بالكامل مع quality gates.</p></div></div>`,
 
     workflowsH2: 'من <em>الفكرة</em> للتسليم',
-    workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة المنتج بالكامل. الفكرة بتبقى <code>spec</code>، الـ spec بيبقى <code>test plan</code>، الـ test plan بيتسلم للـ <code>devs</code>، والتنفيذ بيتراجع ضد المواصفات الأصلية.',
+    workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة المنتج بالكامل. المثال اللي تحت هو <em>SDD Pipeline</em> — واحد من أشهر الـ workflows. الفكرة بتبقى <code>spec</code>، الـ spec بيبقى <code>test plan</code>، الـ test plan بيتسلم للـ <code>devs</code>، والتنفيذ بيتراجع ضد المواصفات الأصلية. <span class="workflow-note">💡 ده مثال واحد بس — فيه آلاف الـ workflows الممكنة. اعمل واحد يناسب طريقة شغلك.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">فكرة</div><div class="flow-label">مدخل</div></div>
       <div class="flow-arrow">→</div>
@@ -5611,7 +5799,7 @@ pm: {
       <div class="agent-tile"><div class="agent-icon">✅</div><div class="agent-name">reviewer</div><p class="agent-role">Reviews implementation against specifications and produces detailed compliance report.</p></div>
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">Coordinates complete production pipeline: research ← IA ← wireframe ← UX ← UI ← implementation ← testing. Fully automatic with quality gates.</p></div></div>`,
     workflowsH2: 'From <em>idea</em> to delivery',
-    workflowsBody: '<strong>Workflows</strong> organize the complete product journey. Idea becomes <code>spec</code>, spec becomes <code>test plan</code>, test plan gets handed off to <code>devs</code>, and implementation gets reviewed against original specifications.',
+    workflowsBody: '<strong>Workflows</strong> organize the complete product journey. The example below is the <em>SDD Pipeline</em> — one of the most popular workflows. Idea becomes <code>spec</code>, spec becomes <code>test plan</code>, test plan gets handed off to <code>devs</code>, and implementation gets reviewed against original specifications. <span class="workflow-note">💡 This is just one example — there are thousands of possible workflows. Build one that fits your process.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">Input</div><div class="flow-label">Input</div></div>
       <div class="flow-arrow">→</div>
@@ -5730,7 +5918,7 @@ ui: {
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">بينسق pipeline التصميم الكامل: بحث ← IA ← wireframe ← UX ← UI ← impl ← test. ٧ وكلاء مع quality gates.</p></div></div>`,
 
     workflowsH2: 'من <em>الفكرة</em> للـ Pixel',
-    workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة التصميم بالكامل. من الـ wireframe الأولي لحد الـ pixel-perfect implementation. كل وكيل بيسلم للّي بعده مع quality gate بيضمن الاتساق.',
+    workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة التصميم بالكامل. المثال اللي تحت هو <em>SDD Pipeline</em> — واحد من أشهر الـ workflows. من الـ wireframe الأولي لحد الـ pixel-perfect implementation. كل وكيل بيسلم للّي بعده مع quality gate بيضمن الاتساق. <span class="workflow-note">💡 ده مثال واحد بس — فيه آلاف الـ workflows الممكنة. اعمل واحد يناسب طريقة شغلك.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">فكرة</div><div class="flow-label">مدخل</div></div>
       <div class="flow-arrow">→</div>
@@ -5844,7 +6032,7 @@ ui: {
       <div class="agent-tile"><div class="agent-icon">🏛️</div><div class="agent-name">info-arch</div><p class="agent-role">Builds information architecture: sitemaps, navigation, content strategy, user flows.</p></div>
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">Coordinates complete design pipeline: research ← IA ← wireframe ← UX ← UI ← impl ← test. 7 agents with quality gates.</p></div></div>`,
     workflowsH2: 'From <em>idea</em> to pixel',
-    workflowsBody: '<strong>Workflows</strong> organize the complete design journey. From initial wireframe to pixel-perfect implementation. Each agent hands off to the next with quality gate ensuring consistency.',
+    workflowsBody: '<strong>Workflows</strong> organize the complete design journey. The example below is the <em>SDD Pipeline</em> — one of the most popular workflows. From initial wireframe to pixel-perfect implementation. Each agent hands off to the next with quality gate ensuring consistency. <span class="workflow-note">💡 This is just one example — there are thousands of possible workflows. Build one that fits your process.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">Input</div><div class="flow-label">Input</div></div>
       <div class="flow-arrow">→</div>
@@ -5965,7 +6153,7 @@ ux: {
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">بينسق pipeline UX الكامل: research ← IA ← wireframe ← UX ← UI ← impl ← test. أوتوماتيك مع quality gates.</p></div></div>`,
 
     workflowsH2: 'من <em>البحث</em> للاختبار',
-    workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة UX بالكامل. الـ research بيبقى personas، الـ personas بتبقى journey maps، الـ maps بتبقى wireframes، والـ wireframes بتتختبر مع real users.',
+    workflowsBody: '<strong>سير العمل (Workflows)</strong> بينظم رحلة UX بالكامل. المثال اللي تحت هو <em>SDD Pipeline</em> — واحد من أشهر الـ workflows. الـ research بيبقى personas، الـ personas بتبقى journey maps، الـ maps بتبقى wireframes، والـ wireframes بتتختبر مع real users. <span class="workflow-note">💡 ده مثال واحد بس — فيه آلاف الـ workflows الممكنة. اعمل واحد يناسب طريقة شغلك.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">Research</div><div class="flow-label">بحث</div></div>
       <div class="flow-arrow">→</div>
@@ -6073,7 +6261,7 @@ ux: {
       <div class="agent-tile"><div class="agent-icon">��</div><div class="agent-name">wireframe</div><p class="agent-role">Creates low-fidelity wireframes for every page with responsive annotations.</p></div>
       <div class="agent-tile orchestrator"><div class="agent-icon">🎯</div><div><div class="agent-name">ui-lifecycle-master</div><p class="agent-role">Coordinates complete UX pipeline: research ← IA ← wireframe ← UX ← UI ← impl ← test. Automatic with quality gates.</p></div></div>`,
     workflowsH2: 'From <em>research</em> to testing',
-    workflowsBody: '<strong>Workflows</strong> organize the complete UX journey. Research becomes personas, personas become journey maps, maps become wireframes, and wireframes get tested with real users.',
+    workflowsBody: '<strong>Workflows</strong> organize the complete UX journey. The example below is the <em>SDD Pipeline</em> — one of the most popular workflows. Research becomes personas, personas become journey maps, maps become wireframes, and wireframes get tested with real users. <span class="workflow-note">💡 This is just one example — there are thousands of possible workflows. Build one that fits your process.</span>',
     orbitalMechanics: `
       <div class="flow-step"><div class="flow-pill start">Research</div><div class="flow-label">Research</div></div>
       <div class="flow-arrow">→</div>
